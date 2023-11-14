@@ -126,3 +126,5 @@ nodoArbol* existePaciente(nodoArbol* pacientes, int dniPaciente)
     }
 
 }
+
+
