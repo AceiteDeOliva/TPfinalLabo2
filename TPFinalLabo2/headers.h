@@ -25,11 +25,29 @@ typedef struct nodoArbol
     struct nodoArbol * der;
 } nodoArbol;
 
+typedef struct
+{
+
+    struct nodoDoble * cabecera;
+    struct nodoDoble * cola;
+} fila;
+
+typedef struct nodoDoble
+{
+    int dato;
+    struct nodoDoble * siguiente;
+    struct nodoDoble * anterior;
+} nodoDoble;
+
+
+
 void imprimirUsuario(usuario u);
 nodoArbol* modificarUsuario(nodoArbol * arbol);
 int generarCBU();
 int generarDigitoAleatorio();
 nodoArbol * cambiarEstado(nodoArbol * arbol);
 nodoArbol* existePaciente(nodoArbol* pacientes, int dniPaciente);
+void inicFila(fila * fila);
+
 
 #endif // HEADERS_H_INCLUDED

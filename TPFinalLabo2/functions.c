@@ -4,6 +4,14 @@
 #include "headers.h"
 #include <time.h>
 
+//inicializar fila
+void inicFila(fila * fila)
+{
+    fila->cabecera= NULL;
+    fila->cola = NULL;
+}
+
+
 //Genera un numero aleatorio del 0 al 9
 int generarDigitoAleatorio()
 {
