@@ -1,0 +1,17 @@
+# depslib dependency file v1.0
+1699921581 source:c:\users\valentin\desktop\programacion\tpfinallabo2\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"headers.h"
+	<time.h>
+
+1699920584 c:\users\valentin\desktop\programacion\tpfinallabo2\headers.h
+
+1699921612 source:c:\users\valentin\desktop\programacion\tpfinallabo2\functions.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"headers.h"
+	<time.h>
+
