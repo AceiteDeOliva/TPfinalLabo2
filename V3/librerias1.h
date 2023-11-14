@@ -55,7 +55,7 @@ int chequeomail (char mail[]);
 
 ///Menu principal:
 int opcionMenuPrincipal();
-int menuPrincipal(int opcionElegida, usuario cuenta, usuario arreglo[100]);
+int menuPrincipal(int opcionElegida, usuario cuenta);
 usuario crea1Usuario (usuario nuevoUsuario, char cbu[10]);
 void CrearUsuario();
 usuario cajaEnCero(usuario usu, char cbu[10]);
@@ -64,7 +64,7 @@ usuario inicioSesion();
 int detectaUsuario(usuario usuBuscado, char cbu[10]);
 
 ///menu de sesion iniciada:
-int menuInicioSesion(char cbu[10], usuario arreglo[100]);
+int menuInicioSesion(char cbu[10]);
 void muestraSaldo(usuario usu);
 void corroborarSaldo(char pcbu[]);
 void prestamo(char cbu[10]);
@@ -81,7 +81,7 @@ void modPass(char contrasenia[20], char cbu[10]);
 ///ADMINISTRADOR:
 int chequeoAdmin(int flag, usuario admin);
 int menuAdmin();
-void verUsuariosMenu(usuario arreglo[], int dimensionarray);
+void verUsuariosMenu();
 void generaMatrizHorarios(int matriz[][7]);
 void muestraMatrizHorarios(int matriz[][7]);
 void imprimir_letra_por_letra(const char* texto);
@@ -103,12 +103,12 @@ nodoArbol* inicArbol();
 nodoArbol* crearNodoArbol(usuario dato);
 nodoArbol* cargarArbloOrdenDNI(nodoArbol* arbol, nodoArbol* nuevo);
 nodoArbol* fromArchiToArbol(nodoArbol* arbol);
-
+nodoArbol* buscarDNIenArbol(nodoArbol* arbol, long int dni);
 
 ///LISTAS
 nodoListaS* inicLista();
 nodoListaS* crearNodoListaS(usuario dato);
-nodoListaS* fromArregloDeEstructurasToLista(nodoListaS* lista, usuario arreglo[], int validos);
-nodoListaS* buscaUlt(nodoListaS* lista);
-nodoListaS* agregarAlFinal(nodoListaS* lista, nodoListaS* nuevo);
 void mostrarLista(nodoListaS* lista);
+nodoListaS* agregarEnOrden(nodoListaS* lista, nodoListaS* nuevoNodo);
+nodoListaS* agregarAlPpio(nodoListaS* lista, nodoListaS* nuevo);
+nodoListaS* FromArchiAListaOrdenada(nodoListaS* lista);

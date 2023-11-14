@@ -49,6 +49,28 @@ nodoArbol* fromArchiToArbol(nodoArbol* arbol)
 return arbol;
 }
 
+nodoArbol* buscarDNIenArbol(nodoArbol* arbol, long int dni)
+{
+    nodoArbol* rta=NULL;
+    if(arbol)
+    {
+        if (arbol->dato.dni == dni)
+            rta=arbol;
+        else
+        {
+            if( dni < arbol->dato.dni)
+            {
+                rta=buscarDNIenArbol(arbol->izq, dni);
+            }
+            else
+            {
+                rta=buscarDNIenArbol(arbol->der, dni);
+            }
+        }
+    }
+return rta;
+}
+
 void mostrarArbolEnOrdenDni(nodoArbol* arbol)
 {
     if(arbol)

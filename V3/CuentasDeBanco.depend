@@ -106,69 +106,36 @@
 	"time.h"
 	"librerias1.h"
 
-1699972664 source:c:\users\valentin\desktop\v2\arboles.c
+1699973723 source:c:\users\faust\desktop\primer cuatri\v2\arboles.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"time.h"
 	"librerias1.h"
 
-1699973158 c:\users\valentin\desktop\v2\librerias1.h
+1699975768 c:\users\faust\desktop\primer cuatri\v2\librerias1.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 
-1699972664 source:c:\users\valentin\desktop\v2\libreria1.c
-	<stdio.h>
-	<stdlib.h>
-	<string.h>
-	"time.h"
-	"librerias1.h"
-
-1699972664 source:c:\users\valentin\desktop\v2\main.c
+1699971966 source:c:\users\faust\desktop\primer cuatri\v2\libreria1.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"time.h"
 	"librerias1.h"
 
-1699972992 source:c:\users\valentin\desktop\v2\listasimple.c
+1699975784 source:c:\users\faust\desktop\primer cuatri\v2\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+
+1699975473 source:c:\users\faust\desktop\primer cuatri\v2\listasimple.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	<unistd.h>
-	"librerias1.h"
-
-1699982451 source:c:\users\josev\onedrive\documentos\github\tpfinallabo2\v2\arboles.c
-	<stdio.h>
-	<stdlib.h>
-	<string.h>
-	"time.h"
-	"librerias1.h"
-
-1699982451 c:\users\josev\onedrive\documentos\github\tpfinallabo2\v2\librerias1.h
-	<stdio.h>
-	<stdlib.h>
-	<string.h>
-
-1699982451 source:c:\users\josev\onedrive\documentos\github\tpfinallabo2\v2\libreria1.c
-	<stdio.h>
-	<stdlib.h>
-	<string.h>
-	"time.h"
-	"librerias1.h"
-
-1699982451 source:c:\users\josev\onedrive\documentos\github\tpfinallabo2\v2\listasimple.c
-	<stdio.h>
-	<stdlib.h>
-	<string.h>
-	<unistd.h>
-	"librerias1.h"
-
-1699982451 source:c:\users\josev\onedrive\documentos\github\tpfinallabo2\v2\main.c
-	<stdio.h>
-	<stdlib.h>
-	<string.h>
-	"time.h"
 	"librerias1.h"
 

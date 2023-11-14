@@ -10,17 +10,16 @@
 int main()
 {
     usuario cuenta;
-    usuario arregloDeUsu[100];
     int opcion;
 
     opcion = opcionMenuPrincipal();
         if(opcion==1)
         {
-          menuPrincipal(opcion, cuenta, arregloDeUsu);
+          menuPrincipal(opcion, cuenta);
         }
         else if(opcion==2)
         {
-          menuPrincipal(opcion, cuenta, arregloDeUsu);
+          menuPrincipal(opcion, cuenta);
         }
 
     return 0;
@@ -62,7 +61,7 @@ int opcionMenuPrincipal()
 }
 
 /// MENU PRINCIPAL
-int menuPrincipal(int opcionElegida, usuario cuenta, usuario arreglo[100])
+int menuPrincipal(int opcionElegida, usuario cuenta)
 {
 
 
@@ -91,7 +90,7 @@ int menuPrincipal(int opcionElegida, usuario cuenta, usuario arreglo[100])
                 detectaCuenta=chequeoAdmin(detectaCuenta, cuenta);
                 if(detectaCuenta==1)
                 {
-                    exit=menuInicioSesion(cbu, arreglo);//devuelve 0 si elijes opcion de salir
+                    exit=menuInicioSesion(cbu);//devuelve 0 si elijes opcion de salir
                 }
                 else
                 {
@@ -124,7 +123,7 @@ int menuPrincipal(int opcionElegida, usuario cuenta, usuario arreglo[100])
 }
 
 ///MENU UNA VEZ INICIADA LA SESION
-int menuInicioSesion(char cbu[10], usuario arreglo[100])
+int menuInicioSesion(char cbu[10])
 {
     int x;
     char salir;
@@ -278,19 +277,18 @@ int menuAdmin()
 }
 
 ///MENU DE ADMIN PARA VER USUARIOS DE DISTINTAS FORMAS
-void verUsuariosMenu(usuario arreglo[], int dimensionarray)
+void verUsuariosMenu()
 {
     int x;
     char salir;
-    char cbu[10]={};
     long int dni=0;
     usuario usuBuscado;
     usuario usuBuscado2;
     int flag=0;
-    int validos=0;
 
     nodoArbol* arbol=inicArbol();
     nodoListaS* lista=inicLista();
+    nodoArbol* nodoBuscado;
 
     do
     {
@@ -307,9 +305,7 @@ void verUsuariosMenu(usuario arreglo[], int dimensionarray)
         case 1:
             system("cls");
             printf("ORDENADO POR DNI:\n");
-            validos=ArchiToArray(arreglo, dimensionarray);
-            ordenaxDNI(arreglo, validos);
-            lista=fromArregloDeEstructurasToLista(lista, arreglo, validos);
+            lista=FromArchiAListaOrdenada(lista);
             mostrarLista(lista);
             system("pause");
             break;
@@ -321,7 +317,9 @@ void verUsuariosMenu(usuario arreglo[], int dimensionarray)
             usuBuscado2=busquedaUsuXDNI(dni, &flag);
             if(flag==1)
             {
-                muestraUsuarioAdmin(usuBuscado2);
+                arbol=fromArchiToArbol(arbol);
+                nodoBuscado=buscarDNIenArbol(arbol, dni);
+                muestraUsuarioAdmin(nodoBuscado->dato);
             }
             else
             {
