@@ -41,18 +41,21 @@ typedef struct
     struct nodoDoble * cola;
 } fila;
 
-typedef struct nodoDoble
-{
-    transferencia dato;
-    struct nodoDoble * siguiente;
-    struct nodoDoble * anterior;
-} nodoDoble;
-
 typedef struct{
     long int importe;
     char referencia[10];
     char cbuReceptor[10];
 }sTtransfer;
+
+typedef struct nodoDoble
+{
+    int cbuEmisor;
+    sTtransfer dato;
+    struct nodoDoble * siguiente;
+    struct nodoDoble * anterior;
+} nodoDoble;
+
+
 
 void imprimirUsuario(usuario u);
 nodoArbol* modificarUsuario(nodoArbol * arbol);
@@ -61,8 +64,8 @@ int generarDigitoAleatorio();
 nodoArbol * cambiarEstado(nodoArbol * arbol);
 nodoArbol* existePaciente(nodoArbol* pacientes, int dniPaciente);
 void inicFila(fila * fila);
-void agregarAFila(fila * fila,transferencia dato);
-nodoDoble* crearNodoDoble(transferencia dato);
+void agregarAFila(fila * fila,sTtransfer dato);
+nodoDoble* crearNodoDoble(sTtransfer dato);
 nodoDoble * buscarUltimo(nodoDoble * lista);
 
 #endif // HEADERS_H_INCLUDED

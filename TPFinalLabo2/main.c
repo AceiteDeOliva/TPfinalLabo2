@@ -3,7 +3,7 @@
 #include <string.h>
 #include "headers.h"
 #include <time.h>
-
+#include <windows.h>
 int main()
 {
 nodoArbol * arbol = (nodoArbol*)malloc(sizeof(nodoArbol));

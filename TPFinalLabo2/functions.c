@@ -3,7 +3,7 @@
 #include <string.h>
 #include "headers.h"
 #include <time.h>
-
+#include <windows.h>
 //inicializar fila
 void inicFila(fila * fila)
 {
@@ -12,13 +12,12 @@ void inicFila(fila * fila)
 }
 
 //Crear nodo
-nodoDoble* crearNodoDoble(transferencia dato)
+nodoDoble* crearNodoDoble(sTtransfer dato)
 {
     nodoDoble* nuevoNodo = (struct nodoDoble*)malloc(sizeof(struct nodoDoble));
 
     if (nuevoNodo != NULL)
     {
-        int cbu;
         nuevoNodo->dato = dato;
         nuevoNodo->siguiente = NULL;
         nuevoNodo->anterior = NULL;
@@ -64,7 +63,7 @@ nodoDoble * buscarUltimo(nodoDoble * lista)
 }
 
 //agrega a la fila
-void agregarAFila(fila * fila,transferencia dato)
+void agregarAFila(fila * fila,sTtransfer dato)
 {
 
     nodoDoble * nuevo = crearNodoDoble(dato);
@@ -220,3 +219,108 @@ nodoArbol* existePaciente(nodoArbol* pacientes, int dniPaciente)
 }
 
 
+nodoArbol*crearNodoArbol(usuario dato)///crea un nodo con una struct tipo usuario
+{
+    nodoArbol*nuevo=(nodoArbol*)malloc(sizeof(nodoArbol));
+    nuevo->dato.cbu=dato.cbu;
+    strcpy(nuevo->dato.contrasenia,dato.contrasenia);
+    nuevo->dato.dni=dato.dni;
+    nuevo->dato.estado=dato.dni;
+    nuevo->dato.genero=dato.genero;
+    strcpy(nuevo->dato.mail,dato.mail);
+    strcpy(nuevo->dato.nombreApellido,dato.nombreApellido);
+    nuevo->dato.saldo.caja=dato.saldo.caja;
+    nuevo->dato.saldo.prestamo=dato.saldo.prestamo;
+    nuevo->der=NULL;
+    nuevo->izq=NULL;
+    return nuevo;
+}
+nodoArbol*InsertarEnArbol(nodoArbol*arbol,nodoArbol*nuevo)///inserta un nuevo nodo en el arbol de forma ordenada segun su dni
+{
+    if(arbol==NULL){
+        arbol=nuevo;
+    }
+    else{
+        if(nuevo->dato.dni<arbol->dato.dni){
+            arbol->izq=InsertarEnArbol(arbol->izq,nuevo);
+        }
+        else{
+            arbol->der=InsertarEnArbol(arbol->der,nuevo);
+        }
+    }
+    return arbol;
+}
+nodoArbol*archivoToArbolBB(char archivo[],nodoArbol*arbol)///pasa los datos de un archivo a un arbol binario de busqueda
+{
+    FILE*arch=fopen(archivo,"rb");
+    usuario dato;
+    if(arch){
+        while(fread(&dato,sizeof(usuario),1,arch)>0){
+            nodoArbol*nuevo=crearNodoArbol(dato);
+            arbol=InsertarEnArbol(arbol,nuevo);
+        }
+    }
+    fclose(arch);
+    return arbol;
+}
+
+long int DniBuscado()///pregunta por el dni buscado
+{
+    long int dni=0;
+    printf("\nIngrese dni buscado:");
+    scanf("%ld",&dni);
+    return dni;
+}
+
+nodoArbol*BuscarDniEnArbol(nodoArbol*arbol,long int dni)///busca un dni en el arbol y retorna su nodo
+{
+    nodoArbol*res=NULL;
+    if(arbol!=NULL){
+        if(arbol->dato.dni==dni){
+            res=arbol;
+        }
+        else{
+            if(dni<arbol->dato.dni){
+                res=BuscarDniEnArbol(arbol->izq,dni);
+            }
+            else{
+                res=BuscarDniEnArbol(arbol->der,dni);
+            }
+        }
+    }
+    return res;
+}
+void MenuUsuario()///muestra menu del usuario
+{
+    printf("\n---------------------------------------");
+    printf("\n1-Eliminar usuario.");
+    printf("\n2-Modificar usuario.");
+    printf("\n3-Corroborar transacciones.");
+    printf("\n0-Volver al menu.");
+    printf("\n---------------------------------------");
+}
+void mostrar1Usuario(usuario dato)///muestra un usuario
+{
+    printf("\n---------------------------------------");
+    printf("\nNombre Apellido:%s",dato.nombreApellido);
+    printf("\nDNI:%ld",dato.dni);
+    printf("\nCBU:%08d\n",dato.cbu);
+    printf("---------------------------------------\n");
+}
+
+void buscarUsuarioPorDni(nodoArbol*arbol)///busca un usuario por su dni
+{
+    long int dni=DniBuscado();
+    nodoArbol*res=BuscarDniEnArbol(arbol,dni);
+    while(res==NULL){
+        printf("\nDNI no encontrado intente otra vez...\n");
+        printf("\n");
+        system ("pause");
+        system ("cls");
+        dni=DniBuscado();
+        res=BuscarDniEnArbol(arbol,dni);
+    }
+    mostrar1Usuario(res->dato);
+    system ("pause");
+    system ("cls");
+}
