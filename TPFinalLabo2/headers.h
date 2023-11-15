@@ -1,5 +1,6 @@
 #ifndef HEADERS_H_INCLUDED
 #define HEADERS_H_INCLUDED
+
 typedef struct
 {
     long int caja;
@@ -25,21 +26,33 @@ typedef struct nodoArbol
     struct nodoArbol * der;
 } nodoArbol;
 
+//11111111111111111111111111111111111111111111111111111111111111111111111
 typedef struct
 {
+    int cbuEmisor;
+    int cbuReceptor;
+    int importe;
+    time_t fecha;
+} transferencia;
 
+typedef struct
+{
     struct nodoDoble * cabecera;
     struct nodoDoble * cola;
 } fila;
 
 typedef struct nodoDoble
 {
-    int dato;
+    transferencia dato;
     struct nodoDoble * siguiente;
     struct nodoDoble * anterior;
 } nodoDoble;
 
-
+typedef struct{
+    long int importe;
+    char referencia[10];
+    char cbuReceptor[10];
+}sTtransfer;
 
 void imprimirUsuario(usuario u);
 nodoArbol* modificarUsuario(nodoArbol * arbol);
@@ -48,6 +61,8 @@ int generarDigitoAleatorio();
 nodoArbol * cambiarEstado(nodoArbol * arbol);
 nodoArbol* existePaciente(nodoArbol* pacientes, int dniPaciente);
 void inicFila(fila * fila);
-
+void agregarAFila(fila * fila,transferencia dato);
+nodoDoble* crearNodoDoble(transferencia dato);
+nodoDoble * buscarUltimo(nodoDoble * lista);
 
 #endif // HEADERS_H_INCLUDED

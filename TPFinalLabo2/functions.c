@@ -11,7 +11,91 @@ void inicFila(fila * fila)
     fila->cola = NULL;
 }
 
+//Crear nodo
+nodoDoble* crearNodoDoble(transferencia dato)
+{
+    nodoDoble* nuevoNodo = (struct nodoDoble*)malloc(sizeof(struct nodoDoble));
 
+    if (nuevoNodo != NULL)
+    {
+        int cbu;
+        nuevoNodo->dato = dato;
+        nuevoNodo->siguiente = NULL;
+        nuevoNodo->anterior = NULL;
+    }
+
+    return nuevoNodo;
+}
+
+//agrega al final de la lista
+nodoDoble * agregarAlFinal(nodoDoble * lista,nodoDoble * nuevoNodo)
+{
+
+    if(lista == NULL)
+    {
+
+        lista = nuevoNodo;
+
+    }
+    else
+    {
+
+        nodoDoble * ultimo = buscarUltimo(lista);
+        ultimo->siguiente = nuevoNodo;
+        nuevoNodo->anterior = ultimo;
+
+    }
+
+    return lista;
+}
+
+// busca el ultimo de la lista
+nodoDoble * buscarUltimo(nodoDoble * lista)
+{
+    nodoDoble * ultimo  = lista;
+    while(ultimo->siguiente!= NULL)
+    {
+
+        ultimo = ultimo->siguiente;
+
+    }
+
+    return ultimo;
+}
+
+//agrega a la fila
+void agregarAFila(fila * fila,transferencia dato)
+{
+
+    nodoDoble * nuevo = crearNodoDoble(dato);
+    if(fila->cabecera == NULL)
+    {
+
+        fila->cabecera = nuevo;
+        fila->cola = nuevo;
+    }
+    else
+    {
+        fila->cabecera = agregarAlFinal(fila->cabecera,nuevo);
+        fila->cola = nuevo;
+
+    }
+
+}
+
+
+
+
+//void cargarFila(fila* fila){
+//
+//
+//transferencia dato = cargarTransferecia();
+//agregarAFila(fila,dato);
+//
+//
+//}
+
+//||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 //Genera un numero aleatorio del 0 al 9
 int generarDigitoAleatorio()
 {
@@ -114,7 +198,7 @@ void imprimirUsuario(usuario u)
 
 nodoArbol* existePaciente(nodoArbol* pacientes, int dniPaciente)
 {
-     if (pacientes == NULL)
+    if (pacientes == NULL)
     {
         return NULL;
     }

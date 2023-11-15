@@ -349,6 +349,7 @@ sTtransfer carga1Transfer (sTtransfer transfer, char cbuPaga[10])
         if (flag==1)
         {
             printf("Usuario encontrado correctamente, transferencia exitosa.\n");
+
         }
         else
         {
