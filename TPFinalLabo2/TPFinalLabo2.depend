@@ -15,14 +15,15 @@
 	"headers.h"
 	<time.h>
 
-1699987276 source:c:\users\josev\onedrive\documentos\github\tpfinallabo2\tpfinallabo2\main.c
+1700056530 source:c:\users\josev\onedrive\documentos\github\tpfinallabo2\tpfinallabo2\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"headers.h"
 	<time.h>
+	<windows.h>
 
-1699988840 c:\users\josev\onedrive\documentos\github\tpfinallabo2\tpfinallabo2\headers.h
+1700056530 c:\users\josev\onedrive\documentos\github\tpfinallabo2\tpfinallabo2\headers.h
 
 1699987007 source:c:\users\josev\onedrive\documentos\github\tpfinallabo2\tpfinallabo2\functions.c
 	<stdio.h>

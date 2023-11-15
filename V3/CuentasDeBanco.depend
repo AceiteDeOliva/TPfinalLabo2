@@ -172,3 +172,36 @@
 	"time.h"
 	"librerias1.h"
 
+1699988037 source:c:\users\josev\onedrive\documentos\github\tpfinallabo2\v3\arboles.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+
+1699988037 c:\users\josev\onedrive\documentos\github\tpfinallabo2\v3\librerias1.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1700056530 source:c:\users\josev\onedrive\documentos\github\tpfinallabo2\v3\libreria1.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+
+1699988037 source:c:\users\josev\onedrive\documentos\github\tpfinallabo2\v3\listasimple.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<unistd.h>
+	"librerias1.h"
+
+1699957784 source:c:\users\josev\onedrive\documentos\github\tpfinallabo2\v3\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+
