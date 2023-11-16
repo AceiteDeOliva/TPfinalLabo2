@@ -246,40 +246,47 @@
 	<unistd.h>
 	"librerias1.h"
 
-1700165880 source:c:\users\valentin\documents\github\tpfinallabo2\v5\arboles.c
+1700176610 source:c:\users\valentin\documents\github\tpfinallabo2\v5\arboles.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"time.h"
 	"librerias1.h"
 
-1700170964 c:\users\valentin\documents\github\tpfinallabo2\v5\librerias1.h
+1700177596 c:\users\valentin\documents\github\tpfinallabo2\v5\librerias1.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 
-1700170931 source:c:\users\valentin\documents\github\tpfinallabo2\v5\arreglodelistas.c
+1700174546 source:c:\users\valentin\documents\github\tpfinallabo2\v5\arreglodelistas.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	<unistd.h>
 	"librerias1.h"
 
-1700170808 source:c:\users\valentin\documents\github\tpfinallabo2\v5\libreria1.c
+1700177972 source:c:\users\valentin\documents\github\tpfinallabo2\v5\libreria1.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"time.h"
 	"librerias1.h"
 
-1700165880 source:c:\users\valentin\documents\github\tpfinallabo2\v5\listasimple.c
+1700173876 source:c:\users\valentin\documents\github\tpfinallabo2\v5\listasimple.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	<unistd.h>
 	"librerias1.h"
 
-1700170808 source:c:\users\valentin\documents\github\tpfinallabo2\v5\main.c
+1700178452 source:c:\users\valentin\documents\github\tpfinallabo2\v5\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+
+1700172223 source:c:\users\valentin\documents\github\tpfinallabo2\v5\filas.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>

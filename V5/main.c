@@ -7,17 +7,12 @@
 ///MAIN
 int main()
 {
-    usuario cuenta;
     int opcion;
 
     opcion = opcionMenuPrincipal();
-        if(opcion==1)
+        if(opcion==1 || opcion==2)
         {
-          menuPrincipal(opcion, cuenta);
-        }
-        else if(opcion==2)
-        {
-          menuPrincipal(opcion, cuenta);
+          menuPrincipal(opcion);
         }
 
     return 0;
@@ -59,34 +54,40 @@ int opcionMenuPrincipal()
 }
 
 /// MENU PRINCIPAL
-int menuPrincipal(int opcionElegida, usuario cuenta)
+int menuPrincipal(int opcionElegida)
 {
     int x=opcionElegida;
     int detectaCuenta;
     char salir;
     int intentos=0;
-    int exit;
-    int cbu;
+    int exit = -1;
+    usuario ingreso;
+    nodoArbol * raiz = fromArchiToArbolDNI(raiz);
+    nodoArbol * cuenta = NULL;
 
     switch(x)
     {
     case 1://crear usuarios
         system("cls");
         CrearUsuario();
-        crearSaldo(cbu);
+//       crearSaldo(cbu);
         break;
     case 2://iniciar sesion |habria que cambiar toda esta parte para que se haga con el arbol
         system("cls");
         do
         {
-            cuenta=inicioSesion();
-            detectaCuenta=detectaUsuario(cuenta, cbu);
+            ingreso = inicioSesion();
+            printf("a\n");
+            cuenta=buscarDNIenArbol(raiz,ingreso.dni);
+            printf("b\n");
+            detectaCuenta = detectaUsuario(cuenta->dato,ingreso);
+            printf("c\n");
             if(detectaCuenta!=0)
             {
-                detectaCuenta=chequeoAdmin(detectaCuenta, cuenta);
+//                detectaCuenta=chequeoAdmin(detectaCuenta, cuenta);
                 if(detectaCuenta==1)
                 {
-                    exit=menuInicioSesion(cbu);//devuelve 0 si elijes opcion de salir
+                    exit=menuInicioSesion(cuenta->dato.cbu);//devuelve 0 si elijes opcion de salir
                 }
                 else
                 {
@@ -142,10 +143,10 @@ int menuInicioSesion(int cbu)
         switch(x)
         {
         case 1:
-            system("cls");
-            printf("Su saldo actual es:\n");
-            corroborarSaldo(cbu);
-            system("pause");
+//            system("cls");
+//            printf("Su saldo actual es:\n");
+//            corroborarSaldo(cbu);
+//            system("pause");
             break;
         case 3:
             system("cls");
@@ -153,14 +154,14 @@ int menuInicioSesion(int cbu)
             system("pause");
             break;
         case 4:
-            system("cls");
-            prestamo(cbu);
-            system("pause");
+//            system("cls");
+//            prestamo(cbu);
+//            system("pause");
             break;
         case 5:
-            system("cls");
-            pagarPrestamo(cbu);
-            system("pause");
+//            system("cls");
+//            pagarPrestamo(cbu);
+//            system("pause");
             break;
         case 6:
             system("cls");
@@ -301,7 +302,7 @@ void verUsuariosMenu()
             usuBuscado2=busquedaUsuXDNI(dni, &flag);
             if(flag==1)
             {
-                arbol=fromArchiToArbol(arbol);
+                arbol=fromArchiToArbolDNI(arbol);
                 nodoBuscado=buscarDNIenArbol(arbol, dni);
                 muestraUsuarioAdmin(nodoBuscado->dato);
                 modificarUsuario(arbol);

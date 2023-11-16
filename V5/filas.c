@@ -12,7 +12,7 @@ void inicFila(fila * fila)
 }
 
 //Crear nodo
-nodoDoble* crearNodoDoble(sTtransfer dato)
+nodoDoble* crearNodoDoble(movimiento dato)
 {
     nodoDoble* nuevoNodo = (struct nodoDoble*)malloc(sizeof(struct nodoDoble));
 
@@ -63,7 +63,7 @@ nodoDoble * buscarUltimo(nodoDoble * lista)
 }
 
 //agrega a la fila
-void agregarAFila(fila * fila,sTtransfer dato)
+void agregarAFila(fila * fila,movimiento dato)
 {
 
     nodoDoble * nuevo = crearNodoDoble(dato);
