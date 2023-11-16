@@ -205,36 +205,44 @@
 	"time.h"
 	"librerias1.h"
 
-1700165880 source:c:\users\valentin\documents\github\tpfinallabo2\v4\arboles.c
+1699973723 source:c:\users\faust\desktop\v4\arboles.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"time.h"
 	"librerias1.h"
 
-1700167759 c:\users\valentin\documents\github\tpfinallabo2\v4\librerias1.h
+1700165877 c:\users\faust\desktop\v4\librerias1.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 
-1700165880 source:c:\users\valentin\documents\github\tpfinallabo2\v4\listasimple.c
+1700160073 source:c:\users\faust\desktop\v4\listasimple.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	<unistd.h>
 	"librerias1.h"
 
-1700167471 source:c:\users\valentin\documents\github\tpfinallabo2\v4\main.c
+1700165724 source:c:\users\faust\desktop\v4\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<unistd.h>
+	"time.h"
+	"librerias1.h"
+
+1700163859 source:c:\users\faust\desktop\v4\libreria1.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"time.h"
 	"librerias1.h"
 
-1700167796 source:c:\users\valentin\documents\github\tpfinallabo2\v4\libreria1.c
+1700164704 source:c:\users\faust\desktop\v4\arreglodelistas.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
-	"time.h"
+	<unistd.h>
 	"librerias1.h"
 

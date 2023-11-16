@@ -1,14 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 #include "time.h"
 #include "librerias1.h"
-
 
 
 ///MAIN
 int main()
 {
+    system("color A0");
     usuario cuenta;
     int opcion;
 
@@ -34,11 +35,19 @@ int opcionMenuPrincipal()
 
     do
     {
-        printf("BIENVENIDO AL BANCO ESTEBANQUITO\n");
-        printf("------------------------------------------\n");
-        printf("Elija una opcion:\n\n");
-        printf("1-Crear una cuenta.\n2-Iniciar sesion.\n3-Iniciar sesion como ADMIN.\n0-Salir del programa.\n");
-        printf("------------------------------------------\n");
+        printf("                                                 +-----------------+\n");
+        printf("                                                 |  BANCO CENTRAL  |  \n");
+        printf("                                                 +-----------------+\n");
+        printf("\n\n");
+        puts("------------------------------|");
+        printf("[1]CREAR CUENTA\n");
+        puts("------------------------------|");
+        printf("[2]INICIAR SESION\n");
+        puts("------------------------------|");
+        printf("[3]INICIAR SESION COMO ADMIN\n");
+        puts("------------------------------|");
+        printf("[0]SALIR\n");
+        puts("------------------------------|");
         fflush(stdin);
         scanf("%i", &opcion);
         if(opcion<0 || opcion>3)
@@ -63,14 +72,13 @@ int opcionMenuPrincipal()
 /// MENU PRINCIPAL
 int menuPrincipal(int opcionElegida, usuario cuenta)
 {
-
-
+    funcionConBarraDeCarga();
     int x=opcionElegida;
     int detectaCuenta;
     char salir;
     int intentos=0;
     int exit;
-    int cbu;
+    char cbu[10];
 
     switch(x)
     {
@@ -123,12 +131,13 @@ int menuPrincipal(int opcionElegida, usuario cuenta)
 }
 
 ///MENU UNA VEZ INICIADA LA SESION
-int menuInicioSesion(int cbu)
+int menuInicioSesion(char cbu[10])
 {
     int x;
     char salir;
     char contrasenia[20];
     char confirmacion[20];
+    int matriz[4][7];
     int seguro;
     int flag;
     usuario miUsu;
@@ -136,10 +145,27 @@ int menuInicioSesion(int cbu)
     do
     {
         system("cls");
-        printf("Bienvenido a su cuenta\n");
-        printf("--------------------------------------\n");
-        printf("Opciones disponibles:\n1-Corroborar saldo.\n3-Hacer transferencia.\n4-Pedir prestamo.\n5-Pagar prestamo.\n6-Cambiar tu contrasenia.\n7-Desactivar Cuenta.\n8-Corroborar datos de tu cuenta.\n0-Salir del Menu.\n");
-        printf("--------------------------------------\n");
+        printf("                                                 +-----------------+\n");
+        printf("                                                 |  BANCO CENTRAL  |  \n");
+        printf("                                                 +-----------------+\n");
+        printf("\n\n");
+        puts("-----------------------------------|");
+        printf("[1]VER TU SALD0\n");
+        puts("-----------------------------------|");
+        printf("[2]HACER TRANSFERENCIA\n");
+        puts("-----------------------------------|");
+        printf("[3]PEDIR PRESTAMO\n");
+        puts("-----------------------------------|");
+        printf("[4]PAGAR PRESTAMO\n");
+        puts("-----------------------------------|");
+        printf("[5]CAMBIAR CONTRASEÑA\n");
+        puts("-----------------------------------|");
+        printf("[6]DESACTIVAR CUENTA\n");
+        puts("-----------------------------------|");
+        printf("[7]VER DATOS DE TU CUENTA\n");
+        puts("-----------------------------------|");
+        printf("[8]SALIR\n");
+        puts("-----------------------------------|");
         fflush(stdin);
         scanf("%d", &x);
 
@@ -151,22 +177,22 @@ int menuInicioSesion(int cbu)
             corroborarSaldo(cbu);
             system("pause");
             break;
-        case 3:
+        case 2:
             system("cls");
-//            tranferencia(cbu);
+            tranferencia(cbu);
             system("pause");
             break;
-        case 4:
+        case 3:
             system("cls");
             prestamo(cbu);
             system("pause");
             break;
-        case 5:
+        case 4:
             system("cls");
             pagarPrestamo(cbu);
             system("pause");
             break;
-        case 6:
+        case 5:
             system("cls");
             do
             {
@@ -188,7 +214,7 @@ int menuInicioSesion(int cbu)
 
             system("pause");
             break;
-        case 7:
+        case 6:
             system("cls");
             seguro=seguroDeseaEliminar();
             if(seguro==1){
@@ -197,7 +223,7 @@ int menuInicioSesion(int cbu)
             }
             system("pause");
             break;
-        case 8:
+        case 7:
             system("cls");
             miUsu=busquedaUsuXCBU(cbu, &flag);
             muestraUsuarioAdmin(miUsu);
@@ -228,10 +254,17 @@ int menuAdmin()
     do
     {
         system("cls");
-        printf("/////Administracion de usuarios/////\n");
-        printf("--------------------------------------\n");
-        printf("Opciones disponibles:\n1-Ver usuarios registrados\n2-Desactivar usuario/s\n0-Salir del Menu.\n");
-        printf("--------------------------------------\n");
+        printf("                                                 +-----------------+\n");
+        printf("                                                 |  BANCO CENTRAL  |  \n");
+        printf("                                                 +-----------------+\n");
+        printf("\n\n");
+        puts("------------------------------|");
+        printf("[1]USUARIOS\n");
+        puts("------------------------------|");
+        printf("[2]EMPLEADOS\n");
+        puts("------------------------------|");
+        printf("[0]SALIR\n");
+        puts("------------------------------|");
         fflush(stdin);
         scanf("%d", &x);
 
@@ -239,12 +272,12 @@ int menuAdmin()
         {
         case 1:
             system("cls");
-            verUsuariosMenu(arreglo, 100);
+            verUsuariosMenu();
             system("pause");
             break;
         case 2:
             system("cls");
-            darDeBajaOAltaAdmin(dni);
+            verEmpleadosMenu();
             system("pause");
             break;
         case 0:
@@ -281,10 +314,17 @@ void verUsuariosMenu()
     do
     {
         system("cls");
-        printf("/////Ver usuarios/////\n");
-        printf("--------------------------------------\n");
-        printf("Opciones disponibles:\n1-Ver todos los usuarios ordenados por dni\n2-Buscar 1 usuario por DNI.\n0-Salir del Menu.\n");
-        printf("--------------------------------------\n");
+        printf("                                                 +-----------------+\n");
+        printf("                                                 |  BANCO CENTRAL  |  \n");
+        printf("                                                 +-----------------+\n");
+        printf("\n\n");
+        puts("-----------------------------------|");
+        printf("[1]VER USUARIOS ORDENADOS POR DNI\n");
+        puts("-----------------------------------|");
+        printf("[2]BUSCAR USUARIO POR DNI\n");
+        puts("-----------------------------------|");
+        printf("[0]SALIR\n");
+        puts("-----------------------------------|");
         fflush(stdin);
         scanf("%d", &x);
 
@@ -314,6 +354,66 @@ void verUsuariosMenu()
             {
                 printf("Usuario no encontrado.\n");
             }
+            system("pause");
+            break;
+        case 0:
+            menuAdmin();
+            break;
+        default:
+            system("cls");
+            printf("Ha ingresado una opcion que esta fuera de las posibles... volviendo al menu");
+            system("pause");
+            break;
+        }
+    }
+    while(x!=0);
+}
+
+
+void verEmpleadosMenu()
+{
+    int x;
+    long int dni=0;
+    int flag=0;
+    int validos=0;
+
+    celda adlEmpleados[5];
+
+    do
+    {
+        system("cls");
+        printf("                                                 +-----------------+\n");
+        printf("                                                 |  BANCO CENTRAL  |  \n");
+        printf("                                                 +-----------------+\n");
+        printf("\n\n");
+        puts("-----------------------------------|");
+        printf("[1]VER EMPLEADOS ORDENADOS POR DNI\n");
+        puts("-----------------------------------|");
+        printf("[2]BUSCAR EMPLEAD0 POR DNI\n");
+        puts("-----------------------------------|");
+        printf("[3]AGREGAR NUEVO EMPLEADO\n");
+        puts("-----------------------------------|");
+        printf("[0]SALIR\n");
+        puts("-----------------------------------|");
+        fflush(stdin);
+        scanf("%d", &x);
+
+        switch(x)
+        {
+        case 1:
+            system("cls");
+            validos=fromArchiEmpleadosToADL(adlEmpleados, 5);
+            mostrarADLempleados(adlEmpleados,validos);
+            system("pause");
+            break;
+        case 2:
+            system("cls");
+            mostrarArchi();
+            system("pause");
+            break;
+        case 3:
+            system("cls");
+            cargarArchiEmpleados();
             system("pause");
             break;
         case 0:
