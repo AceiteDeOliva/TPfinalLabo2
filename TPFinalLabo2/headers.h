@@ -63,6 +63,9 @@ int generarCBU();
 int generarDigitoAleatorio();
 nodoArbol * cambiarEstado(nodoArbol * arbol);
 nodoArbol* existePaciente(nodoArbol* pacientes, int dniPaciente);
+
+
+
 void inicFila(fila * fila);
 void agregarAFila(fila * fila,sTtransfer dato);
 nodoDoble* crearNodoDoble(sTtransfer dato);

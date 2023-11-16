@@ -48,6 +48,20 @@ typedef struct
     int monto;
 }movimiento;
 
+typedef struct nodoDoble
+{
+    movimiento dato;
+    struct nodoDoble * siguiente;
+    struct nodoDoble * anterior;
+} nodoDoble;
+
+typedef struct
+{
+    struct nodoDoble * cabecera;
+    struct nodoDoble * cola;
+} fila;
+
+
 ///funciones generales/utilidades:
 usuario AdminCreate(usuario Admin);
 void crearAdmin();
@@ -118,3 +132,9 @@ void mostrarLista(nodoListaS* lista);
 nodoListaS* agregarEnOrden(nodoListaS* lista, nodoListaS* nuevoNodo);
 nodoListaS* agregarAlPpio(nodoListaS* lista, nodoListaS* nuevo);
 nodoListaS* FromArchiAListaOrdenada(nodoListaS* lista);
+
+//Filas
+void inicFila(fila * fila);
+void agregarAFila(fila * fila,sTtransfer dato);
+nodoDoble* crearNodoDoble(sTtransfer dato);
+nodoDoble * buscarUltimo(nodoDoble * lista);

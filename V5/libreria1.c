@@ -749,7 +749,6 @@ void muestra1Usuario(usuario usu)
     puts("---------------------------------------------");
 }
 
-
 //Genera un numero aleatorio del 0 al 9
 int generarDigitoAleatorio()
 {
@@ -825,7 +824,4 @@ nodoArbol* modificarUsuario(nodoArbol * arbol)
 
 return arbol;
 }
-
-
-
 
