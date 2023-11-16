@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+
 #include "librerias1.h"
 
 nodoListaS* inicLista()
