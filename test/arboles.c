@@ -13,7 +13,6 @@ nodoArbol* crearNodoArbol(usuario dato)
 {
     nodoArbol* aux=(nodoArbol*)malloc(sizeof(nodoArbol));
     aux->dato=dato;
-    inicFila(&aux->movimiento);
     aux->izq=NULL;
     aux->der=NULL;
 return aux;
@@ -33,7 +32,7 @@ nodoArbol* cargarArbloOrdenDNI(nodoArbol* arbol, nodoArbol* nuevo)
 return arbol;
 }
 
-nodoArbol* fromArchiToArbolDNI(nodoArbol* arbol)
+nodoArbol* fromArchiToArbol(nodoArbol* arbol)
 {
    FILE* buffer=fopen(archivo, "rb");
    usuario usu;
@@ -50,7 +49,7 @@ nodoArbol* fromArchiToArbolDNI(nodoArbol* arbol)
 return arbol;
 }
 
-nodoArbol* buscarDNIenArbol(nodoArbol* arbol,int dni)
+nodoArbol* buscarDNIenArbol(nodoArbol* arbol, long int dni)
 {
     nodoArbol* rta=NULL;
     if(arbol)
@@ -72,64 +71,12 @@ nodoArbol* buscarDNIenArbol(nodoArbol* arbol,int dni)
 return rta;
 }
 
-void mostrarArbolInordenDni(nodoArbol* arbol)
+void mostrarArbolEnOrdenDni(nodoArbol* arbol)
 {
     if(arbol)
     {
-        mostrarArbolInordenDni(arbol->izq);
         muestra1Usuario(arbol->dato);
-        mostrarArbolInordenDni(arbol->der);
+        mostrarArbolEnOrdenDni(arbol->izq);
+        mostrarArbolEnOrdenDni(arbol->der);
     }
 }
-
-nodoArbol* fromArchiToArbolCBU(nodoArbol* arbol)
-{
-   FILE* buffer=fopen(archivo, "rb");
-   usuario usu;
-
-   if(buffer)
-   {
-       while(fread(&usu, sizeof(usuario), 1, buffer)>0)
-       {
-           nodoArbol* aux=crearNodoArbol(usu);
-           arbol=buscarCBUenArbol(arbol, aux);
-       }
-       fclose(buffer);
-   }
-return arbol;
-}
-
-
-nodoArbol* buscarCBUenArbol(nodoArbol* arbol,int cbu)
-{
-    nodoArbol* rta=NULL;
-    if(arbol)
-    {
-        if (arbol->dato.cbu == cbu)
-            rta=arbol;
-        else
-        {
-            if( cbu < arbol->dato.cbu)
-            {
-                rta=buscarCBUenArbol(arbol->izq, cbu);
-            }
-            else
-            {
-                rta=buscarCBUenArbol(arbol->der, cbu);
-            }
-        }
-    }
-return rta;
-}
-
-
-void mostrarArbolInordenCBU(nodoArbol* arbol)
-{
-    if(arbol)
-    {
-        mostrarArbolInordenCBU(arbol->izq);
-        muestra1Usuario(arbol->dato);
-        mostrarArbolInordenCBU(arbol->der);
-    }
-}
-

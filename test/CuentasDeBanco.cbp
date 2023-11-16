@@ -37,9 +37,6 @@
 		<Unit filename="arboles.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="filas.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="libreria1.c">
 			<Option compilerVar="CC" />
 		</Unit>
