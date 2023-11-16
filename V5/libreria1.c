@@ -4,6 +4,7 @@
 #include "time.h"
 #include "librerias1.h"
 
+//funciones de sistema
 ///RETORNA S-N
 char deseaSalir(){
     char confirmacion;
@@ -15,9 +16,11 @@ char deseaSalir(){
     return confirmacion;
 }
 
+//funciones de creacion de usuario
 ///RETORNA 1 SI EXISTE EL MAIL Y 0 SI NO EXISTE
 int chequeomail (char mail[])
 {
+
     usuario usu;
     int flag=0;
     FILE* buffer;
@@ -40,9 +43,8 @@ int chequeomail (char mail[])
     }
     return flag;
 }
-
 ///CARGA A UN ARCHIVO LOS DATOS DE UN USUARIO NUEVO
-void CrearUsuario(int cbu)
+void CrearUsuario()
 {
     usuario nuevoUsuario;
 
@@ -50,7 +52,7 @@ void CrearUsuario(int cbu)
     buffer=fopen(archivo, "ab");
     if(buffer!=NULL)
     {
-        nuevoUsuario=crea1Usuario(nuevoUsuario, cbu);
+        nuevoUsuario=crea1Usuario(nuevoUsuario);
         fwrite(&nuevoUsuario, sizeof(usuario), 1, buffer);
 
         fclose(buffer);
@@ -64,7 +66,7 @@ void CrearUsuario(int cbu)
 }
 
 ///RETORNA UNA ESTRUCTURA USUARIO CARGADA POR EL USUARIO
-usuario crea1Usuario (usuario nuevoUsuario, int cbu)
+usuario crea1Usuario (usuario nuevoUsuario)
 {
     int flag=0;
     int flag1=0;
@@ -121,8 +123,7 @@ usuario crea1Usuario (usuario nuevoUsuario, int cbu)
     fflush(stdin);
     gets(nuevoUsuario.contrasenia);
 
-    cbu = generarCBU(8);
-    nuevoUsuario.cbu = cbu;
+    nuevoUsuario.cbu = generarCBU(8);
 
     nuevoUsuario.estado=1;
 
@@ -130,7 +131,7 @@ usuario crea1Usuario (usuario nuevoUsuario, int cbu)
 }
 
 ///RETORNA 1 SI EL MAIL Y LA CONTRASEÑA PERTENECENEN A UNA CUENTA Y 0 SI NO
-int detectaUsuario(usuario usuBuscado, int cbu)
+int detectaUsuario(usuario usuBuscado, int cbu) //se deberia hacer por arbol
 {
     usuario usu;
     int flag=0;
@@ -173,7 +174,7 @@ return usuInicioSesion;
 }
 
 ///FUNCIONES LUEGO DE INICIAR SESION:
-
+//nos quedamos con los prestamos?
 ///SE INICIALIZA LA CAJA EN 0
 usuario cajaEnCero(usuario usu, int cbu){
 
@@ -323,8 +324,8 @@ void pagarPrestamo(int cbu){
         fclose(buffer);
     }
 }
-
-///SE PIDE QUE INGRESE EL CBU DE LA PERSONA A LA QUE SE QUIERE TRANSFERIR Y CUANDO SE LE QUIERE TRANSFERIR
+//||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+///SE PIDE QUE INGRESE EL CBU DE LA PERSONA A LA QUE SE QUIERE TRANSFERIR Y CUANTO SE LE QUIERE TRANSFERIR
 movimiento carga1Transfer (movimiento transfer, int cbuPaga)
 {
     int flag=0;
@@ -363,7 +364,7 @@ usuario cambio1(usuario usu, movimiento tran){
     return usu;
 }
 
-///SE LE DEBITA EL DINERO DE LA TRANSFERENCIA A LA CUENTRA EMITENTE
+///SE LE DEBITA EL DINERO DE LA TRANSFERENCIA A LA CUENTA EMITENTE
 usuario cambio2(usuario usu, movimiento tran){
 
     usu.saldo.caja=usu.saldo.caja-tran.monto;

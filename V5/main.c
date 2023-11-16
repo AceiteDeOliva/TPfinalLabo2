@@ -4,8 +4,6 @@
 #include "time.h"
 #include "librerias1.h"
 
-
-
 ///MAIN
 int main()
 {
@@ -63,8 +61,6 @@ int opcionMenuPrincipal()
 /// MENU PRINCIPAL
 int menuPrincipal(int opcionElegida, usuario cuenta)
 {
-
-
     int x=opcionElegida;
     int detectaCuenta;
     char salir;
@@ -76,10 +72,10 @@ int menuPrincipal(int opcionElegida, usuario cuenta)
     {
     case 1://crear usuarios
         system("cls");
-        CrearUsuario(cbu);
+        CrearUsuario();
         crearSaldo(cbu);
         break;
-    case 2://iniciar sesion
+    case 2://iniciar sesion |habria que cambiar toda esta parte para que se haga con el arbol
         system("cls");
         do
         {

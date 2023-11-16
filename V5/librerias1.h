@@ -1,10 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
 #define archivo  "usuario"
 #define archivo2 "saldo"
 #define archivo3 "transferencias"
+#define archivo4 "empleados"
+
 ///ESTRUCTURAS
 typedef struct
 {
@@ -61,6 +62,39 @@ typedef struct
     struct nodoDoble * cola;
 } fila;
 
+//arreglo de listas
+///NUEVAS ESTRUCTURAS
+typedef struct
+{
+    char nombreTrabajo[30];
+    int estado;  ///1 activo 0 inactivo
+    char nombreYapellido[30];
+    int dni;
+    char fechaDeNacimiento[30]; ///asi xx/xx/xxxx
+    int NumeroTelefono;
+}stRegistroEmpleado;
+
+typedef struct
+{
+    int estado;  ///1 activo 0 inactivo
+    char nombreYapellido[30];
+    int dni;
+    char fechaDeNacimiento[30]; ///asi xx/xx/xxxx
+    int NumeroTelefono;
+}empleado;
+
+typedef struct nodoEmpleado
+{
+    empleado dato;
+    struct nodoEmpleado* siguiente;
+}nodoEmpleado;
+
+typedef struct
+{
+    char nombreTrabajo[30];
+    nodoEmpleado* listaEmpleados;
+}celda;
+
 
 ///funciones generales/utilidades:
 usuario AdminCreate(usuario Admin);
@@ -72,7 +106,7 @@ int chequeomail (char mail[]);
 ///Menu principal:
 int opcionMenuPrincipal();
 int menuPrincipal(int opcionElegida, usuario cuenta);
-usuario crea1Usuario (usuario nuevoUsuario, int cbu);
+usuario crea1Usuario (usuario nuevoUsuario);
 void CrearUsuario();
 usuario cajaEnCero(usuario usu, int cbu);
 void crearSaldo(int cbu);
@@ -135,6 +169,27 @@ nodoListaS* FromArchiAListaOrdenada(nodoListaS* lista);
 
 //Filas
 void inicFila(fila * fila);
-void agregarAFila(fila * fila,sTtransfer dato);
-nodoDoble* crearNodoDoble(sTtransfer dato);
+void agregarAFila(fila * fila,movimiento dato);
+nodoDoble* crearNodoDoble(movimiento dato);
 nodoDoble * buscarUltimo(nodoDoble * lista);
+
+
+//arreglo de listas
+void funcionConBarraDeCarga();
+void verEmpleadosMenu();
+void cargarArchiEmpleados();
+stRegistroEmpleado cargarDatosEmpleado();
+nodoEmpleado* crearNodoEmplado(empleado dato);
+nodoEmpleado* agregarAlPpioEmpleado(nodoEmpleado* lista, nodoEmpleado* nuevo);
+void mostrarArchi();
+void mostrar1Registro(stRegistroEmpleado registro);
+int cargaADL(celda adl[], int dimension, empleado emple, char nombreTrabajo[]);
+int alta(celda adl[], int validos, empleado emple, char nombreTrabajo[]);
+int buscaPosCelda(celda adl[], int validos, char nombreTrabajo[]);
+int agregarCelda(celda adl[], int validos, char nombreTrabajo[]);
+nodoEmpleado* agregarEmpleadoEnOrdenPorDni(nodoEmpleado* lista, nodoEmpleado* nuevoNodo);
+int fromArchiEmpleadosToADL(celda adlEmpleados[], int dimension);
+empleado fromArchiToEmpleado(stRegistroEmpleado r);
+void mostrarADLempleados(celda adl[], int validos);
+void mostrarListaEmpleados(nodoEmpleado* lista);
+void mostrarDatosListaEmpleados(nodoEmpleado* lista);
