@@ -67,7 +67,7 @@ stRegistroEmpleado cargarDatosEmpleado()///faltan todas las validaciones y chequ
     gets(e.nombreYapellido);
 
     printf("\nDNI: ");
-    scanf("%ld", &e.dni);
+    scanf("%i", &e.dni);
 
     printf("\nFECHA DE NACIMIENTO(formato xx/xx/xxxx): ");
     fflush(stdin);
@@ -245,7 +245,7 @@ void mostrarDatosListaEmpleados(nodoEmpleado* lista)
 {
     printf("ESTADO: %d\n", lista->dato.estado);
     printf("NOMBRE Y APELLIDO: %s\n", lista->dato.nombreYapellido);
-    printf("DNI: %d\n", lista->dato.dni);
+    printf("DNI: %i\n", lista->dato.dni);
     printf("FECHA DE NACIMIENTO: %s\n", lista->dato.fechaDeNacimiento);
     printf("NUMERO DE TELEFONO: %d\n",lista->dato.NumeroTelefono);
 }
