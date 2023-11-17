@@ -97,6 +97,7 @@ nodoArbol* cargarArbolOrdenCBU(nodoArbol* arbol, nodoArbol* nuevo)
     }
 return arbol;
 }
+
 nodoArbol* fromArchiToArbolCBU(nodoArbol* arbol)
 {
    FILE* buffer=fopen(archivo, "rb");
@@ -113,7 +114,6 @@ nodoArbol* fromArchiToArbolCBU(nodoArbol* arbol)
    }
 return arbol;
 }
-
 
 nodoArbol* buscarCBUenArbol(nodoArbol* arbol,int cbu)
 {
@@ -136,7 +136,6 @@ nodoArbol* buscarCBUenArbol(nodoArbol* arbol,int cbu)
     }
 return rta;
 }
-
 
 void mostrarArbolInordenCBU(nodoArbol* arbol)
 {
