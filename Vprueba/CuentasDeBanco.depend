@@ -319,12 +319,14 @@
 	"time.h"
 	"librerias1.h"
 
-1700183491 source:c:\users\valentin\documents\github\tpfinallabo2\vprueba\libreria1.c
+1700188513 source:c:\users\valentin\documents\github\tpfinallabo2\vprueba\libreria1.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"time.h"
 	"librerias1.h"
+	<conio.h>
+	<unistd.h>
 
 1700173876 source:c:\users\valentin\documents\github\tpfinallabo2\vprueba\listasimple.c
 	<stdio.h>
