@@ -10,17 +10,16 @@
 int main()
 {
     system("color A0");
-    usuario cuenta;
     int opcion;
 
     opcion = opcionMenuPrincipal();
         if(opcion==1)
         {
-          menuPrincipal(opcion, cuenta);
+          menuPrincipal(opcion);
         }
         else if(opcion==2)
         {
-          menuPrincipal(opcion, cuenta);
+          menuPrincipal(opcion);
         }
 
     return 0;
@@ -70,7 +69,7 @@ int opcionMenuPrincipal()
 }
 
 /// MENU PRINCIPAL
-int menuPrincipal(int opcionElegida, usuario cuenta)
+int menuPrincipal(int opcionElegida)
 {
     funcionConBarraDeCarga();
     int x=opcionElegida;
@@ -79,6 +78,7 @@ int menuPrincipal(int opcionElegida, usuario cuenta)
     int intentos=0;
     int exit;
     char cbu[10];
+    usuario cuenta;
 
     switch(x)
     {

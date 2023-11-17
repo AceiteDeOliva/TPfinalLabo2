@@ -98,7 +98,7 @@ int chequeomail (char mail[]);
 
 ///Menu principal:
 int opcionMenuPrincipal();
-int menuPrincipal(int opcionElegida, usuario cuenta);
+int menuPrincipal(int opcionElegida);
 usuario crea1Usuario (usuario nuevoUsuario, char cbu[10]);
 void CrearUsuario();
 usuario cajaEnCero(usuario usu, char cbu[10]);

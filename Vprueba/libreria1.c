@@ -164,9 +164,9 @@ usuario crea1Usuario (usuario nuevoUsuario)
 int detectaUsuario(usuario usuBuscado, usuario ingreso) //se deberia hacer por arbol
 {
     int flag=0;
-    if(strcmp(usuBuscado.mail, ingreso.mail) && strcmp(usuBuscado.contrasenia,ingreso.contrasenia)){
+    if(strcmp(usuBuscado.mail, ingreso.mail)== 0 && strcmp(usuBuscado.contrasenia,ingreso.contrasenia)== 0){
 
-        flag == 1;
+        flag = 1;
 
     }
 
@@ -177,6 +177,13 @@ int detectaUsuario(usuario usuBuscado, usuario ingreso) //se deberia hacer por a
 usuario inicioSesion()
 {
     usuario usuInicioSesion;
+//
+//    usuInicioSesion.cbu = 0;
+//    usuInicioSesion.estado = 0;
+//    usuInicioSesion.genero = 'a';
+//    usuInicioSesion.saldo = 0;
+//    strcpy(usuInicioSesion.nombreApellido,"a");
+
     printf("DNI:\n");
     fflush(stdin);
     scanf("%i",&usuInicioSesion.dni);
@@ -538,7 +545,7 @@ int chequeoCBU(int cbu)
 }
 
 ///SI ENCUENTRA EL DNI RETORNA 1 SINO 0
-int chequeoDNI(long int dni)
+int chequeoDNI(int dni)
 {
     usuario usu;
     int flag=0;
@@ -569,7 +576,7 @@ int chequeoDNI(long int dni)
 }
 
 ///BUSCA UN USUARIO POR SU DNI
-usuario busquedaUsuXDNI(long int dni, int *flag)
+usuario busquedaUsuXDNI(int dni, int *flag)
 {
     *flag=0;
     usuario usu;

@@ -293,3 +293,50 @@
 	"time.h"
 	"librerias1.h"
 
+1700181540 source:c:\users\valentin\documents\github\tpfinallabo2\vprueba\arboles.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+
+1700181496 c:\users\valentin\documents\github\tpfinallabo2\vprueba\librerias1.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1700174546 source:c:\users\valentin\documents\github\tpfinallabo2\vprueba\arreglodelistas.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<unistd.h>
+	"librerias1.h"
+
+1700172223 source:c:\users\valentin\documents\github\tpfinallabo2\vprueba\filas.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+
+1700181935 source:c:\users\valentin\documents\github\tpfinallabo2\vprueba\libreria1.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+
+1700173876 source:c:\users\valentin\documents\github\tpfinallabo2\vprueba\listasimple.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<unistd.h>
+	"librerias1.h"
+
+1700181663 source:c:\users\valentin\documents\github\tpfinallabo2\vprueba\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+

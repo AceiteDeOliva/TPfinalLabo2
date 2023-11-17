@@ -56,7 +56,7 @@ int opcionMenuPrincipal()
             system("cls");
         }
     }
-    while(opcion<0 || opcion>2);
+    while(opcion<0 || opcion>3);
 
     return opcion;
 }
@@ -67,10 +67,9 @@ int menuPrincipal(int opcionElegida)
 {
 
     int x=opcionElegida;
-    int detectaCuenta;
-    char salir;
+    int detectaCuenta = -1;
     int intentos=0;
-    int exit = -1;
+    int exit;
     usuario ingreso;
     nodoArbol * raiz = fromArchiToArbolDNI(raiz);
     nodoArbol * cuenta = NULL;
@@ -87,11 +86,8 @@ int menuPrincipal(int opcionElegida)
         do
         {
             ingreso = inicioSesion();
-            printf("a\n");
             cuenta=buscarDNIenArbol(raiz,ingreso.dni);
-            printf("b\n");
             detectaCuenta = detectaUsuario(cuenta->dato,ingreso);
-            printf("c\n");
             if(detectaCuenta!=0)
             {
 //                detectaCuenta=chequeoAdmin(detectaCuenta, cuenta);

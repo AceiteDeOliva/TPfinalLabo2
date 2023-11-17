@@ -25,10 +25,11 @@ nodoArbol* cargarArbloOrdenDNI(nodoArbol* arbol, nodoArbol* nuevo)
     arbol=nuevo;
     else
     {
-        if(nuevo->dato.dni > arbol->dato.dni)
+        if(nuevo->dato.dni > arbol->dato.dni){
             arbol->der=cargarArbloOrdenDNI(arbol->der, nuevo);
-        else
+        }else{
             arbol->izq=cargarArbloOrdenDNI(arbol->izq, nuevo);
+        }
     }
 return arbol;
 }
@@ -82,6 +83,20 @@ void mostrarArbolInordenDni(nodoArbol* arbol)
     }
 }
 
+nodoArbol* cargarArbolOrdenCBU(nodoArbol* arbol, nodoArbol* nuevo)
+{
+    if(arbol==NULL)
+    arbol=nuevo;
+    else
+    {
+        if(nuevo->dato.cbu > arbol->dato.cbu){
+            arbol->der=cargarArbolOrdenCBU(arbol->der, nuevo);
+        }else{
+            arbol->izq=cargarArbolOrdenCBU(arbol->izq, nuevo);
+        }
+    }
+return arbol;
+}
 nodoArbol* fromArchiToArbolCBU(nodoArbol* arbol)
 {
    FILE* buffer=fopen(archivo, "rb");
@@ -92,7 +107,7 @@ nodoArbol* fromArchiToArbolCBU(nodoArbol* arbol)
        while(fread(&usu, sizeof(usuario), 1, buffer)>0)
        {
            nodoArbol* aux=crearNodoArbol(usu);
-           arbol=buscarCBUenArbol(arbol, aux);
+           arbol=cargarArbolOrdenCBU(arbol, aux);
        }
        fclose(buffer);
    }
