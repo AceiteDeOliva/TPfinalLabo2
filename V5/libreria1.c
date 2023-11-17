@@ -4,7 +4,6 @@
 #include "time.h"
 #include "librerias1.h"
 
-//funciones de sistema
 ///RETORNA S-N
 char deseaSalir(){
     char confirmacion;
@@ -16,39 +15,9 @@ char deseaSalir(){
     return confirmacion;
 }
 
-void reemplazarDato(usuario usu)
-{
-
-    FILE*archi=fopen(archivo,"r+b");
-
-    usuario aux; // es necesario ya que se necesita almacenar el dato leido del archivo
-    if(archi)
-    {
-
-        while(fread(&aux,sizeof(usuario),1,archi)>0)
-        {
-
-            if(usu.dni==aux.dni)
-            {
-                fseek(archi, -sizeof(usuario), SEEK_CUR);  // Retrocede el cursor y vuelve un paso para atras para que quede em eñ mismo lugar
-                fwrite(&usu, sizeof(usuario), 1, archi);
-                break;
-
-
-            }
-
-        }
-   fclose(archi);
-
-    }
-
-}
-
-//funciones de creacion de usuario
 ///RETORNA 1 SI EXISTE EL MAIL Y 0 SI NO EXISTE
 int chequeomail (char mail[])
 {
-
     usuario usu;
     int flag=0;
     FILE* buffer;
@@ -71,8 +40,9 @@ int chequeomail (char mail[])
     }
     return flag;
 }
+
 ///CARGA A UN ARCHIVO LOS DATOS DE UN USUARIO NUEVO
-void CrearUsuario()
+void CrearUsuario(char cbu[10])
 {
     usuario nuevoUsuario;
 
@@ -80,7 +50,7 @@ void CrearUsuario()
     buffer=fopen(archivo, "ab");
     if(buffer!=NULL)
     {
-        nuevoUsuario=crea1Usuario(nuevoUsuario);
+        nuevoUsuario=crea1Usuario(nuevoUsuario, cbu);
         fwrite(&nuevoUsuario, sizeof(usuario), 1, buffer);
 
         fclose(buffer);
@@ -94,12 +64,13 @@ void CrearUsuario()
 }
 
 ///RETORNA UNA ESTRUCTURA USUARIO CARGADA POR EL USUARIO
-usuario crea1Usuario (usuario nuevoUsuario)
+usuario crea1Usuario (usuario nuevoUsuario, char pcbu[10])
 {
+    int cbu;
     int flag=0;
     int flag1=0;
 
-    printf("Ingrese su nombre y apellido:\n");
+    printf("\nIngrese su nombre y apellido: ");
     fflush(stdin);
     gets(nuevoUsuario.nombreApellido);
 
@@ -117,7 +88,7 @@ usuario crea1Usuario (usuario nuevoUsuario)
 
     printf("Ingrese su DNI:\n");
     fflush(stdin);
-    scanf("%i", &nuevoUsuario.dni);
+    scanf("%ld", &nuevoUsuario.dni);
     flag1=chequeoDNI(nuevoUsuario.dni);
     do
     {
@@ -125,7 +96,7 @@ usuario crea1Usuario (usuario nuevoUsuario)
         {
             printf("Este DNI ya existe, ingrese otro por favor: ");
             fflush(stdin);
-            scanf("%i", &nuevoUsuario.dni);
+            scanf("%ld", &nuevoUsuario.dni);
             flag1=chequeoDNI(nuevoUsuario.dni);
         }
     }
@@ -151,25 +122,41 @@ usuario crea1Usuario (usuario nuevoUsuario)
     fflush(stdin);
     gets(nuevoUsuario.contrasenia);
 
-    nuevoUsuario.cbu = generarCBU(8);
+    srand(time(NULL));
+    cbu= rand()%99+99;
+    sprintf(nuevoUsuario.cbu, "%d", cbu);///lo cambie a 3 digitos, pueden ser reducidos para menor complejidad
+
+    strcpy(pcbu, nuevoUsuario.cbu);//pasamos el cbu creado a la cuenta del usuario
 
     nuevoUsuario.estado=1;
-
-    nuevoUsuario.saldo = 0;
 
     return nuevoUsuario;
 }
 
 ///RETORNA 1 SI EL MAIL Y LA CONTRASEÑA PERTENECENEN A UNA CUENTA Y 0 SI NO
-int detectaUsuario(usuario usuBuscado, usuario ingreso) //se deberia hacer por arbol
+int detectaUsuario(usuario usuBuscado, char cbu[10])
 {
+    usuario usu;
     int flag=0;
-    if(strcmp(usuBuscado.mail, ingreso.mail)== 0 && strcmp(usuBuscado.contrasenia,ingreso.contrasenia)== 0){
 
-        flag = 1;
+    FILE* buffer=fopen(archivo, "rb");
 
+    if(buffer)
+    {
+        while(fread(&usu, sizeof(usuario), 1, buffer)>0 && flag==0)
+        {
+            if(strcmp(usu.contrasenia, usuBuscado.contrasenia)==0 && strcmp(usu.mail, usuBuscado.mail)==0 && usu.estado==1)
+            {
+                flag=1;
+                strcpy(cbu, usu.cbu);
+                break;//agrego break para que corte el ciclo una vez encontrado el usuario y contraseña correctos.
+            }
+        }
+        fclose(buffer);
     }
-
+    else{
+        printf("ERROR AL ABRIR EL ARCHIVO");
+    }
     return flag;
 }
 
@@ -177,16 +164,6 @@ int detectaUsuario(usuario usuBuscado, usuario ingreso) //se deberia hacer por a
 usuario inicioSesion()
 {
     usuario usuInicioSesion;
-//
-//    usuInicioSesion.cbu = 0;
-//    usuInicioSesion.estado = 0;
-//    usuInicioSesion.genero = 'a';
-//    usuInicioSesion.saldo = 0;
-//    strcpy(usuInicioSesion.nombreApellido,"a");
-
-    printf("DNI:\n");
-    fflush(stdin);
-    scanf("%i",&usuInicioSesion.dni);
 
     printf("Ingrese su mail:\n");
     fflush(stdin);
@@ -200,182 +177,177 @@ return usuInicioSesion;
 }
 
 ///FUNCIONES LUEGO DE INICIAR SESION:
-//nos quedamos con los prestamos?
-/////SE INICIALIZA LA CAJA EN 0
-//usuario cajaEnCero(usuario usu, int cbu){
-//
-//    usu.saldo.caja=0;
-//    usu.saldo.prestamo=0;
-//    usu.saldo.cbu = cbu;
-//
-//    return usu;
-//}
-//
-/////SE ESTABLECE EL SALDO EN 0 CUANDO SE CREA UNA CUENTA NUEVA
-//void crearSaldo(int cbu){
-//    usuario caja;
-//
-//    FILE* buffer=fopen(archivo2, "ab");
-//
-//
-//    if(buffer!=NULL){
-//        caja=cajaEnCero(caja, cbu);
-//        fwrite(&caja, sizeof(usuario), 1, buffer);
-//
-//        fclose(buffer);
-//    }
-//    else{
-//        printf("ERROR AL ABRIR EL ARCHIVO");
-//    }
-//}
-//
-/////MUESTRA SALDO DE LA CUENTA Y SALDO A PAGAR POR PRESTAMOS
-//void muestraSaldo(usuario usu)
-//{
-//   printf("CAJA:%ld\n", usu.saldo.caja);
-//   printf("PRESTAMO A PAGAR:%ld\n", usu.saldo.prestamo);
-//}
-//
-/////BUSCA EL CBU DE LA SESION INICIADA Y LLAMA A LA FUNCION ANTERIOR
-//void corroborarSaldo(int pcbu)
-//{
-//    usuario usu;
-//    FILE* buffer=fopen(archivo2, "rb");
-//
-//    if(buffer!=NULL)
-//    {
-//        while(fread(&usu, sizeof(usuario), 1, buffer)>0)
-//        {
-//            if(usu.saldo.cbu == pcbu) //encuentra el saldo del usuario a través del cbu, logrando asi mostrar el saldo del usuario correspondiente
-//            {
-//                muestraSaldo(usu);
-//            }
-//        }
-//        fclose(buffer);
-//    }
-//    else{
-//        printf("ERROR AL ENTRAR AL ARCHIVO, NO HAY SALDOS CARGADOS");
-//    }
-//}
-//
-/////SE GUARDA EN EL ARCHIVO EL NUEVO PRESTAMO
-//void prestamo(int cbu){
-//    usuario usu;
-//    int posicion;
-//    FILE*buffer=fopen(archivo2,"r+b");
-//    if(buffer!=NULL)
-//    {
-//        fread(&usu,sizeof(usuario),1,buffer);
-//
-//            while(!feof(buffer)){
-//                if(cbu==usu.saldo.cbu)
-//                {
-//                    printf("Este es su saldo actual %ld\n", usu.saldo.caja);
-//                    posicion=ftell(buffer)-sizeof(usuario);
-//                    usu=prestamoSaldo(cbu,usu);
-//                    fseek(buffer, posicion, SEEK_SET);
-//                    fwrite(&usu,sizeof(usuario),1,buffer);
-//                    break;
-//                }
-//                fread(&usu, sizeof(usuario), 1, buffer);
-//            }
-//        fclose(buffer);
-//    }
-//    else{
-//        printf("ERROR AL INGRESAR AL ARCHIVO");
-//    }
-//}
-//
-/////SE PREGUNTA CUANTO QUIERE DE PRESTAMO EL USUARIO
-//usuario prestamoSaldo(int cbu,usuario usu)
-//{
-//    long int deuda=0;
-//    do{
-//    printf("Que cantidad desea pedir prestada..(minimo 50000)\n");
-//    fflush(stdin);
-//    scanf("%ld",&deuda);
-//    if(deuda<50000){
-//        printf("Ha ingresado una cifra menor a 50000... o un digito incorrecto");
-//    }
-//    }while(deuda<50000);
-//
-//    usu.saldo.caja=usu.saldo.caja+deuda;
-//    deuda=deuda+((deuda*15)/100);
-//
-//    usu.saldo.prestamo=(usu.saldo.prestamo-deuda);
-//    return usu;
-//}
-//
-/////RETORNA UN USUARIO RESTANDO LA CANTIDAD DE DINERO QUE SE ELIGA, SI NO SE TIENE SUFICIENTE NO TE DEJA
-//usuario deudaApagar(usuario deuda){
-//    long int pago;
-//    do{
-//    printf("Que cantidad desea pedir pagar del prestamo?\n");
-//    fflush(stdin);
-//    scanf("%ld", &pago);
-//    if(pago>deuda.saldo.caja){
-//        printf("El pago es mayor a lo que tiene en caja\n");
-//    }
-//    }while(pago>deuda.saldo.caja);
-//
-//    deuda.saldo.caja=(deuda.saldo.caja)-pago;
-//
-//    deuda.saldo.prestamo=(deuda.saldo.prestamo)+pago;
-//    printf("La deuda ha sido pagada con exito\n");
-//
-//    return deuda;
-//}
-//
-/////SE SOBREESCRIBE EL ARCHIVO Y ACTUALIZA LA CANTIDAD DE DEUDA QUE SE TIENE
-//void pagarPrestamo(int cbu){
-//    usuario usu;
-//    int posicion;
-//    int flag=0;
-//    FILE*buffer=fopen(archivo2,"r+b");
-//    if(buffer!=NULL)
-//    {
-//
-//            while(flag==0 && (fread(&usu,sizeof(usuario),1,buffer)>0)){
-//            if(cbu ==usu.saldo.cbu)
-//            {
-//                printf("Esta es tu deuda actual %ld\n", usu.saldo.prestamo);
-//                printf("Este es tu saldo disponible en cuenta:%ld\n", usu.saldo.caja);
-//                posicion=ftell(buffer)-sizeof(usuario);
-//                usu=deudaApagar(usu);
-//                fseek(buffer, posicion, SEEK_SET);
-//                fwrite(&usu,sizeof(usuario),1,buffer);
-//                flag=1;
-//            }
-//        }
-//        fclose(buffer);
-//    }
-//}
-//||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
-///SE PIDE QUE INGRESE EL CBU DE LA PERSONA A LA QUE SE QUIERE TRANSFERIR Y CUANTO SE LE QUIERE TRANSFERIR
-movimiento carga1Transfer (nodoArbol * raiz,int cbuPaga)
+///SE INICIALIZA LA CAJA EN 0
+usuario cajaEnCero(usuario usu, char cbu[10]){
+
+    usu.saldo.caja=0;
+    usu.saldo.prestamo=0;
+    strcpy(usu.saldo.cbu, cbu);
+
+    return usu;
+}
+
+///SE ESTABLECE EL SALDO EN 0 CUANDO SE CREA UNA CUENTA NUEVA
+void crearSaldo(char cbu[10]){
+    usuario caja;
+
+    FILE* buffer=fopen(archivo2, "ab");
+
+
+    if(buffer!=NULL){
+        caja=cajaEnCero(caja, cbu);
+        fwrite(&caja, sizeof(usuario), 1, buffer);
+
+        fclose(buffer);
+    }
+    else{
+        printf("ERROR AL ABRIR EL ARCHIVO");
+    }
+}
+
+///MUESTRA SALDO DE LA CUENTA Y SALDO A PAGAR POR PRESTAMOS
+void muestraSaldo(usuario usu)
 {
-    movimiento transfer;
-    transfer.cbuEmisor = cbuPaga;
-    transfer.tipoDeOperacion = 0;
+   printf("CAJA:%ld\n", usu.saldo.caja);
+   printf("PRESTAMO A PAGAR:%ld\n", usu.saldo.prestamo);
+}
 
-    printf("Ingrese el monto:\n ");
+///BUSCA EL CBU DE LA SESION INICIADA Y LLAMA A LA FUNCION ANTERIOR
+void corroborarSaldo(char pcbu[])
+{
+    usuario usu;
+    FILE* buffer=fopen(archivo2, "rb");
+
+    if(buffer!=NULL)
+    {
+        while(fread(&usu, sizeof(usuario), 1, buffer)>0)
+        {
+            if(strcmp(usu.saldo.cbu, pcbu)==0) //encuentra el saldo del usuario a través del cbu, logrando asi mostrar el saldo del usuario correspondiente
+            {
+                muestraSaldo(usu);
+            }
+        }
+        fclose(buffer);
+    }
+    else{
+        printf("ERROR AL ENTRAR AL ARCHIVO, NO HAY SALDOS CARGADOS");
+    }
+}
+
+///SE GUARDA EN EL ARCHIVO EL NUEVO PRESTAMO
+void prestamo(char cbu[10]){
+    usuario usu;
+    int posicion;
+    FILE*buffer=fopen(archivo2,"r+b");
+    if(buffer!=NULL)
+    {
+        fread(&usu,sizeof(usuario),1,buffer);
+
+            while(!feof(buffer)){
+                if(strcmp(cbu,usu.saldo.cbu)==0)
+                {
+                    printf("Este es su saldo actual %ld\n", usu.saldo.caja);
+                    posicion=ftell(buffer)-sizeof(usuario);
+                    usu=prestamoSaldo(cbu,usu);
+                    fseek(buffer, posicion, SEEK_SET);
+                    fwrite(&usu,sizeof(usuario),1,buffer);
+                    break;
+                }
+                fread(&usu, sizeof(usuario), 1, buffer);
+            }
+        fclose(buffer);
+    }
+    else{
+        printf("ERROR AL INGRESAR AL ARCHIVO");
+    }
+}
+
+///SE PREGUNTA CUANTO QUIERE DE PRESTAMO EL USUARIO
+usuario prestamoSaldo(char cbu[10],usuario usu)
+{
+    long int deuda=0;
+    do{
+    printf("Que cantidad desea pedir prestada..(minimo 50000)\n");
     fflush(stdin);
-    scanf("%i", &transfer.monto);
+    scanf("%ld",&deuda);
+    if(deuda<50000){
+        printf("Ha ingresado una cifra menor a 50000... o un digito incorrecto");
+    }
+    }while(deuda<50000);
+
+    usu.saldo.caja=usu.saldo.caja+deuda;
+    deuda=deuda+((deuda*15)/100);
+
+    usu.saldo.prestamo=(usu.saldo.prestamo-deuda);
+    return usu;
+}
+
+///RETORNA UN USUARIO RESTANDO LA CANTIDAD DE DINERO QUE SE ELIGA, SI NO SE TIENE SUFICIENTE NO TE DEJA
+usuario deudaApagar(usuario deuda){
+    long int pago;
+    do{
+    printf("Que cantidad desea pedir pagar del prestamo?\n");
+    fflush(stdin);
+    scanf("%ld", &pago);
+    if(pago>deuda.saldo.caja){
+        printf("El pago es mayor a lo que tiene en caja\n");
+    }
+    }while(pago>deuda.saldo.caja);
+
+    deuda.saldo.caja=(deuda.saldo.caja)-pago;
+
+    deuda.saldo.prestamo=(deuda.saldo.prestamo)+pago;
+    printf("La deuda ha sido pagada con exito\n");
+
+    return deuda;
+}
+
+///SE SOBREESCRIBE EL ARCHIVO Y ACTUALIZA LA CANTIDAD DE DEUDA QUE SE TIENE
+void pagarPrestamo(char cbu[10]){
+    usuario usu;
+    int posicion;
+    int flag=0;
+    FILE*buffer=fopen(archivo2,"r+b");
+    if(buffer!=NULL)
+    {
+
+            while(flag==0 && (fread(&usu,sizeof(usuario),1,buffer)>0)){
+            if(strcmp(cbu,usu.saldo.cbu)==0)
+            {
+                printf("Esta es tu deuda actual %ld\n", usu.saldo.prestamo);
+                printf("Este es tu saldo disponible en cuenta:%ld\n", usu.saldo.caja);
+                posicion=ftell(buffer)-sizeof(usuario);
+                usu=deudaApagar(usu);
+                fseek(buffer, posicion, SEEK_SET);
+                fwrite(&usu,sizeof(usuario),1,buffer);
+                flag=1;
+            }
+        }
+        fclose(buffer);
+    }
+}
+
+///SE PIDE QUE INGRESE EL CBU DE LA PERSONA A LA QUE SE QUIERE TRANSFERIR Y CUANDO SE LE QUIERE TRANSFERIR
+sTtransfer carga1Transfer (sTtransfer transfer, char cbuPaga[10])
+{
+    int flag=0;
+    printf("Ingrese el importe:\n ");
+    scanf("%ld", &transfer.importe);
+
 
     printf("Ingrese el cbu del destinatario:\n");
     fflush(stdin);
-    scanf("%i", &transfer.cbuReceptor);
-
-    if (cbuPaga == transfer.cbuReceptor)
+    gets(transfer.cbuReceptor);
+    if (strcasecmp(cbuPaga, transfer.cbuReceptor)==0)
     {
         printf("No se puede transferir a usted mismo, porfavor intente denuevo.\n");
     }
     else
     {
-//      nodoArbol * receptor = buscarCBUenArbol(transfer.cbuReceptor);
+      flag=chequeoCBU(transfer.cbuReceptor);
 
-        if (NULL)
+        if (flag==1)
         {
             printf("Usuario encontrado correctamente, transferencia exitosa.\n");
         }
@@ -387,17 +359,69 @@ movimiento carga1Transfer (nodoArbol * raiz,int cbuPaga)
     return transfer;
 }
 
-///SOBREESCRIBIMOS EL ARCHIVO Y MODIFICAMOS EL SALDO DE AMBOS PARTICIPANTES DE LA TRANSFERENCIA
-void tranferencia(nodoArbol * arbol)
-{
+///SE LE ACERDITA EL DINERO DE LA TRANSFERENCIA A LA CUENTA ELEGIDA
+usuario cambio1(usuario usu, sTtransfer tran){
 
-//    movimiento transf = carga1Transfer(,arbol->dato.cbu);
-//    arbol->dato.saldo = arbol->dato.saldo - transf.monto;
-//    reemplazarDato(arbol->dato);
+    usu.saldo.caja=usu.saldo.caja+tran.importe;
 
+    return usu;
 }
 
+///SE LE DEBITA EL DINERO DE LA TRANSFERENCIA A LA CUENTRA EMITENTE
+usuario cambio2(usuario usu, sTtransfer tran){
 
+    usu.saldo.caja=usu.saldo.caja-tran.importe;
+
+    return usu;
+}
+
+///SOBREESCRIBIMOS EL ARCHIVO Y MODIFICAMOS EL SALDO DE AMBOS PARTICIPANTES DE LA TRANSFERENCIA
+void tranferencia(char cbuPaga[10])
+{
+    usuario usu;
+    sTtransfer tran;
+    FILE*buffer=fopen(archivo2,"r+b");
+    int posicion;
+
+    if(buffer!=NULL)
+    {
+            do{
+            tran=carga1Transfer(tran, cbuPaga);
+            if(tran.importe > usu.saldo.caja){
+                printf("El importe ingresado es menor al que tiene usted en caja...\n Ingrese otro monto\n");
+            }
+            }while(tran.importe > usu.saldo.caja);
+            fread(&usu, sizeof(usuario),1,buffer);
+        while(!feof(buffer))
+        {
+            if(strcmp(tran.cbuReceptor,usu.saldo.cbu)==0){
+                posicion=ftell(buffer)-sizeof(usuario);
+                usu=cambio1(usu, tran);
+                fseek(buffer, posicion, SEEK_SET);
+                fwrite(&usu,sizeof(usuario),1,buffer);
+                break;
+            }
+            fread(&usu, sizeof(usuario),1,buffer);
+        }
+        fseek(buffer, 0, SEEK_SET);
+        fread(&usu, sizeof(usuario),1,buffer);
+        while(!feof(buffer)){
+            if(strcmp(tran.referencia,usu.saldo.cbu)==0){
+                posicion=ftell(buffer)-sizeof(usuario);
+                usu=cambio2(usu, tran);
+                fseek(buffer, posicion, SEEK_SET);
+                fwrite(&usu,sizeof(usuario),1,buffer);
+                break;
+            }
+            fread(&usu, sizeof(usuario),1,buffer);
+        }
+
+        fclose(buffer);
+    }
+    else{
+        printf("ERROR AL ABRIR EL ARCHIVO");
+    }
+}
 
 ///RETORNA UN USUARIO CON LA NUEVA CONTRASEÑA
 usuario newPass(usuario usu, char contrasenia[20]){
@@ -408,7 +432,7 @@ usuario newPass(usuario usu, char contrasenia[20]){
 }
 
 ///SOBREESCRIBIMOS EL ARCHIVO CON LA NUEVA CONTRASEÑA
-void modPass(char contrasenia[20], int cbu){
+void modPass(char contrasenia[20], char cbu[10]){
 
     usuario usu;
     FILE*buffer=fopen(archivo, "r+b");
@@ -417,7 +441,7 @@ void modPass(char contrasenia[20], int cbu){
     if(buffer!=NULL){
         fread(&usu,sizeof(usuario),1,buffer);
         while(!feof(buffer)){
-            if(cbu == usu.cbu){
+            if(strcmp(cbu,usu.cbu)==0){
                 posicion=ftell(buffer)-sizeof(usuario);
                 usu=newPass(usu, contrasenia);
                 fseek(buffer, posicion, SEEK_SET);
@@ -434,7 +458,7 @@ void modPass(char contrasenia[20], int cbu){
 }
 
 ///BUSCA UN USUARIO EN EL ARCHIVO POR SU CBU
-usuario busquedaUsuXCBU(int cbu,int *flag)
+usuario busquedaUsuXCBU(char cbu[],int *flag)
 {
     *flag=0;
     usuario usu;
@@ -444,7 +468,7 @@ usuario busquedaUsuXCBU(int cbu,int *flag)
     {
         while(*flag==0 &&  (fread(&usu, sizeof(usuario), 1, buffer)>0))
         {
-            if(cbu == usu.cbu)
+            if(strcmp(cbu,usu.cbu)==0)
             {
                 *flag=1;
             }
@@ -461,9 +485,9 @@ void muestraUsuarioAdmin(usuario usu)
     printf("Nombre y apellido:");
     puts(usu.nombreApellido);
     printf("Genero:%c\n", usu.genero);
-    printf("DNI:%i\n", usu.dni);
+    printf("DNI:%ld\n", usu.dni);
     printf("Mail:%s\n", usu.mail);
-    printf("CBU:%i\n", usu.cbu);
+    printf("CBU:%s\n", usu.cbu);
     puts("---------------------------------------------");
 }
 
@@ -489,7 +513,7 @@ usuario desactivar(usuario usu){
 }
 
 ///REESCRIBE EN EL ARCHIVO Y DESACTIVA LA CUENTA
-void desactivarCuenta(int cbu){
+void desactivarCuenta(char cbu[20]){
     usuario usu;
     FILE*buffer=fopen(archivo, "r+b");
     int posicion;
@@ -497,7 +521,7 @@ void desactivarCuenta(int cbu){
     if(buffer!=NULL){
      fread(&usu,sizeof(usuario),1,buffer);
         while(!feof(buffer)){
-            if(cbu == usu.cbu){
+            if(strcmp(cbu,usu.cbu)==0){
                 posicion=ftell(buffer)-sizeof(usuario);
                 usu=desactivar(usu);
                 fseek(buffer, posicion, SEEK_SET);
@@ -514,7 +538,7 @@ void desactivarCuenta(int cbu){
 }
 
 ///SI ENCUENTRA EL CBU RETORNA 1 SINO 0
-int chequeoCBU(int cbu)
+int chequeoCBU(char cbu[])
 {
     usuario usu;
     int flag=0;
@@ -525,7 +549,7 @@ int chequeoCBU(int cbu)
     {
         while(flag==0 && fread(&usu, sizeof(usuario), 1, buffer)>0)
         {
-            if(usu.cbu == cbu)
+            if(strcmp(usu.cbu,cbu)==0)
             {
                 flag=1;
             }
@@ -545,7 +569,7 @@ int chequeoCBU(int cbu)
 }
 
 ///SI ENCUENTRA EL DNI RETORNA 1 SINO 0
-int chequeoDNI(int dni)
+int chequeoDNI(long int dni)
 {
     usuario usu;
     int flag=0;
@@ -576,7 +600,7 @@ int chequeoDNI(int dni)
 }
 
 ///BUSCA UN USUARIO POR SU DNI
-usuario busquedaUsuXDNI(int dni, int *flag)
+usuario busquedaUsuXDNI(long int dni, int *flag)
 {
     *flag=0;
     usuario usu;
@@ -599,13 +623,13 @@ usuario busquedaUsuXDNI(int dni, int *flag)
 ///FUNCION EN LA QUE EL ADMIN DA DE BAJA A UN USUARIO
 void darDeBajaOAltaAdmin(){
     usuario usu;
-    int cbu;
+    char cbu[10];
     int validar;
 
     do{
     printf("Que usuario desea dar de baja?(ingrese el cbu del mismo)\n");
     fflush(stdin);
-    scanf("%i", &cbu);
+    scanf("%s", cbu);
     validar=chequeoCBU(cbu);
     if(validar!=1){
         printf("CBU No fue encontrado, ingrese otro\n");
@@ -618,7 +642,7 @@ void darDeBajaOAltaAdmin(){
     {
         while((fread(&usu, sizeof(usuario), 1, buffer)>0))
         {
-            if(cbu == usu.cbu)
+            if(strcmp(cbu,usu.cbu)==0)
             {
                 posicion=ftell(buffer)-sizeof(usuario);
                 usu=desactivar(usu);
@@ -723,11 +747,12 @@ void muestra1Usuario(usuario usu)
     printf("%s\n", usu.nombreApellido);
     printf("Genero:");
     printf("%c\n", usu.genero);
-    printf("DNI:%i\n", usu.dni);
+    printf("DNI:%ld\n", usu.dni);
     printf("Mail:%s\n", usu.mail);
-    printf("CBU:%i\n", usu.cbu);
+    printf("CBU:%s\n", usu.cbu);
     puts("---------------------------------------------");
 }
+
 
 //Genera un numero aleatorio del 0 al 9
 int generarDigitoAleatorio()
@@ -764,9 +789,10 @@ nodoArbol* modificarUsuario(nodoArbol * arbol)
 
     printf("Ingrese la opcion que desea modificar\n");
     printf("1- Nombre y apellido\n");
-    printf("2- Genero\n");
-    printf("3- Mail\n");
-    printf("4- contraseña\n");
+    printf("2- DNI\n");
+    printf("3- Genero\n");
+    printf("4- Mail\n");
+    printf("5- contraseña\n");
     fflush(stdin);
     scanf("%i",&eleccion);
 
@@ -777,18 +803,24 @@ nodoArbol* modificarUsuario(nodoArbol * arbol)
         printf("Nuevo nombre y apellido:\n");
         fflush(stdin);
         gets(arbol->dato.nombreApellido);
+        modificaArchivo(arbol->dato);
         break;
     case 2:
+        printf("Nuevo DNI:\n");
+        fflush(stdin);
+        scanf("%ld",&arbol->dato.dni);
+        break;
+    case 3:
         printf("Nuevo genero:\n");
         fflush(stdin);
         scanf("%c",&arbol->dato.genero);
         break;
-    case 3:
+    case 4:
         printf("Nuevo mail:\n");
         fflush(stdin);
         gets(arbol->dato.mail);
         break;
-    case 4:
+    case 5:
         printf("Nueva contrasenia:\n");
         fflush(stdin);
         gets(arbol->dato.contrasenia);
@@ -800,8 +832,56 @@ nodoArbol* modificarUsuario(nodoArbol * arbol)
         break;
 
     }
-    //llamada a funcion de modificar dato
 
 return arbol;
+}
+
+
+void modificaArchivo(usuario dato)
+{
+    FILE* buffer=fopen(archivo, "r+b");
+    int flag=0;
+    usuario usu;
+
+    if(buffer)
+    {
+        while(fread(&usu, sizeof(usuario), 1, buffer)>0 && flag==0)
+        {
+            if(strcmp(usu.cbu, dato.cbu)==0)
+            {
+               int posicion=ftell(buffer)/sizeof(usuario);
+               fseek(buffer, posicion, SEEK_SET);
+               fwrite(&dato,sizeof(usuario),1,buffer);
+               flag=1;
+            }
+        }
+    }
+    fclose(buffer);
+}
+
+void funcionConBarraDeCarga()
+{
+    const int totalIteraciones = 100; // Número total de iteraciones de tu función
+    int progreso;
+
+    for (progreso = 0; progreso <= totalIteraciones; ++progreso) {
+        // Simula la ejecución de tu función
+        // ...
+
+        // Imprime la barra de carga
+        printf("\rProgreso: [");
+        for (int i = 0; i < progreso * 50 / totalIteraciones; ++i) {
+            printf("#");
+        }
+        for (int i = progreso * 50 / totalIteraciones; i < 50; ++i) {
+            printf(" ");
+        }
+        printf("] %3d%%", progreso * 100 / totalIteraciones);
+
+        // Simula un retardo para ajustar la velocidad de la barra de carga
+        usleep(100);  // Retardo de 50,000 microsegundos (0.05 segundos)
+    }
+
+    printf("\n");
 }
 
