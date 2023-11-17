@@ -236,6 +236,7 @@ nodoArbol*crearNodoArbol(usuario dato)///crea un nodo con una struct tipo usuari
     nuevo->izq=NULL;
     return nuevo;
 }
+
 nodoArbol*InsertarEnArbol(nodoArbol*arbol,nodoArbol*nuevo)///inserta un nuevo nodo en el arbol de forma ordenada segun su dni
 {
     if(arbol==NULL){

@@ -16,8 +16,8 @@ arbol->dato.genero ='m';
 strcpy(arbol->dato.mail,"josevl@live.com");
 arbol->dato.dni = 42416416;
 strcpy(arbol->dato.nombreApellido,"jose leta");
-
-printf("dbu:%i\n",arbol->dato.cbu);
+//
+//printf("dbu:%i\n",arbol->dato.cbu);
 
 imprimirUsuario(arbol->dato);
 modificarUsuario(arbol);
