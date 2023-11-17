@@ -163,7 +163,7 @@ nodoDoble * buscarUltimo(nodoDoble * lista);
 ///ARBOLES
 nodoArbol* inicArbol();
 nodoArbol* crearNodoArbol(usuario dato);
-nodoArbol* cargarArbloOrdenDNI(nodoArbol* arbol, nodoArbol* nuevo);
+nodoArbol* cargarArbolOrdenDNI(nodoArbol* arbol, nodoArbol* nuevo);
 nodoArbol* fromArchiToArbolDNI(nodoArbol* arbol);
 nodoArbol* buscarDNIenArbol(nodoArbol* arbol,int dni);
 nodoArbol* modificarUsuario(nodoArbol * arbol);

@@ -134,7 +134,7 @@ return rta;
 int agregarCelda(celda adl[], int validos, char nombreTrabajo[])
 {
     strcpy(adl[validos].nombreTrabajo, nombreTrabajo);
-    adl[validos].listaEmpleados=inicLista();
+    adl[validos].listaEmpleados=NULL;
     validos++;
 return validos;
 }

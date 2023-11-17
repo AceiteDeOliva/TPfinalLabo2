@@ -19,16 +19,16 @@ nodoArbol* crearNodoArbol(usuario dato)
 return aux;
 }
 
-nodoArbol* cargarArbloOrdenDNI(nodoArbol* arbol, nodoArbol* nuevo)
+nodoArbol* cargarArbolOrdenDNI(nodoArbol* arbol, nodoArbol* nuevo)
 {
     if(arbol==NULL)
     arbol=nuevo;
     else
     {
         if(nuevo->dato.dni > arbol->dato.dni){
-            arbol->der=cargarArbloOrdenDNI(arbol->der, nuevo);
+            arbol->der=cargarArbolOrdenDNI(arbol->der, nuevo);
         }else{
-            arbol->izq=cargarArbloOrdenDNI(arbol->izq, nuevo);
+            arbol->izq=cargarArbolOrdenDNI(arbol->izq, nuevo);
         }
     }
 return arbol;
@@ -44,7 +44,7 @@ nodoArbol* fromArchiToArbolDNI(nodoArbol* arbol)
        while(fread(&usu, sizeof(usuario), 1, buffer)>0)
        {
            nodoArbol* aux=crearNodoArbol(usu);
-           arbol=cargarArbloOrdenDNI(arbol, aux);
+           arbol=cargarArbolOrdenDNI(arbol, aux);
        }
        fclose(buffer);
    }

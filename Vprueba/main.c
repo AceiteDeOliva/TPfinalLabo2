@@ -229,6 +229,7 @@ int menuInicioSesion(int cbu)
 ///MENU DE ADMIN
 int menuAdmin()
 {
+    funcionConBarraDeCarga();
     int x;
     int dni=0;
     usuario arreglo[100];
