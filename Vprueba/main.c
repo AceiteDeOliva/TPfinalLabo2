@@ -71,7 +71,8 @@ int menuPrincipal(int opcionElegida)
     int intentos=0;
     int exit;
     usuario ingreso;
-    nodoArbol * raiz = fromArchiToArbolDNI(raiz);
+    nodoArbol * raiz = NULL;
+    raiz = fromArchiToArbolDNI(raiz);
     nodoArbol * cuenta = NULL;
 
     switch(x)
@@ -90,7 +91,7 @@ int menuPrincipal(int opcionElegida)
             detectaCuenta = detectaUsuario(cuenta->dato,ingreso);
             if(detectaCuenta!=0)
             {
-//                detectaCuenta=chequeoAdmin(detectaCuenta, cuenta);
+//              detectaCuenta=chequeoAdmin(detectaCuenta, cuenta);
                 if(detectaCuenta==1)
                 {
                     exit=menuInicioSesion(cuenta->dato.cbu);//devuelve 0 si elijes opcion de salir
@@ -129,7 +130,6 @@ int menuPrincipal(int opcionElegida)
 int menuInicioSesion(int cbu)
 {
     int x;
-    char salir;
     char contrasenia[20];
     char confirmacion[20];
     int seguro;
@@ -225,7 +225,6 @@ int menuInicioSesion(int cbu)
 int menuAdmin()
 {
     int x;
-    char salir;
     int dni=0;
     usuario arreglo[100];
     do
@@ -271,7 +270,6 @@ int menuAdmin()
 void verUsuariosMenu()
 {
     int x;
-    char salir;
     long int dni=0;
     usuario usuBuscado;
     usuario usuBuscado2;
