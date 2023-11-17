@@ -195,6 +195,7 @@ char contrasenia[20];
     strcpy(nuevoUsuario.contrasenia,contrasenia);
     //printf("la contrseña es %s ",nuevoUsuario.contrasenia);
 
+    srand((unsigned int)time(NULL));
     nuevoUsuario.cbu = generarCBU(8);
 
     nuevoUsuario.estado=1;

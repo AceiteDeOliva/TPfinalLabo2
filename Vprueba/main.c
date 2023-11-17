@@ -80,6 +80,8 @@ int menuPrincipal(int opcionElegida)
     case 1://crear usuarios
         system("cls");
         CrearUsuario();
+        system("cls");
+        main();
 //       crearSaldo(cbu);
         break;
     case 2://iniciar sesion |habria que cambiar toda esta parte para que se haga con el arbol
@@ -229,17 +231,24 @@ int menuInicioSesion(int cbu)
 ///MENU DE ADMIN
 int menuAdmin()
 {
-    funcionConBarraDeCarga();
     int x;
+    char salir;
     int dni=0;
     usuario arreglo[100];
     do
     {
         system("cls");
-        printf("/////Administracion de usuarios/////\n");
-        printf("--------------------------------------\n");
-        printf("Opciones disponibles:\n1-Ver usuarios registrados\n2-Desactivar usuario/s\n0-Salir del Menu.\n");
-        printf("--------------------------------------\n");
+        printf("                                                 +-----------------+\n");
+        printf("                                                 |  BANCO CENTRAL  |  \n");
+        printf("                                                 +-----------------+\n");
+        printf("\n\n");
+        puts("------------------------------|");
+        printf("[1]USUARIOS\n");
+        puts("------------------------------|");
+        printf("[2]EMPLEADOS\n");
+        puts("------------------------------|");
+        printf("[0]SALIR\n");
+        puts("------------------------------|");
         fflush(stdin);
         scanf("%d", &x);
 
@@ -247,12 +256,12 @@ int menuAdmin()
         {
         case 1:
             system("cls");
-            verUsuariosMenu(arreglo, 100);
+            verUsuariosMenu();
             system("pause");
             break;
         case 2:
             system("cls");
-            darDeBajaOAltaAdmin(dni);
+            verEmpleadosMenu();
             system("pause");
             break;
         case 0:
@@ -272,10 +281,12 @@ int menuAdmin()
     return x;
 }
 
+
 ///MENU DE ADMIN PARA VER USUARIOS DE DISTINTAS FORMAS
 void verUsuariosMenu()
 {
     int x;
+    char salir;
     long int dni=0;
     usuario usuBuscado;
     usuario usuBuscado2;
@@ -288,10 +299,17 @@ void verUsuariosMenu()
     do
     {
         system("cls");
-        printf("/////Ver usuarios/////\n");
-        printf("--------------------------------------\n");
-        printf("Opciones disponibles:\n1-Ver todos los usuarios ordenados por dni\n2-Buscar 1 usuario por DNI.\n0-Salir del Menu.\n");
-        printf("--------------------------------------\n");
+        printf("                                                 +-----------------+\n");
+        printf("                                                 |  BANCO CENTRAL  |  \n");
+        printf("                                                 +-----------------+\n");
+        printf("\n\n");
+        puts("-----------------------------------|");
+        printf("[1]VER USUARIOS ORDENADOS POR DNI\n");
+        puts("-----------------------------------|");
+        printf("[2]BUSCAR USUARIO POR DNI\n");
+        puts("-----------------------------------|");
+        printf("[0]SALIR\n");
+        puts("-----------------------------------|");
         fflush(stdin);
         scanf("%d", &x);
 
@@ -321,6 +339,65 @@ void verUsuariosMenu()
             {
                 printf("Usuario no encontrado.\n");
             }
+            system("pause");
+            break;
+        case 0:
+            menuAdmin();
+            break;
+        default:
+            system("cls");
+            printf("Ha ingresado una opcion que esta fuera de las posibles... volviendo al menu");
+            system("pause");
+            break;
+        }
+    }
+    while(x!=0);
+}
+
+void verEmpleadosMenu()
+{
+    int x;
+    long int dni=0;
+    int flag=0;
+    int validos=0;
+
+    celda adlEmpleados[5];
+
+    do
+    {
+        system("cls");
+        printf("                                                 +-----------------+\n");
+        printf("                                                 |  BANCO CENTRAL  |  \n");
+        printf("                                                 +-----------------+\n");
+        printf("\n\n");
+        puts("-----------------------------------|");
+        printf("[1]VER EMPLEADOS ORDENADOS POR DNI\n");
+        puts("-----------------------------------|");
+        printf("[2]BUSCAR EMPLEAD0 POR DNI\n");
+        puts("-----------------------------------|");
+        printf("[3]AGREGAR NUEVO EMPLEADO\n");
+        puts("-----------------------------------|");
+        printf("[0]SALIR\n");
+        puts("-----------------------------------|");
+        fflush(stdin);
+        scanf("%d", &x);
+
+        switch(x)
+        {
+        case 1:
+            system("cls");
+            validos=fromArchiEmpleadosToADL(adlEmpleados, 5);
+            mostrarADLempleados(adlEmpleados,validos);
+            system("pause");
+            break;
+        case 2:
+            system("cls");
+            mostrarArchi();
+            system("pause");
+            break;
+        case 3:
+            system("cls");
+            cargarArchiEmpleados();
             system("pause");
             break;
         case 0:
