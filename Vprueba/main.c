@@ -65,9 +65,9 @@ int opcionMenuPrincipal()
 /// MENU PRINCIPAL
 int menuPrincipal(int opcionElegida)
 {
-
+    funcionConBarraDeCarga();
     int x=opcionElegida;
-    int detectaCuenta = -1;
+    int detectaCuenta = 0;
     int intentos=0;
     int exit;
     usuario ingreso;
@@ -88,7 +88,12 @@ int menuPrincipal(int opcionElegida)
         {
             ingreso = inicioSesion();
             cuenta=buscarDNIenArbol(raiz,ingreso.dni);
+            if(cuenta->dato.estado == 0){
+                printf("Usuario desactivado hablar con administracion\n");
+
+            }else{
             detectaCuenta = detectaUsuario(cuenta->dato,ingreso);
+            }
             if(detectaCuenta!=0)
             {
 //              detectaCuenta=chequeoAdmin(detectaCuenta, cuenta);

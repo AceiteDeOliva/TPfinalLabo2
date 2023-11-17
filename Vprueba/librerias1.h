@@ -104,6 +104,7 @@ void crearAdmin();
 char deseaSalir();
 void muestra1Usuario(usuario usu);
 int chequeomail (char mail[]);
+void funcionConBarraDeCarga();
 
 ///Menu principal:
 int opcionMenuPrincipal();

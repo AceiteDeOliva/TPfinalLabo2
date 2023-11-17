@@ -3,6 +3,8 @@
 #include <string.h>
 #include "time.h"
 #include "librerias1.h"
+#include <conio.h>
+#include <unistd.h>
 
 //funciones de sistema
 ///RETORNA S-N
@@ -132,10 +134,29 @@ usuario crea1Usuario (usuario nuevoUsuario)
     while(flag1==1);
 
 
-    printf("Ingrese su mail:\n");
-    fflush(stdin);
-    gets(nuevoUsuario.mail);
-    flag=chequeomail(nuevoUsuario.mail);
+    int tieneArroba;
+
+    do
+    {
+        // Solicitar al usuario que ingrese el email
+        printf("Ingrese su email: ");
+        fflush(stdin);
+        gets(nuevoUsuario.mail);
+        nuevoUsuario.mail[strcspn(nuevoUsuario.mail, "\n")] = '\0'; // Eliminar el salto de línea al final
+
+        // Verificar si el email contiene '@'
+        tieneArroba = strchr(nuevoUsuario.mail, '@') != NULL;
+
+        // Si no contiene '@', mostrar un mensaje de error
+        if (!tieneArroba)
+        {
+            printf("El email debe contener '@'. Por favor, inténtelo de nuevo.\n");
+        }
+
+    }
+    while (!tieneArroba);
+
+     flag=chequeomail(nuevoUsuario.mail);
     do
     {
         if (flag==1)
@@ -147,9 +168,32 @@ usuario crea1Usuario (usuario nuevoUsuario)
     }
     while(flag==1);
 
-    printf("Ingrese su contrasenia:\n");
-    fflush(stdin);
-    gets(nuevoUsuario.contrasenia);
+char contrasenia[20];
+
+
+     printf("Ingrese su contrasenia: ");
+    int i = 0;
+
+    while (1) {
+        char ch = _getch();
+
+        if (ch == 13) {
+            break;  // Si el carácter es 'Enter', rompe el bucle
+        } else if (ch == 8 && i > 0) {
+            // Si el carácter es Backspace y hay caracteres para borrar
+            printf("\b \b");  // Borra el último carácter en la pantalla
+            i--;
+        } else if (i < sizeof(contrasenia) - 1) {
+            // Si hay espacio para más caracteres
+            contrasenia[i++] = ch;
+            printf("*");  // Muestra un asterisco en lugar del carácter
+        }
+    }
+
+    contrasenia[i] = '\0';
+
+    strcpy(nuevoUsuario.contrasenia,contrasenia);
+    //printf("la contrseña es %s ",nuevoUsuario.contrasenia);
 
     nuevoUsuario.cbu = generarCBU(8);
 
@@ -803,5 +847,31 @@ nodoArbol* modificarUsuario(nodoArbol * arbol)
     //llamada a funcion de modificar dato
 
 return arbol;
+}
+
+void funcionConBarraDeCarga()
+{
+    const int totalIteraciones = 100; // Número total de iteraciones de tu función
+    int progreso;
+
+    for (progreso = 0; progreso <= totalIteraciones; ++progreso) {
+        // Simula la ejecución de tu función
+        // ...
+
+        // Imprime la barra de carga
+        printf("\rProgreso: [");
+        for (int i = 0; i < progreso * 50 / totalIteraciones; ++i) {
+            printf("#");
+        }
+        for (int i = progreso * 50 / totalIteraciones; i < 50; ++i) {
+            printf(" ");
+        }
+        printf("] %3d%%", progreso * 100 / totalIteraciones);
+
+        // Simula un retardo para ajustar la velocidad de la barra de carga
+        usleep(100);  // Retardo de 50,000 microsegundos (0.05 segundos)
+    }
+
+    printf("\n");
 }
 
