@@ -842,65 +842,60 @@ nodoArbol* modificarUsuario(nodoArbol * arbol)
 {
     int eleccion = -1;
 
-    printf("                                                 +-----------------+\n");
-    printf("                                                 |  BANCO CENTRAL  |  \n");
-    printf("                                                 +-----------------+\n");
-    printf("\n\n");
 
-    muestraUsuarioAdmin(arbol->dato);
+    while (eleccion != 0){
 
-    do
-    {
-    printf("[MODIFICAR]\n");
-    puts("-----------------------------------|");
-    printf("[1]NOMBRE Y APELLIDO\n");
-    puts("-----------------------------------|");
-    printf("[2]GENERO\n");
-    puts("-----------------------------------|");
-    printf("[3]MAIL\n");
-    puts("-----------------------------------|");
-    printf("[4]CONTRASENIA\n");
-    puts("-----------------------------------|");
-    printf("[0]SALIR\n");
-    puts("-----------------------------------|");
-    fflush(stdin);
-    scanf("%i",&eleccion);
+        system("cls");
+        muestraUsuarioAdmin(arbol->dato);
 
-    switch(eleccion)
-    {
+        printf("[MODIFICAR]\n");
+        puts("-----------------------------------|");
+        printf("[1]NOMBRE Y APELLIDO\n");
+        puts("-----------------------------------|");
+        printf("[2]GENERO\n");
+        puts("-----------------------------------|");
+        printf("[3]MAIL\n");
+        puts("-----------------------------------|");
+        printf("[4]CONTRASENIA\n");
+        puts("-----------------------------------|");
+        printf("[0]SALIR\n");
+        puts("-----------------------------------|");
+        fflush(stdin);
+        scanf("%i", &eleccion);
 
-    case 1:
-        printf("Nuevo nombre y apellido:\n");
-        fflush(stdin);
-        gets(arbol->dato.nombreApellido);
-        break;
-    case 2:
-        printf("Nuevo genero:\n");
-        fflush(stdin);
-        scanf("%c",&arbol->dato.genero);
-        break;
-    case 3:
-        printf("Nuevo mail:\n");
-        fflush(stdin);
-        gets(arbol->dato.mail);
-        break;
-    case 4:
-        printf("Nueva contrasenia:\n");
-        fflush(stdin);
-        gets(arbol->dato.contrasenia);
-        break;
-    case 0:
-        verUsuariosMenu();
-        break;
-    default:
-        printf("opcion no valida\n");
-        break;
+        switch (eleccion) {
+            case 1:
+                printf("Nuevo nombre y apellido:\n");
+                fflush(stdin);
+                gets(arbol->dato.nombreApellido);
+                break;
+            case 2:
+                printf("Nuevo genero:\n");
+                fflush(stdin);
+                scanf(" %c", &arbol->dato.genero);
+                break;
+            case 3:
+                printf("Nuevo mail:\n");
+                fflush(stdin);
+                gets(arbol->dato.mail);
+                break;
+            case 4:
+                printf("Nueva contrasenia:\n");
+                fflush(stdin);
+                gets(arbol->dato.contrasenia);
+                break;
+            case 0:
+                // Optionally, you can display some menu after modifications
+                // verUsuariosMenu();
+                break;
+            default:
+                printf("Opción no válida\n");
+                break;
+        }
     }
 
-}
-while(eleccion!=-1);
-return arbol;
-}
+    return arbol;
+    }
 
 void funcionConBarraDeCarga()
 {

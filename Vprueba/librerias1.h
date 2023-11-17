@@ -119,7 +119,7 @@ usuario inicioSesion();
 int detectaUsuario(usuario usuBuscado, usuario ingreso);
 
 ///menu de sesion iniciada:
-int menuInicioSesion(int cbu);
+int menuInicioSesion(nodoArbol * cuenta);
 void muestraSaldo(usuario usu);
 void corroborarSaldo(int cbu);
 void prestamo(int cbu);

@@ -101,7 +101,7 @@ int menuPrincipal(int opcionElegida)
 
                 if(detectaCuenta==1)
                 {
-                    exit=menuInicioSesion(cuenta->dato.cbu);//devuelve 0 si elijes opcion de salir
+                    exit=menuInicioSesion(cuenta);//devuelve 0 si elijes opcion de salir
                 }
                 else if(detectaCuenta==0)
                 {
@@ -132,7 +132,7 @@ int menuPrincipal(int opcionElegida)
 
 
 ///MENU UNA VEZ INICIADA LA SESION
-int menuInicioSesion(int cbu)
+int menuInicioSesion(nodoArbol * cuenta)
 {
     int x;
     char contrasenia[20];
@@ -144,20 +144,36 @@ int menuInicioSesion(int cbu)
     do
     {
         system("cls");
-        printf("Bienvenido a su cuenta\n");
-        printf("--------------------------------------\n");
-        printf("Opciones disponibles:\n1-Corroborar saldo.\n3-Hacer transferencia.\n4-Pedir prestamo.\n5-Pagar prestamo.\n6-Cambiar tu contrasenia.\n7-Desactivar Cuenta.\n8-Corroborar datos de tu cuenta.\n0-Salir del Menu.\n");
-        printf("--------------------------------------\n");
+        printf("                                                 +-----------------+\n");
+        printf("                                                 |  BANCO CENTRAL  |  \n");
+        printf("                                                 +-----------------+\n");
+        printf("\n\n");
+        puts("-----------------------------------|");
+        printf("[1]VER TU SALD0\n");
+        puts("-----------------------------------|");
+        printf("[2]HACER TRANSFERENCIA\n");
+        puts("-----------------------------------|");
+        printf("[3]PEDIR PRESTAMO\n");
+        puts("-----------------------------------|");
+        printf("[4]PAGAR PRESTAMO\n");
+        puts("-----------------------------------|");
+        printf("[5]CAMBIAR CONTRASEÑA\n");
+        puts("-----------------------------------|");
+        printf("[6]DESACTIVAR CUENTA\n");
+        puts("-----------------------------------|");
+        printf("[7]VER DATOS DE TU CUENTA\n");
+        puts("-----------------------------------|");
+        printf("[8]SALIR\n");
+        puts("-----------------------------------|");
         fflush(stdin);
         scanf("%d", &x);
 
         switch(x)
         {
         case 1:
-//            system("cls");
-//            printf("Su saldo actual es:\n");
-//            corroborarSaldo(cbu);
-//            system("pause");
+            system("cls");
+            printf("Su saldo actual es:%li\n",cuenta->dato.saldo);
+            system("pause");
             break;
         case 3:
             system("cls");
@@ -191,7 +207,7 @@ int menuInicioSesion(int cbu)
             }
             while(strcmp(contrasenia, confirmacion)!=0);
 
-            modPass(contrasenia, cbu);
+            modPass(contrasenia, cuenta->dato.cbu);
             printf("Contrasenia cambiada con exito...\n");
 
             system("pause");
@@ -201,14 +217,14 @@ int menuInicioSesion(int cbu)
             seguro=seguroDeseaEliminar();
             if(seguro==1)
             {
-                desactivarCuenta(cbu);
+                desactivarCuenta(cuenta->dato.cbu);
                 x=0;
             }
             system("pause");
             break;
         case 8:
             system("cls");
-            miUsu=busquedaUsuXCBU(cbu, &flag);
+            miUsu=busquedaUsuXCBU(cuenta->dato.cbu, &flag);
             muestraUsuarioAdmin(miUsu);
             system("pause");
             break;
@@ -351,11 +367,13 @@ void verUsuariosMenu()
 
 void menuOpcionesAdminUsuario(nodoArbol* usuarioBuscado)
 {
+
     int x;
     muestraUsuarioAdmin(usuarioBuscado->dato);
 
     do
     {
+        system("cls");
         puts("-----------------------------------|");
         printf("[1]MODIFICAR USUARIO\n");
         puts("-----------------------------------|");
@@ -372,7 +390,7 @@ void menuOpcionesAdminUsuario(nodoArbol* usuarioBuscado)
         {
         case 1:
             system("cls");
-            modificarUsuario(usuarioBuscado);
+            usuarioBuscado = modificarUsuario(usuarioBuscado);
             reemplazarDato(usuarioBuscado->dato);
 
             system("pause");
