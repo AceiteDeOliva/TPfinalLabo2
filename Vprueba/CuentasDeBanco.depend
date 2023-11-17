@@ -349,7 +349,7 @@
 	<unistd.h>
 	"librerias1.h"
 
-1700221048 c:\users\josev\onedrive\documentos\github\tpfinallabo2\vprueba\librerias1.h
+1700229375 c:\users\josev\onedrive\documentos\github\tpfinallabo2\vprueba\librerias1.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -361,7 +361,7 @@
 	"time.h"
 	"librerias1.h"
 
-1700222097 source:c:\users\josev\onedrive\documentos\github\tpfinallabo2\vprueba\libreria1.c
+1700229607 source:c:\users\josev\onedrive\documentos\github\tpfinallabo2\vprueba\libreria1.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -377,14 +377,14 @@
 	<unistd.h>
 	"librerias1.h"
 
-1700222985 source:c:\users\josev\onedrive\documentos\github\tpfinallabo2\vprueba\main.c
+1700229821 source:c:\users\josev\onedrive\documentos\github\tpfinallabo2\vprueba\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"time.h"
 	"librerias1.h"
 
-1700221048 source:c:\users\josev\onedrive\documentos\github\tpfinallabo2\vprueba\arboles.c
+1700225160 source:c:\users\josev\onedrive\documentos\github\tpfinallabo2\vprueba\arboles.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>

@@ -105,6 +105,8 @@ char deseaSalir();
 void muestra1Usuario(usuario usu);
 int chequeomail (char mail[]);
 void funcionConBarraDeCarga();
+void reemplazarDato(usuario usu);
+void menuOpcionesAdminUsuario(nodoArbol* usuarioBuscado);
 
 ///Menu principal:
 int opcionMenuPrincipal();

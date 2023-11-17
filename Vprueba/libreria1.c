@@ -8,7 +8,8 @@
 
 //funciones de sistema
 ///RETORNA S-N
-char deseaSalir(){
+char deseaSalir()
+{
     char confirmacion;
 
     printf("Seguro/a que desea salir? s/n\n");
@@ -40,7 +41,7 @@ void reemplazarDato(usuario usu)
             }
 
         }
-   fclose(archi);
+        fclose(archi);
 
     }
 
@@ -56,18 +57,23 @@ int chequeomail (char mail[])
     FILE* buffer;
     buffer=fopen(archivo,"rb");
 
-    if(buffer!=NULL){
-        while(flag==0 && fread(&usu, sizeof(usuario), 1, buffer)>0){
-            if(strcmpi(usu.mail,mail)==0){
+    if(buffer!=NULL)
+    {
+        while(flag==0 && fread(&usu, sizeof(usuario), 1, buffer)>0)
+        {
+            if(strcmpi(usu.mail,mail)==0)
+            {
                 flag=1;
             }
-            else{
+            else
+            {
                 flag=0;
             }
         }
         fclose(buffer);
     }
-    else{
+    else
+    {
         printf("ERROR AL ABRIR EL ARCHIVO");
         system("pause");
     }
@@ -89,7 +95,8 @@ void CrearUsuario()
         printf("\nUsuario creado con exito!!\n");
         system("pause");
     }
-    else{
+    else
+    {
         printf("ERROR AL ABRIR EL ARCHIVO DE USUARIOS");
     }
 
@@ -153,37 +160,43 @@ usuario crea1Usuario (usuario nuevoUsuario)
             printf("El email debe contener '@'. Por favor, inténtelo de nuevo.\n");
         }
 
-    }
-    while (!tieneArroba);
 
-     flag=chequeomail(nuevoUsuario.mail);
-    do
-    {
-        if (flag==1)
+
+        flag=chequeomail(nuevoUsuario.mail);
+        do
         {
-            printf("Este mail ya existe, ingrese otro por favor: ");
-            gets(nuevoUsuario.mail);
-            flag=chequeomail(nuevoUsuario.mail);
+            if (flag==1)
+            {
+                printf("Este mail ya existe, ingrese otro por favor: ");
+                gets(nuevoUsuario.mail);
+                flag=chequeomail(nuevoUsuario.mail);
+            }
         }
+        while(flag==1);
     }
-    while(flag==1);
+    while (!tieneArroba && flag !=1);
 
-char contrasenia[20];
+    char contrasenia[20];
 
-
-     printf("Ingrese su contrasenia: ");
+    printf("Ingrese su contrasenia: ");
     int i = 0;
 
-    while (1) {
+    while (1)
+    {
         char ch = _getch();
 
-        if (ch == 13) {
+        if (ch == 13)
+        {
             break;  // Si el carácter es 'Enter', rompe el bucle
-        } else if (ch == 8 && i > 0) {
+        }
+        else if (ch == 8 && i > 0)
+        {
             // Si el carácter es Backspace y hay caracteres para borrar
             printf("\b \b");  // Borra el último carácter en la pantalla
             i--;
-        } else if (i < sizeof(contrasenia) - 1) {
+        }
+        else if (i < sizeof(contrasenia) - 1)
+        {
             // Si hay espacio para más caracteres
             contrasenia[i++] = ch;
             printf("*");  // Muestra un asterisco en lugar del carácter
@@ -209,7 +222,8 @@ char contrasenia[20];
 int detectaUsuario(usuario usuBuscado, usuario ingreso) //se deberia hacer por arbol
 {
     int flag=0;
-    if(strcmp(usuBuscado.mail, ingreso.mail)== 0 && strcmp(usuBuscado.contrasenia,ingreso.contrasenia)== 0){
+    if(strcmp(usuBuscado.mail, ingreso.mail)== 0 && strcmp(usuBuscado.contrasenia,ingreso.contrasenia)== 0)
+    {
 
         flag = 1;
 
@@ -241,7 +255,7 @@ usuario inicioSesion()
     fflush(stdin);
     scanf("%s", usuInicioSesion.contrasenia);
 
-return usuInicioSesion;
+    return usuInicioSesion;
 }
 
 ///FUNCIONES LUEGO DE INICIAR SESION:
@@ -428,7 +442,7 @@ movimiento carga1Transfer (nodoArbol * raiz,int cbuPaga)
         {
             printf("Usuario no encontrado, porfavor intente con otro CBU.\n");
         }
-     }
+    }
     return transfer;
 }
 
@@ -445,7 +459,8 @@ void tranferencia(nodoArbol * arbol)
 
 
 ///RETORNA UN USUARIO CON LA NUEVA CONTRASEÑA
-usuario newPass(usuario usu, char contrasenia[20]){
+usuario newPass(usuario usu, char contrasenia[20])
+{
 
     strcpy(usu.contrasenia, contrasenia);
 
@@ -453,27 +468,32 @@ usuario newPass(usuario usu, char contrasenia[20]){
 }
 
 ///SOBREESCRIBIMOS EL ARCHIVO CON LA NUEVA CONTRASEÑA
-void modPass(char contrasenia[20], int cbu){
+void modPass(char contrasenia[20], int cbu)
+{
 
     usuario usu;
     FILE*buffer=fopen(archivo, "r+b");
     int posicion;
 
-    if(buffer!=NULL){
+    if(buffer!=NULL)
+    {
         fread(&usu,sizeof(usuario),1,buffer);
-        while(!feof(buffer)){
-            if(cbu == usu.cbu){
+        while(!feof(buffer))
+        {
+            if(cbu == usu.cbu)
+            {
                 posicion=ftell(buffer)-sizeof(usuario);
                 usu=newPass(usu, contrasenia);
                 fseek(buffer, posicion, SEEK_SET);
                 fwrite(&usu,sizeof(usuario),1,buffer);
                 break;
             }
-        fread(&usu,sizeof(usuario),1,buffer);
+            fread(&usu,sizeof(usuario),1,buffer);
         }
         fclose(buffer);
     }
-    else{
+    else
+    {
         printf("ERROR AL INGRESAR AL ARCHIVO");
     }
 }
@@ -502,7 +522,7 @@ usuario busquedaUsuXCBU(int cbu,int *flag)
 ///MUESTRA DATOS DE UN USUARIO
 void muestraUsuarioAdmin(usuario usu)
 {
-   puts("---------------------------------------------");
+    puts("---------------------------------------------");
     printf("Nombre y apellido:");
     puts(usu.nombreApellido);
     printf("Genero:%c\n", usu.genero);
@@ -513,20 +533,23 @@ void muestraUsuarioAdmin(usuario usu)
 }
 
 ///PREGUNTA SI ESTAS SEGURO DE ELIMINAR LA CUENTA RETORNA 1-0
-int seguroDeseaEliminar(){
+int seguroDeseaEliminar()
+{
     int desicion=0;
     char seguro;
     printf("Seguro que usted desea desactivar su cuenta? \n(No la podra volver a activar por este campo, debera ir personalmente)\ns o n:    ");
     fflush(stdin);
     scanf("%c", &seguro);
-    if(seguro=='s'){
+    if(seguro=='s')
+    {
         desicion=1;
     }
     return desicion;
 }
 
 ///RETORNO 0 PARA DESCATIVAR LA CUENTA
-usuario desactivar(usuario usu){
+usuario desactivar(usuario usu)
+{
 
     usu.estado=0;
 
@@ -534,26 +557,31 @@ usuario desactivar(usuario usu){
 }
 
 ///REESCRIBE EN EL ARCHIVO Y DESACTIVA LA CUENTA
-void desactivarCuenta(int cbu){
+void desactivarCuenta(int cbu)
+{
     usuario usu;
     FILE*buffer=fopen(archivo, "r+b");
     int posicion;
 
-    if(buffer!=NULL){
-     fread(&usu,sizeof(usuario),1,buffer);
-        while(!feof(buffer)){
-            if(cbu == usu.cbu){
+    if(buffer!=NULL)
+    {
+        fread(&usu,sizeof(usuario),1,buffer);
+        while(!feof(buffer))
+        {
+            if(cbu == usu.cbu)
+            {
                 posicion=ftell(buffer)-sizeof(usuario);
                 usu=desactivar(usu);
                 fseek(buffer, posicion, SEEK_SET);
                 fwrite(&usu,sizeof(usuario),1,buffer);
                 break;
             }
-        fread(&usu,sizeof(usuario),1,buffer);
+            fread(&usu,sizeof(usuario),1,buffer);
         }
         fclose(buffer);
     }
-    else{
+    else
+    {
         printf("ERROR AL ABRIR EL ARCHIVO");
     }
 }
@@ -642,20 +670,24 @@ usuario busquedaUsuXDNI(int dni, int *flag)
 }
 
 ///FUNCION EN LA QUE EL ADMIN DA DE BAJA A UN USUARIO
-void darDeBajaOAltaAdmin(){
+void darDeBajaOAltaAdmin()
+{
     usuario usu;
     int cbu;
     int validar;
 
-    do{
-    printf("Que usuario desea dar de baja?(ingrese el cbu del mismo)\n");
-    fflush(stdin);
-    scanf("%i", &cbu);
-    validar=chequeoCBU(cbu);
-    if(validar!=1){
-        printf("CBU No fue encontrado, ingrese otro\n");
+    do
+    {
+        printf("Que usuario desea dar de baja?(ingrese el cbu del mismo)\n");
+        fflush(stdin);
+        scanf("%i", &cbu);
+        validar=chequeoCBU(cbu);
+        if(validar!=1)
+        {
+            printf("CBU No fue encontrado, ingrese otro\n");
+        }
     }
-    }while(validar!=1);
+    while(validar!=1);
 
     int posicion;
     FILE*buffer=fopen(archivo, "r+b");
@@ -675,7 +707,8 @@ void darDeBajaOAltaAdmin(){
         }
         fclose(buffer);
     }
-    else{
+    else
+    {
         printf("ERROR AL ABRIR EL ARCHIVO");
         system("pause");
     }
@@ -758,10 +791,12 @@ int ArchiToArray(usuario arrayUsu[], int dimension)
 void muestra1Usuario(usuario usu)
 {
     puts("---------------------------------------------");
-    if(usu.estado==1){
+    if(usu.estado==1)
+    {
         printf("Estado: ACTIVO\n");
     }
-    else{
+    else
+    {
         printf("Estado: INACTIVO\n");
     }
     printf("Nombre y apellido:");
@@ -807,11 +842,27 @@ nodoArbol* modificarUsuario(nodoArbol * arbol)
 {
     int eleccion = -1;
 
-    printf("Ingrese la opcion que desea modificar\n");
-    printf("1- Nombre y apellido\n");
-    printf("2- Genero\n");
-    printf("3- Mail\n");
-    printf("4- contraseña\n");
+    printf("                                                 +-----------------+\n");
+    printf("                                                 |  BANCO CENTRAL  |  \n");
+    printf("                                                 +-----------------+\n");
+    printf("\n\n");
+
+    muestraUsuarioAdmin(arbol->dato);
+
+    do
+    {
+    printf("[MODIFICAR]\n");
+    puts("-----------------------------------|");
+    printf("[1]NOMBRE Y APELLIDO\n");
+    puts("-----------------------------------|");
+    printf("[2]GENERO\n");
+    puts("-----------------------------------|");
+    printf("[3]MAIL\n");
+    puts("-----------------------------------|");
+    printf("[4]CONTRASENIA\n");
+    puts("-----------------------------------|");
+    printf("[0]SALIR\n");
+    puts("-----------------------------------|");
     fflush(stdin);
     scanf("%i",&eleccion);
 
@@ -838,15 +889,16 @@ nodoArbol* modificarUsuario(nodoArbol * arbol)
         fflush(stdin);
         gets(arbol->dato.contrasenia);
         break;
-    default:
-
-        printf("opcion no valida\n");
-
+    case 0:
+        verUsuariosMenu();
         break;
-
+    default:
+        printf("opcion no valida\n");
+        break;
     }
-    //llamada a funcion de modificar dato
 
+}
+while(eleccion!=-1);
 return arbol;
 }
 
@@ -855,16 +907,19 @@ void funcionConBarraDeCarga()
     const int totalIteraciones = 100; // Número total de iteraciones de tu función
     int progreso;
 
-    for (progreso = 0; progreso <= totalIteraciones; ++progreso) {
+    for (progreso = 0; progreso <= totalIteraciones; ++progreso)
+    {
         // Simula la ejecución de tu función
         // ...
 
         // Imprime la barra de carga
         printf("\rProgreso: [");
-        for (int i = 0; i < progreso * 50 / totalIteraciones; ++i) {
+        for (int i = 0; i < progreso * 50 / totalIteraciones; ++i)
+        {
             printf("#");
         }
-        for (int i = progreso * 50 / totalIteraciones; i < 50; ++i) {
+        for (int i = progreso * 50 / totalIteraciones; i < 50; ++i)
+        {
             printf(" ");
         }
         printf("] %3d%%", progreso * 100 / totalIteraciones);

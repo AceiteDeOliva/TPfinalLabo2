@@ -11,10 +11,10 @@ int main()
     int opcion;
 
     opcion = opcionMenuPrincipal();
-        if(opcion==1 ||opcion==2)
-        {
-          menuPrincipal(opcion);
-        }
+    if(opcion==1 ||opcion==2)
+    {
+        menuPrincipal(opcion);
+    }
     return 0;
 }
 
@@ -90,48 +90,46 @@ int menuPrincipal(int opcionElegida)
         {
             ingreso = inicioSesion();
             cuenta=buscarDNIenArbol(raiz,ingreso.dni);
-            if(cuenta->dato.estado == 0){
+            if(cuenta->dato.estado == 0)
+            {
                 printf("Usuario desactivado hablar con administracion\n");
 
-            }else{
-            detectaCuenta = detectaUsuario(cuenta->dato,ingreso);
             }
-            if(detectaCuenta!=0)
+            else
             {
-//              detectaCuenta=chequeoAdmin(detectaCuenta, cuenta);
+                detectaCuenta = detectaUsuario(cuenta->dato,ingreso);
+
                 if(detectaCuenta==1)
                 {
                     exit=menuInicioSesion(cuenta->dato.cbu);//devuelve 0 si elijes opcion de salir
                 }
-                else
+                else if(detectaCuenta==0)
                 {
-                    exit=menuAdmin();
+                    printf("Usuario incorrecto o contraseña incorrecta.\nSi esto le ocurre varias veces, puede que su cuenta haya sido desactivada forzozamente por deudas\n");
                 }
+                intentos++;
             }
-            else if(detectaCuenta==0)
+        }
+            while(intentos < 3 && exit!=0);
+            if(intentos==3)
             {
-                printf("Usuario incorrecto o contraseña incorrecta.\nSi esto le ocurre varias veces, puede que su cuenta haya sido desactivada forzozamente por deudas\n");
+                printf("Demasiados intentos, volviendo al menu anterior\n");//meti todo esto dentro de un do while para que pueda volver a ingresar los datos en caso de error.
+                system("pause");
             }
-            intentos++;
-        }
-        while(intentos < 3 && exit!=0);
-        if(intentos==3)
-        {
-            printf("Demasiados intentos, volviendo al menu anterior\n");//meti todo esto dentro de un do while para que pueda volver a ingresar los datos en caso de error.
+            break;
+        case 0:
+            main();
+            break;
+        default:
+            system("cls");
+            printf("Ha elegido una opcion que no es las que se le indica, por favor, vuelva a elegir...\n");
             system("pause");
+            break;
         }
-        break;
-    case 0:
-        main();
-        break;
-    default:
-        system("cls");
-        printf("Ha elegido una opcion que no es las que se le indica, por favor, vuelva a elegir...\n");
-        system("pause");
-        break;
-    }
+
     return x;
 }
+
 
 ///MENU UNA VEZ INICIADA LA SESION
 int menuInicioSesion(int cbu)
@@ -201,7 +199,8 @@ int menuInicioSesion(int cbu)
         case 7:
             system("cls");
             seguro=seguroDeseaEliminar();
-            if(seguro==1){
+            if(seguro==1)
+            {
                 desactivarCuenta(cbu);
                 x=0;
             }
@@ -232,9 +231,6 @@ int menuInicioSesion(int cbu)
 int menuAdmin()
 {
     int x;
-    char salir;
-    int dni=0;
-    usuario arreglo[100];
     do
     {
         system("cls");
@@ -286,15 +282,10 @@ int menuAdmin()
 void verUsuariosMenu()
 {
     int x;
-    char salir;
     long int dni=0;
-    usuario usuBuscado;
-    usuario usuBuscado2;
-    int flag=0;
-
     nodoArbol* arbol=inicArbol();
     nodoListaS* lista=inicLista();
-    nodoArbol* nodoBuscado;
+    nodoArbol* nodoBuscado = NULL;
 
     do
     {
@@ -324,16 +315,20 @@ void verUsuariosMenu()
             break;
         case 2:
             system("cls");
-            printf("Ingrese el DNI del usuario que desea buscar.\n");
+            printf("                                                 +-----------------+\n");
+            printf("                                                 |  BANCO CENTRAL  |  \n");
+            printf("                                                 +-----------------+\n");
+            printf("\n\n");
+            printf("\nINGRESE DNI DEL USUARIO QUE DESEA BUSCAR: ");
             fflush(stdin);
             scanf("%ld", &dni);
-            usuBuscado2=busquedaUsuXDNI(dni, &flag);
-            if(flag==1)
+            arbol=fromArchiToArbolDNI(arbol);
+            nodoBuscado=buscarDNIenArbol(arbol, dni);
+
+            if(nodoBuscado != NULL)
             {
-                arbol=fromArchiToArbolDNI(arbol);
-                nodoBuscado=buscarDNIenArbol(arbol, dni);
-                muestraUsuarioAdmin(nodoBuscado->dato);
-                modificarUsuario(arbol);
+                menuOpcionesAdminUsuario(nodoBuscado);
+
             }
             else
             {
@@ -354,11 +349,60 @@ void verUsuariosMenu()
     while(x!=0);
 }
 
+void menuOpcionesAdminUsuario(nodoArbol* usuarioBuscado)
+{
+    int x;
+    muestraUsuarioAdmin(usuarioBuscado->dato);
+
+    do
+    {
+        puts("-----------------------------------|");
+        printf("[1]MODIFICAR USUARIO\n");
+        puts("-----------------------------------|");
+        printf("[2]DAR DE BAJA/ALTA\n");
+        puts("-----------------------------------|");
+        printf("[3]VER HISTORIAL DE TRANSACCIONES\n");
+        puts("-----------------------------------|");
+        printf("[0]SALIR\n");
+        puts("-----------------------------------|");
+        fflush(stdin);
+        scanf("%d", &x);
+
+        switch(x)
+        {
+        case 1:
+            system("cls");
+            modificarUsuario(usuarioBuscado);
+            reemplazarDato(usuarioBuscado->dato);
+
+            system("pause");
+            break;
+        case 2:
+            system("cls");
+
+            system("pause");
+            break;
+        case 3:
+            system("cls");
+
+            system("pause");
+            break;
+        case 0:
+            verUsuariosMenu();
+            break;
+        default:
+            system("cls");
+            printf("Ha ingresado una opcion que esta fuera de las posibles... volviendo al menu");
+            system("pause");
+            break;
+        }
+    }
+    while(x!=0);
+}
+
 void verEmpleadosMenu()
 {
     int x;
-    long int dni=0;
-    int flag=0;
     int validos=0;
 
     celda adlEmpleados[5];
