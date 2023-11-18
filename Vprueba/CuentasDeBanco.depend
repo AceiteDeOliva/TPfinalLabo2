@@ -293,33 +293,33 @@
 	"time.h"
 	"librerias1.h"
 
-1700182419 source:c:\users\valentin\documents\github\tpfinallabo2\vprueba\arboles.c
+1700274344 source:c:\users\valentin\documents\github\tpfinallabo2\vprueba\arboles.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"time.h"
 	"librerias1.h"
 
-1700183566 c:\users\valentin\documents\github\tpfinallabo2\vprueba\librerias1.h
+1700275299 c:\users\valentin\documents\github\tpfinallabo2\vprueba\librerias1.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 
-1700174546 source:c:\users\valentin\documents\github\tpfinallabo2\vprueba\arreglodelistas.c
+1700266633 source:c:\users\valentin\documents\github\tpfinallabo2\vprueba\arreglodelistas.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	<unistd.h>
 	"librerias1.h"
 
-1700172223 source:c:\users\valentin\documents\github\tpfinallabo2\vprueba\filas.c
+1700275387 source:c:\users\valentin\documents\github\tpfinallabo2\vprueba\filas.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"time.h"
 	"librerias1.h"
 
-1700188513 source:c:\users\valentin\documents\github\tpfinallabo2\vprueba\libreria1.c
+1700276027 source:c:\users\valentin\documents\github\tpfinallabo2\vprueba\libreria1.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -335,7 +335,7 @@
 	<unistd.h>
 	"librerias1.h"
 
-1700186182 source:c:\users\valentin\documents\github\tpfinallabo2\vprueba\main.c
+1700275703 source:c:\users\valentin\documents\github\tpfinallabo2\vprueba\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>

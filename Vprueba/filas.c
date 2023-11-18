@@ -67,17 +67,35 @@ void agregarAFila(fila * fila,movimiento dato)
 {
 
     nodoDoble * nuevo = crearNodoDoble(dato);
-    if(fila->cabecera == NULL)
-    {
-
+     if (fila->cabecera == NULL) {
         fila->cabecera = nuevo;
         fila->cola = nuevo;
-    }
-    else
-    {
-        fila->cabecera = agregarAlFinal(fila->cabecera,nuevo);
+    } else {
+        fila->cola->siguiente = nuevo;
+        nuevo->anterior = fila->cola;
         fila->cola = nuevo;
-
     }
 
+}
+
+void mostrarListaDoble(nodoDoble * lista)
+{
+    nodoDoble* seg=lista;
+
+    if(seg)
+    {
+         while(seg)
+         {
+             mostrarMovimiento(seg->dato);
+             seg=seg->siguiente;
+         }
+    }
+}
+
+void mostrarMovimiento(movimiento m){
+puts("-----------------------------------------\n");
+printf("Importe:%i\n",m.monto);
+printf("CBU de emisor:%i\n",m.cbuEmisor);
+printf("CBU de recipiente:%i\n",m.cbuReceptor);
+puts("-----------------------------------------\n");
 }

@@ -73,13 +73,13 @@ nodoArbol* buscarDNIenArbol(nodoArbol* arbol,int dni)
 return rta;
 }
 
-void mostrarArbolInordenDni(nodoArbol* arbol)
+void mostrarArbolInorden(nodoArbol* arbol)
 {
     if(arbol)
     {
-        mostrarArbolInordenDni(arbol->izq);
+        mostrarArbolInorden(arbol->izq);
         muestra1Usuario(arbol->dato);
-        mostrarArbolInordenDni(arbol->der);
+        mostrarArbolInorden(arbol->der);
     }
 }
 
@@ -137,13 +137,15 @@ nodoArbol* buscarCBUenArbol(nodoArbol* arbol,int cbu)
 return rta;
 }
 
-void mostrarArbolInordenCBU(nodoArbol* arbol)
-{
-    if(arbol)
-    {
-        mostrarArbolInordenCBU(arbol->izq);
-        muestra1Usuario(arbol->dato);
-        mostrarArbolInordenCBU(arbol->der);
-    }
-}
+//Borra Arbol completamente para liberar memoria
+void borrarArbol(nodoArbol* raiz) {
 
+    if (raiz == NULL) {
+        return;
+    }
+
+    borrarArbol(raiz->izq);
+    borrarArbol(raiz->der);
+
+    free(raiz);
+}

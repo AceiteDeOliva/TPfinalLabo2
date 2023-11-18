@@ -3,7 +3,7 @@
 #include <string.h>
 #define archivo  "usuario"
 #define archivo2 "saldo"
-#define archivo3 "transferencias"
+#define archivo3 "movimientos"
 #define archivo4 "empleados"
 
 ///ESTRUCTURAS
@@ -106,6 +106,7 @@ int chequeomail (char mail[]);
 void funcionConBarraDeCarga();
 void reemplazarDato(usuario usu);
 void menuOpcionesAdminUsuario(nodoArbol* usuarioBuscado);
+void movimientoAArchivo(movimiento aux);
 
 ///Menu principal:
 int opcionMenuPrincipal();
@@ -124,10 +125,10 @@ void prestamo(int cbu);
 usuario prestamoSaldo(int cbu,usuario usu);
 usuario deudaApagar(usuario deuda);
 void pagarPrestamo(int cbu);
-movimiento carga1Transfer (nodoArbol * raiz,int cbuPaga);
+void carga1Transfer (nodoArbol * raiz,nodoArbol * cuenta);
 usuario cambio1(usuario usu, movimiento tran);
 usuario cambio2(usuario usu, movimiento tran);
-void tranferencia(nodoArbol * arbol);
+void tranferencia(nodoArbol * cuenta);
 usuario newPass(usuario usu, char contrasenia[20]);
 void modPass(char contrasenia[20], int cbu);
 int generarDigitoAleatorio();
@@ -159,6 +160,9 @@ void inicFila(fila * fila);
 void agregarAFila(fila * fila,movimiento dato);
 nodoDoble* crearNodoDoble(movimiento dato);
 nodoDoble * buscarUltimo(nodoDoble * lista);
+void mostrarMovimiento(movimiento m);
+void mostrarListaDoble(nodoDoble * lista);
+void fromFileToFila(nodoArbol * cuenta);
 
 ///ARBOLES
 nodoArbol* inicArbol();
@@ -168,10 +172,10 @@ nodoArbol* fromArchiToArbolDNI(nodoArbol* arbol);
 nodoArbol* buscarDNIenArbol(nodoArbol* arbol,int dni);
 nodoArbol* modificarUsuario(nodoArbol * arbol);
 nodoArbol * cambiarEstado(nodoArbol * arbol);
-void mostrarArbolInordenDni(nodoArbol* arbol);
-void mostrarArbolInordenCBU(nodoArbol* arbol);
+void mostrarArbolInorden(nodoArbol* arbol);
 nodoArbol* buscarCBUenArbol(nodoArbol* arbol,int cbu);
 nodoArbol* fromArchiToArbolCBU(nodoArbol* arbol);
+void borrarArbol(nodoArbol* raiz) ;
 
 ///LISTAS
 nodoListaS* inicLista();

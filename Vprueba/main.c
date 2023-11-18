@@ -107,25 +107,26 @@ int menuPrincipal(int opcionElegida)
                 {
                     printf("Usuario incorrecto o contraseña incorrecta.\nSi esto le ocurre varias veces, puede que su cuenta haya sido desactivada forzozamente por deudas\n");
                 }
-                intentos++;
+
             }
+            intentos++;
         }
-            while(intentos < 3 && exit!=0);
-            if(intentos==3)
-            {
-                printf("Demasiados intentos, volviendo al menu anterior\n");//meti todo esto dentro de un do while para que pueda volver a ingresar los datos en caso de error.
-                system("pause");
-            }
-            break;
-        case 0:
-            main();
-            break;
-        default:
-            system("cls");
-            printf("Ha elegido una opcion que no es las que se le indica, por favor, vuelva a elegir...\n");
+        while(intentos < 3 && exit!=0);
+        if(intentos==3)
+        {
+            printf("Demasiados intentos, volviendo al menu anterior\n");//meti todo esto dentro de un do while para que pueda volver a ingresar los datos en caso de error.
             system("pause");
-            break;
         }
+        break;
+    case 0:
+        main();
+        break;
+    default:
+        system("cls");
+        printf("Ha elegido una opcion que no es las que se le indica, por favor, vuelva a elegir...\n");
+        system("pause");
+        break;
+    }
 
     return x;
 }
@@ -138,9 +139,7 @@ int menuInicioSesion(nodoArbol * cuenta)
     char contrasenia[20];
     char confirmacion[20];
     int seguro;
-    int flag;
-    usuario miUsu;
-
+    fromFileToFila(cuenta);
     do
     {
         system("cls");
@@ -151,19 +150,21 @@ int menuInicioSesion(nodoArbol * cuenta)
         puts("-----------------------------------|");
         printf("[1]VER TU SALD0\n");
         puts("-----------------------------------|");
-        printf("[2]HACER TRANSFERENCIA\n");
+        printf("[2]VER MOVIMIENTOS\n");
         puts("-----------------------------------|");
-        printf("[3]PEDIR PRESTAMO\n");
+        printf("[3]HACER TRANSFERENCIA\n");
         puts("-----------------------------------|");
-        printf("[4]PAGAR PRESTAMO\n");
+        printf("[4]PEDIR PRESTAMO\n");
         puts("-----------------------------------|");
-        printf("[5]CAMBIAR CONTRASEÑA\n");
+        printf("[5]PAGAR PRESTAMO\n");
         puts("-----------------------------------|");
-        printf("[6]DESACTIVAR CUENTA\n");
+        printf("[6]CAMBIAR CONTRASEÑA\n");
         puts("-----------------------------------|");
-        printf("[7]VER DATOS DE TU CUENTA\n");
+        printf("[7]DESACTIVAR CUENTA\n");
         puts("-----------------------------------|");
-        printf("[8]SALIR\n");
+        printf("[8]VER DATOS DE TU CUENTA\n");
+        puts("-----------------------------------|");
+        printf("[0]SALIR\n");
         puts("-----------------------------------|");
         fflush(stdin);
         scanf("%d", &x);
@@ -177,20 +178,25 @@ int menuInicioSesion(nodoArbol * cuenta)
             break;
         case 2:
             system("cls");
-//            tranferencia(cbu);
+            mostrarListaDoble(cuenta->movimiento.cabecera);
             system("pause");
             break;
         case 3:
+            system("cls");
+            tranferencia(cuenta);
+            system("pause");
+            break;
+        case 4:
 //            system("cls");
 //            prestamo(cbu);
 //            system("pause");
             break;
-        case 4:
+        case 5:
 //            system("cls");
 //            pagarPrestamo(cbu);
 //            system("pause");
             break;
-        case 5:
+        case 6:
             system("cls");
             do
             {
@@ -212,7 +218,7 @@ int menuInicioSesion(nodoArbol * cuenta)
 
             system("pause");
             break;
-        case 6:
+        case 7:
             system("cls");
             seguro=seguroDeseaEliminar();
             if(seguro==1)
@@ -222,9 +228,9 @@ int menuInicioSesion(nodoArbol * cuenta)
             }
             system("pause");
             break;
-        case 7:
+        case 8:
             system("cls");
-            muestraUsuarioAdmin(miUsu);
+            muestraUsuarioAdmin(cuenta->dato);
             system("pause");
             break;
         case 0:
@@ -324,8 +330,10 @@ void verUsuariosMenu()
         case 1:
             system("cls");
             printf("ORDENADO POR DNI:\n");
-            lista=FromArchiAListaOrdenada(lista);
-            mostrarLista(lista);
+            nodoBuscado = fromArchiToArbolDNI(nodoBuscado);
+            mostrarArbolInorden(nodoBuscado);
+//            lista=FromArchiAListaOrdenada(lista);
+//            mostrarLista(lista);
             system("pause");
             break;
         case 2:
@@ -366,13 +374,13 @@ void verUsuariosMenu()
 
 void menuOpcionesAdminUsuario(nodoArbol* usuarioBuscado)
 {
-
     int x;
-    muestraUsuarioAdmin(usuarioBuscado->dato);
 
     do
     {
         system("cls");
+        muestra1Usuario(usuarioBuscado->dato);
+
         puts("-----------------------------------|");
         printf("[1]MODIFICAR USUARIO\n");
         puts("-----------------------------------|");
@@ -389,6 +397,7 @@ void menuOpcionesAdminUsuario(nodoArbol* usuarioBuscado)
         {
         case 1:
             system("cls");
+
             usuarioBuscado = modificarUsuario(usuarioBuscado);
             reemplazarDato(usuarioBuscado->dato);
 
