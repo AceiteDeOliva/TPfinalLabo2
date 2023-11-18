@@ -95,7 +95,7 @@ void mostrarListaDoble(nodoDoble * lista)
 void mostrarMovimiento(movimiento m){
 puts("-----------------------------------------\n");
 printf("Importe:%i\n",m.monto);
-printf("CBU de emisor:%i\n",m.cbuEmisor);
-printf("CBU de recipiente:%i\n",m.cbuReceptor);
+printf("CBU de emisor:%08d\n",m.cbuEmisor);
+printf("CBU de recipiente:%08d\n",m.cbuReceptor);
 puts("-----------------------------------------\n");
 }
