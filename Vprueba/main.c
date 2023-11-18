@@ -175,22 +175,22 @@ int menuInicioSesion(nodoArbol * cuenta)
             printf("Su saldo actual es:%li\n",cuenta->dato.saldo);
             system("pause");
             break;
-        case 3:
+        case 2:
             system("cls");
 //            tranferencia(cbu);
             system("pause");
             break;
-        case 4:
+        case 3:
 //            system("cls");
 //            prestamo(cbu);
 //            system("pause");
             break;
-        case 5:
+        case 4:
 //            system("cls");
 //            pagarPrestamo(cbu);
 //            system("pause");
             break;
-        case 6:
+        case 5:
             system("cls");
             do
             {
@@ -212,7 +212,7 @@ int menuInicioSesion(nodoArbol * cuenta)
 
             system("pause");
             break;
-        case 7:
+        case 6:
             system("cls");
             seguro=seguroDeseaEliminar();
             if(seguro==1)
@@ -222,9 +222,8 @@ int menuInicioSesion(nodoArbol * cuenta)
             }
             system("pause");
             break;
-        case 8:
+        case 7:
             system("cls");
-            miUsu=busquedaUsuXCBU(cuenta->dato.cbu, &flag);
             muestraUsuarioAdmin(miUsu);
             system("pause");
             break;

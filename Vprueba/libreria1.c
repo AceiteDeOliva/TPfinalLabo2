@@ -7,18 +7,6 @@
 #include <unistd.h>
 
 //funciones de sistema
-///RETORNA S-N
-char deseaSalir()
-{
-    char confirmacion;
-
-    printf("Seguro/a que desea salir? s/n\n");
-    fflush(stdin);
-    scanf("%c", &confirmacion);
-
-    return confirmacion;
-}
-
 void reemplazarDato(usuario usu)
 {
 
@@ -236,12 +224,6 @@ int detectaUsuario(usuario usuBuscado, usuario ingreso) //se deberia hacer por a
 usuario inicioSesion()
 {
     usuario usuInicioSesion;
-//
-//    usuInicioSesion.cbu = 0;
-//    usuInicioSesion.estado = 0;
-//    usuInicioSesion.genero = 'a';
-//    usuInicioSesion.saldo = 0;
-//    strcpy(usuInicioSesion.nombreApellido,"a");
 
     printf("DNI:\n");
     fflush(stdin);
@@ -293,28 +275,6 @@ usuario inicioSesion()
 //{
 //   printf("CAJA:%ld\n", usu.saldo.caja);
 //   printf("PRESTAMO A PAGAR:%ld\n", usu.saldo.prestamo);
-//}
-//
-/////BUSCA EL CBU DE LA SESION INICIADA Y LLAMA A LA FUNCION ANTERIOR
-//void corroborarSaldo(int pcbu)
-//{
-//    usuario usu;
-//    FILE* buffer=fopen(archivo2, "rb");
-//
-//    if(buffer!=NULL)
-//    {
-//        while(fread(&usu, sizeof(usuario), 1, buffer)>0)
-//        {
-//            if(usu.saldo.cbu == pcbu) //encuentra el saldo del usuario a través del cbu, logrando asi mostrar el saldo del usuario correspondiente
-//            {
-//                muestraSaldo(usu);
-//            }
-//        }
-//        fclose(buffer);
-//    }
-//    else{
-//        printf("ERROR AL ENTRAR AL ARCHIVO, NO HAY SALDOS CARGADOS");
-//    }
 //}
 //
 /////SE GUARDA EN EL ARCHIVO EL NUEVO PRESTAMO
@@ -523,6 +483,7 @@ usuario busquedaUsuXCBU(int cbu,int *flag)
 void muestraUsuarioAdmin(usuario usu)
 {
     puts("---------------------------------------------");
+    printf("Estado:%i\n",usu.estado);
     printf("Nombre y apellido:");
     puts(usu.nombreApellido);
     printf("Genero:%c\n", usu.genero);

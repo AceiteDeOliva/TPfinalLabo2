@@ -101,7 +101,6 @@ typedef struct
 ///funciones generales/utilidades:
 usuario AdminCreate(usuario Admin);
 void crearAdmin();
-char deseaSalir();
 void muestra1Usuario(usuario usu);
 int chequeomail (char mail[]);
 void funcionConBarraDeCarga();
@@ -121,7 +120,6 @@ int detectaUsuario(usuario usuBuscado, usuario ingreso);
 ///menu de sesion iniciada:
 int menuInicioSesion(nodoArbol * cuenta);
 void muestraSaldo(usuario usu);
-void corroborarSaldo(int cbu);
 void prestamo(int cbu);
 usuario prestamoSaldo(int cbu,usuario usu);
 usuario deudaApagar(usuario deuda);
