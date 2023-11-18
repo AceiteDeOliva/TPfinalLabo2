@@ -7,14 +7,6 @@
 #define archivo4 "empleados"
 
 ///ESTRUCTURAS
-//typedef struct
-//{
-//    long int caja;
-//    long int prestamo;
-//    long int dni; /// el dni y el cbu es lo que nos va a ayudar a realizar las transferencias y demás...
-//    int cbu;
-//
-//}sTsaldo;
 
 typedef struct
 {
@@ -30,6 +22,7 @@ typedef struct
 
 typedef struct
 {
+    time_t fecha;
     int cbuEmisor;
     int cbuReceptor;
     int tipoDeOperacion;  ///0 emite 1 recibe
@@ -163,6 +156,8 @@ nodoDoble * buscarUltimo(nodoDoble * lista);
 void mostrarMovimiento(movimiento m);
 void mostrarListaDoble(nodoDoble * lista);
 void fromFileToFila(nodoArbol * cuenta);
+movimiento generarDeposito(nodoArbol * cuenta);
+void depositarExtraer(nodoArbol * cuenta);
 
 ///ARBOLES
 nodoArbol* inicArbol();

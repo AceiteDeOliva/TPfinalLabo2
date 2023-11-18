@@ -78,7 +78,7 @@ void mostrarArbolInorden(nodoArbol* arbol)
     if(arbol)
     {
         mostrarArbolInorden(arbol->izq);
-        muestra1Usuario(arbol->dato);
+        muestraUsuarioAdmin(arbol->dato);
         mostrarArbolInorden(arbol->der);
     }
 }

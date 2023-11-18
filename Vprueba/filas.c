@@ -26,51 +26,18 @@ nodoDoble* crearNodoDoble(movimiento dato)
     return nuevoNodo;
 }
 
-//agrega al final de la lista
-nodoDoble * agregarAlFinal(nodoDoble * lista,nodoDoble * nuevoNodo)
-{
-
-    if(lista == NULL)
-    {
-
-        lista = nuevoNodo;
-
-    }
-    else
-    {
-
-        nodoDoble * ultimo = buscarUltimo(lista);
-        ultimo->siguiente = nuevoNodo;
-        nuevoNodo->anterior = ultimo;
-
-    }
-
-    return lista;
-}
-
-// busca el ultimo de la lista
-nodoDoble * buscarUltimo(nodoDoble * lista)
-{
-    nodoDoble * ultimo  = lista;
-    while(ultimo->siguiente!= NULL)
-    {
-
-        ultimo = ultimo->siguiente;
-
-    }
-
-    return ultimo;
-}
-
 //agrega a la fila
 void agregarAFila(fila * fila,movimiento dato)
 {
 
     nodoDoble * nuevo = crearNodoDoble(dato);
-     if (fila->cabecera == NULL) {
+    if (fila->cabecera == NULL)
+    {
         fila->cabecera = nuevo;
         fila->cola = nuevo;
-    } else {
+    }
+    else
+    {
         fila->cola->siguiente = nuevo;
         nuevo->anterior = fila->cola;
         fila->cola = nuevo;
@@ -84,18 +51,49 @@ void mostrarListaDoble(nodoDoble * lista)
 
     if(seg)
     {
-         while(seg)
-         {
-             mostrarMovimiento(seg->dato);
-             seg=seg->siguiente;
-         }
+        while(seg)
+        {
+            mostrarMovimiento(seg->dato);
+            seg=seg->siguiente;
+        }
     }
 }
 
-void mostrarMovimiento(movimiento m){
-puts("-----------------------------------------\n");
-printf("Importe:%i\n",m.monto);
-printf("CBU de emisor:%08d\n",m.cbuEmisor);
-printf("CBU de recipiente:%08d\n",m.cbuReceptor);
-puts("-----------------------------------------\n");
+void mostrarMovimiento(movimiento m)
+{
+    puts("-----------------------------------------\n");
+    if(m.tipoDeOperacion == 0)
+    {
+        printf("Importe:-%i\n",m.monto);
+
+    }
+    else
+    {
+        printf("Importe:+%i\n",m.monto);
+    }
+
+
+    if(m.cbuEmisor != m.cbuReceptor)
+    {
+
+        printf("CBU de emisor:%08d\n",m.cbuEmisor);
+        printf("CBU de recipiente:%08d\n",m.cbuReceptor);
+
+
+    }
+    else if(m.tipoDeOperacion == 0)
+    {
+
+      printf("Extraccion\n");
+
+    }else{
+
+    printf("Deposito\n");
+
+    }
+
+
+
+    printf("Fecha de operacion: %s", ctime(&m.fecha));
+    puts("-----------------------------------------\n");
 }

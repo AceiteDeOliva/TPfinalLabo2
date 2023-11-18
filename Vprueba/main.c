@@ -140,6 +140,9 @@ int menuInicioSesion(nodoArbol * cuenta)
     char confirmacion[20];
     int seguro;
     fromFileToFila(cuenta);
+    nodoArbol * raiz = NULL;
+    raiz = fromArchiToArbolCBU(raiz);
+
     do
     {
         system("cls");
@@ -148,21 +151,17 @@ int menuInicioSesion(nodoArbol * cuenta)
         printf("                                                 +-----------------+\n");
         printf("\n\n");
         puts("-----------------------------------|");
-        printf("[1]VER TU SALD0\n");
+        printf("[1]VER MOVIMIENTOS\n");
         puts("-----------------------------------|");
-        printf("[2]VER MOVIMIENTOS\n");
+        printf("[2]DEPOSITAR/EXTRAER\n");
         puts("-----------------------------------|");
         printf("[3]HACER TRANSFERENCIA\n");
         puts("-----------------------------------|");
-        printf("[4]PEDIR PRESTAMO\n");
+        printf("[4]VER DATOS DE TU CUENTA\n");
         puts("-----------------------------------|");
-        printf("[5]PAGAR PRESTAMO\n");
+        printf("[5]CAMBIAR CONTRASENIA\n");
         puts("-----------------------------------|");
-        printf("[6]CAMBIAR CONTRASEÑA\n");
-        puts("-----------------------------------|");
-        printf("[7]DESACTIVAR CUENTA\n");
-        puts("-----------------------------------|");
-        printf("[8]VER DATOS DE TU CUENTA\n");
+        printf("[6]DESACTIVAR CUENTA\n");
         puts("-----------------------------------|");
         printf("[0]SALIR\n");
         puts("-----------------------------------|");
@@ -173,30 +172,28 @@ int menuInicioSesion(nodoArbol * cuenta)
         {
         case 1:
             system("cls");
+            mostrarListaDoble(cuenta->movimiento.cabecera);
             printf("Su saldo actual es:%li\n",cuenta->dato.saldo);
+            puts("-----------------------------------|");
             system("pause");
             break;
+
         case 2:
             system("cls");
-            mostrarListaDoble(cuenta->movimiento.cabecera);
+            depositarExtraer(cuenta);
             system("pause");
             break;
         case 3:
             system("cls");
-            tranferencia(cuenta);
+            carga1Transfer (raiz,cuenta);
             system("pause");
             break;
         case 4:
-//            system("cls");
-//            prestamo(cbu);
-//            system("pause");
+            system("cls");
+            muestra1Usuario(cuenta->dato);
+            system("pause");
             break;
         case 5:
-//            system("cls");
-//            pagarPrestamo(cbu);
-//            system("pause");
-            break;
-        case 6:
             system("cls");
             do
             {
@@ -215,10 +212,9 @@ int menuInicioSesion(nodoArbol * cuenta)
 
             modPass(contrasenia, cuenta->dato.cbu);
             printf("Contrasenia cambiada con exito...\n");
-
             system("pause");
             break;
-        case 7:
+        case 6:
             system("cls");
             seguro=seguroDeseaEliminar();
             if(seguro==1)
@@ -228,12 +224,8 @@ int menuInicioSesion(nodoArbol * cuenta)
             }
             system("pause");
             break;
-        case 8:
-            system("cls");
-            muestraUsuarioAdmin(cuenta->dato);
-            system("pause");
-            break;
         case 0:
+            borrarArbol(raiz);
             main();
             break;
         default:
@@ -410,7 +402,8 @@ void menuOpcionesAdminUsuario(nodoArbol* usuarioBuscado)
             break;
         case 3:
             system("cls");
-
+            fromFileToFila(usuarioBuscado);
+            mostrarListaDoble(usuarioBuscado->movimiento.cabecera);
             system("pause");
             break;
         case 0:

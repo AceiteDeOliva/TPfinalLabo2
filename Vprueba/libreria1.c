@@ -242,114 +242,96 @@ usuario inicioSesion()
 
 ///FUNCIONES LUEGO DE INICIAR SESION:
 
-/////MUESTRA SALDO DE LA CUENTA Y SALDO A PAGAR POR PRESTAMOS
-//void muestraSaldo(usuario usu)
-//{
-//   printf("CAJA:%ld\n", usu.saldo.caja);
-//   printf("PRESTAMO A PAGAR:%ld\n", usu.saldo.prestamo);
-//}
-//
-/////SE GUARDA EN EL ARCHIVO EL NUEVO PRESTAMO
-//void prestamo(int cbu){
-//    usuario usu;
-//    int posicion;
-//    FILE*buffer=fopen(archivo2,"r+b");
-//    if(buffer!=NULL)
-//    {
-//        fread(&usu,sizeof(usuario),1,buffer);
-//
-//            while(!feof(buffer)){
-//                if(cbu==usu.saldo.cbu)
-//                {
-//                    printf("Este es su saldo actual %ld\n", usu.saldo.caja);
-//                    posicion=ftell(buffer)-sizeof(usuario);
-//                    usu=prestamoSaldo(cbu,usu);
-//                    fseek(buffer, posicion, SEEK_SET);
-//                    fwrite(&usu,sizeof(usuario),1,buffer);
-//                    break;
-//                }
-//                fread(&usu, sizeof(usuario), 1, buffer);
-//            }
-//        fclose(buffer);
-//    }
-//    else{
-//        printf("ERROR AL INGRESAR AL ARCHIVO");
-//    }
-//}
-//
-/////SE PREGUNTA CUANTO QUIERE DE PRESTAMO EL USUARIO
-//usuario prestamoSaldo(int cbu,usuario usu)
-//{
-//    long int deuda=0;
-//    do{
-//    printf("Que cantidad desea pedir prestada..(minimo 50000)\n");
-//    fflush(stdin);
-//    scanf("%ld",&deuda);
-//    if(deuda<50000){
-//        printf("Ha ingresado una cifra menor a 50000... o un digito incorrecto");
-//    }
-//    }while(deuda<50000);
-//
-//    usu.saldo.caja=usu.saldo.caja+deuda;
-//    deuda=deuda+((deuda*15)/100);
-//
-//    usu.saldo.prestamo=(usu.saldo.prestamo-deuda);
-//    return usu;
-//}
-//
-/////RETORNA UN USUARIO RESTANDO LA CANTIDAD DE DINERO QUE SE ELIGA, SI NO SE TIENE SUFICIENTE NO TE DEJA
-//usuario deudaApagar(usuario deuda){
-//    long int pago;
-//    do{
-//    printf("Que cantidad desea pedir pagar del prestamo?\n");
-//    fflush(stdin);
-//    scanf("%ld", &pago);
-//    if(pago>deuda.saldo.caja){
-//        printf("El pago es mayor a lo que tiene en caja\n");
-//    }
-//    }while(pago>deuda.saldo.caja);
-//
-//    deuda.saldo.caja=(deuda.saldo.caja)-pago;
-//
-//    deuda.saldo.prestamo=(deuda.saldo.prestamo)+pago;
-//    printf("La deuda ha sido pagada con exito\n");
-//
-//    return deuda;
-//}
-//
-/////SE SOBREESCRIBE EL ARCHIVO Y ACTUALIZA LA CANTIDAD DE DEUDA QUE SE TIENE
-//void pagarPrestamo(int cbu){
-//    usuario usu;
-//    int posicion;
-//    int flag=0;
-//    FILE*buffer=fopen(archivo2,"r+b");
-//    if(buffer!=NULL)
-//    {
-//
-//            while(flag==0 && (fread(&usu,sizeof(usuario),1,buffer)>0)){
-//            if(cbu ==usu.saldo.cbu)
-//            {
-//                printf("Esta es tu deuda actual %ld\n", usu.saldo.prestamo);
-//                printf("Este es tu saldo disponible en cuenta:%ld\n", usu.saldo.caja);
-//                posicion=ftell(buffer)-sizeof(usuario);
-//                usu=deudaApagar(usu);
-//                fseek(buffer, posicion, SEEK_SET);
-//                fwrite(&usu,sizeof(usuario),1,buffer);
-//                flag=1;
-//            }
-//        }
-//        fclose(buffer);
-//    }
-//}
 //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+void depositarExtraer(nodoArbol * cuenta)
+{
+    int opcion = -1;
+    movimiento efectivo;
+    system("cls");
+    printf("                                                 +-----------------+\n");
+    printf("                                                 |  BANCO CENTRAL  |  \n");
+    printf("                                                 +-----------------+\n");
+    printf("\n\n");
+    puts("-----------------------------------|");
+    printf("[1]DEPOSITAR\n");
+    puts("-----------------------------------|");
+    printf("[2]EXTRAER\n");
+    puts("-----------------------------------|");
+    printf("[0]SALIR\n");
+    puts("-----------------------------------|");
+    fflush(stdin);
+    scanf("%i",&opcion);
+    efectivo = generarDeposito(cuenta);
+    switch(opcion)
+    {
 
-//||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-///TRANSFERENCIAS
+    case 1:
+
+        efectivo.tipoDeOperacion = 1;
+        cuenta->dato.saldo += efectivo.monto;
+        reemplazarDato(cuenta->dato);
+        agregarAFila(&cuenta->movimiento, efectivo);
+        movimientoAArchivo(efectivo);
+        break;
+
+    case 2:
+        efectivo.tipoDeOperacion = 0;
+        if(cuenta->dato.saldo >= efectivo.monto)
+        {
+
+            cuenta->dato.saldo -= efectivo.monto;
+            reemplazarDato(cuenta->dato);
+            agregarAFila(&cuenta->movimiento, efectivo);
+            movimientoAArchivo(efectivo);
+
+        }
+        else
+        {
+
+            printf("Saldo insuficiente\n");
+
+        }
+
+        break;
+
+    case 0:
+        menuInicioSesion(cuenta);
+        break;
+
+    default:
+
+        printf("Opcion no valida\n");
+        break;
+
+    }
+
+}
+///MOVIMIENTOS
+movimiento generarDeposito(nodoArbol * cuenta)
+{
+
+    movimiento nuevoDeposito;
+
+    nuevoDeposito.fecha = time(NULL);
+
+    nuevoDeposito.cbuEmisor = cuenta->dato.cbu;
+
+    nuevoDeposito.cbuReceptor = cuenta->dato.cbu;
+
+    nuevoDeposito.tipoDeOperacion = -1;
+
+    printf("Ingrese el monto:\n");
+    fflush(stdin);
+    scanf("%d", &nuevoDeposito.monto);
+
+    return nuevoDeposito;
+}
 
 ///Pide y el monto de transferencia hace los chequeos y modifica el arbol y el archivo
 void carga1Transfer (nodoArbol * raiz,nodoArbol * cuenta)
 {
     movimiento transfer;
+    transfer.fecha = time(NULL);
     transfer.cbuEmisor = cuenta->dato.cbu;
     transfer.tipoDeOperacion = 0;
 
@@ -357,27 +339,35 @@ void carga1Transfer (nodoArbol * raiz,nodoArbol * cuenta)
     fflush(stdin);
     scanf("%i", &transfer.monto);
 
-    if(transfer.monto <= cuenta->dato.saldo )
+    if (transfer.monto <= cuenta->dato.saldo)
     {
-        printf("Ingrese el cbu del destinatario:\n");
-        fflush(stdin);
-        scanf("%i", &transfer.cbuReceptor);
 
-        if (cuenta->dato.cbu == transfer.cbuReceptor)
+        do
         {
-            printf("No se puede transferir a usted mismo, porfavor intente denuevo.\n");
-            transfer.monto = 0;
-        }
-        else
-        {
-            nodoArbol * receptor = buscarCBUenArbol(raiz,transfer.cbuReceptor);
-            do
+            printf("Ingrese el cbu del destinatario (-1 para cancelar):\n");
+            fflush(stdin);
+            scanf("%i", &transfer.cbuReceptor);
+
+            if (transfer.cbuReceptor == -1)
             {
+                printf("Operación cancelada.\n");
+                break;
+            }
+
+            if (cuenta->dato.cbu == transfer.cbuReceptor)
+            {
+                printf("No se puede transferir a usted mismo, por favor intente de nuevo.\n");
+                transfer.monto = 0;
+            }
+            else
+            {
+                nodoArbol* receptor = buscarCBUenArbol(raiz, transfer.cbuReceptor);
+
                 if (receptor != NULL)
                 {
-                    cuenta->dato.saldo -=  transfer.monto;
+                    cuenta->dato.saldo -= transfer.monto;
                     reemplazarDato(cuenta->dato);
-                    agregarAFila(&cuenta->movimiento,transfer);
+                    agregarAFila(&cuenta->movimiento, transfer);
                     movimientoAArchivo(transfer);
 
                     receptor->dato.saldo += transfer.monto;
@@ -385,35 +375,23 @@ void carga1Transfer (nodoArbol * raiz,nodoArbol * cuenta)
                     transfer.tipoDeOperacion = 1;
                     movimientoAArchivo(transfer);
 
-
                     printf("Usuario encontrado correctamente, transferencia exitosa.\n");
+                    break;
                 }
                 else
                 {
-                    printf("Usuario no encontrado, porfavor intente con otro CBU.\n");
+                    printf("Usuario no encontrado, por favor intente con otro CBU.\n");
                 }
             }
-            while(receptor == NULL);
         }
-
+        while (1);
     }
     else
     {
-
         printf("Saldo insuficiente\n");
-
     }
 }
 
-//Crea arbol ordenado por CBU ya que se usa esa variable para transferir
-void tranferencia(nodoArbol * cuenta)
-{
-    nodoArbol * raiz = NULL;
-    raiz = fromArchiToArbolCBU(raiz);
-    carga1Transfer(raiz,cuenta);
-    borrarArbol(raiz);
-
-}
 //carga el archivo de transferencias
 void movimientoAArchivo(movimiento aux)
 {
@@ -527,10 +505,9 @@ usuario busquedaUsuXCBU(int cbu,int *flag)
 }
 
 ///MUESTRA DATOS DE UN USUARIO
-void muestraUsuarioAdmin(usuario usu)
+void muestra1Usuario(usuario usu)
 {
     puts("---------------------------------------------");
-    printf("Estado:%i\n",usu.estado);
     printf("Nombre y apellido:");
     puts(usu.nombreApellido);
     printf("Genero:%c\n", usu.genero);
@@ -796,7 +773,7 @@ int ArchiToArray(usuario arrayUsu[], int dimension)
 }
 
 ///IMPRIME UN USUARIO POR PANTALLA
-void muestra1Usuario(usuario usu)
+void muestraUsuarioAdmin(usuario usu)
 {
     puts("---------------------------------------------");
     if(usu.estado==1)
