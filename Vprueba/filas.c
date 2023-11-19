@@ -11,7 +11,7 @@ void inicFila(fila * fila)
     fila->cola = NULL;
 }
 
-//Crear nodo
+//Crear nodo de lista doble
 nodoDoble* crearNodoDoble(movimiento dato)
 {
     nodoDoble* nuevoNodo = (struct nodoDoble*)malloc(sizeof(struct nodoDoble));
@@ -44,7 +44,7 @@ void agregarAFila(fila * fila,movimiento dato)
     }
 
 }
-
+//Muestra la lista doble dentro de la fila
 void mostrarListaDoble(nodoDoble * lista)
 {
     nodoDoble* seg=lista;
@@ -58,7 +58,7 @@ void mostrarListaDoble(nodoDoble * lista)
         }
     }
 }
-
+//muestra una variable tipo movimiento
 void mostrarMovimiento(movimiento m)
 {
     puts("-----------------------------------------\n");

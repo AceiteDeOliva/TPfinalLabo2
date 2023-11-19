@@ -4,29 +4,15 @@
 #include "time.h"
 #include "librerias1.h"
 
-///MAIN
+///MENU PRINCIPAL
 int main()
 {
     system("color A0");
     int opcion;
-
-    opcion = opcionMenuPrincipal();
-    if(opcion==1 ||opcion==2)
-    {
-        menuPrincipal(opcion);
-    }
-    return 0;
-}
-
-///MENU PRINCIPAL
-int opcionMenuPrincipal()
-{
-    int opcion;
-
-    system("cls");
-
     do
     {
+        system("cls");
+
         printf("                                                 +-----------------+\n");
         printf("                                                 |  BANCO CENTRAL  |  \n");
         printf("                                                 +-----------------+\n");
@@ -42,84 +28,86 @@ int opcionMenuPrincipal()
         puts("------------------------------|");
         fflush(stdin);
         scanf("%i", &opcion);
-        if(opcion<0 || opcion>3)
+        switch(opcion)
         {
-            printf("Ha ingresado un numero incorrecto... vuelva a ingresar\n");
-            system("pause");
-            system("cls");
-        }
-        if(opcion==3)
-        {
+        case 1:
+
+            menuPrincipal(opcion);
+            break;
+        case 2:
+
+            menuPrincipal(opcion);
+            break;
+
+        case 3:
             printf("Abriendo ventana admin\n");
             menuAdmin();
             system("pause");
             system("cls");
+            break;
+        case 0:
+            printf("Programa finalizado...\n");
+            break;
+        default:
+            printf("Opcion no valida\n");
+            break;
+
         }
     }
-    while(opcion<0 || opcion>3);
+    while(opcion != 0);
 
-    return opcion;
+    return 0;
 }
 
 
 /// MENU PRINCIPAL
-int menuPrincipal(int opcionElegida)
+void menuPrincipal(int opcionElegida)
 {
     funcionConBarraDeCarga();
     int x=opcionElegida;
-    int detectaCuenta = 0;
+    int chequeo = 0;
     int intentos=0;
-    int exit;
     usuario ingreso;
     nodoArbol * raiz = NULL;
     raiz = fromArchiToArbolDNI(raiz);
     nodoArbol * cuenta = NULL;
 
-    switch(x)
+    switch (x)
     {
-    case 1://crear usuarios
+    case 1: // Crear usuarios
         system("cls");
         CrearUsuario();
         system("cls");
-        main();
-//       crearSaldo(cbu);
         break;
-    case 2://iniciar sesion |habria que cambiar toda esta parte para que se haga con el arbol
+    case 2: // Iniciar sesion
         system("cls");
         do
         {
             ingreso = inicioSesion();
-            cuenta=buscarDNIenArbol(raiz,ingreso.dni);
-            if(cuenta->dato.estado == 0)
+            cuenta = buscarDNIenArbol(raiz, ingreso.dni);
+            if (cuenta->dato.estado == 0)
             {
                 printf("Usuario desactivado hablar con administracion\n");
-
             }
-            else
+            else if(cuenta)
             {
-                detectaCuenta = detectaUsuario(cuenta->dato,ingreso);
-
-                if(detectaCuenta==1)
+                chequeo = chequeoCredenciales(cuenta->dato, ingreso);
+                if (chequeo == 1)
                 {
-                    exit=menuInicioSesion(cuenta);//devuelve 0 si elijes opcion de salir
+                    menuInicioSesion(cuenta);
                 }
-                else if(detectaCuenta==0)
+                else if (chequeo == 0)
                 {
                     printf("Usuario incorrecto o contraseña incorrecta.\nSi esto le ocurre varias veces, puede que su cuenta haya sido desactivada forzozamente por deudas\n");
                 }
-
             }
             intentos++;
         }
-        while(intentos < 3 && exit!=0);
-        if(intentos==3)
+        while (intentos < 3);
+        if (intentos == 3)
         {
-            printf("Demasiados intentos, volviendo al menu anterior\n");//meti todo esto dentro de un do while para que pueda volver a ingresar los datos en caso de error.
-            system("pause");
+            printf("Demasiados intentos, volviendo al menu anterior\n");
         }
-        break;
-    case 0:
-        main();
         break;
     default:
         system("cls");
@@ -128,17 +116,14 @@ int menuPrincipal(int opcionElegida)
         break;
     }
 
-    return x;
 }
 
 
 ///MENU UNA VEZ INICIADA LA SESION
-int menuInicioSesion(nodoArbol * cuenta)
+void menuInicioSesion(nodoArbol * cuenta)
 {
     int x;
-    char contrasenia[20];
-    char confirmacion[20];
-    int seguro;
+    int seguro = 0;
     fromFileToFila(cuenta);
     nodoArbol * raiz = NULL;
     raiz = fromArchiToArbolCBU(raiz);
@@ -195,22 +180,8 @@ int menuInicioSesion(nodoArbol * cuenta)
             break;
         case 5:
             system("cls");
-            do
-            {
-                printf("Ingrese su contrasenia nueva por favor...\n");
-                fflush(stdin);
-                scanf("%s", contrasenia);
-                printf("\nIngrese nuevamente la contrasenia:\n");
-                fflush(stdin);
-                scanf("%s", confirmacion);
-                if(strcmp(contrasenia, confirmacion)!=0)
-                {
-                    printf("Las contrasenias ingresadas no son iguales, por favor, vuelva a ingresar");
-                }
-            }
-            while(strcmp(contrasenia, confirmacion)!=0);
-
-            modPass(contrasenia, cuenta->dato.cbu);
+            cuenta->dato = newPass(cuenta->dato);
+            reemplazarDato(cuenta->dato);
             printf("Contrasenia cambiada con exito...\n");
             system("pause");
             break;
@@ -219,14 +190,15 @@ int menuInicioSesion(nodoArbol * cuenta)
             seguro=seguroDeseaEliminar();
             if(seguro==1)
             {
-                desactivarCuenta(cuenta->dato.cbu);
+                cuenta->dato = desactivar(cuenta->dato);
+                reemplazarDato(cuenta->dato);
                 x=0;
             }
             system("pause");
             break;
         case 0:
             borrarArbol(raiz);
-            main();
+            x = 0;
             break;
         default:
             system("cls");
@@ -237,11 +209,11 @@ int menuInicioSesion(nodoArbol * cuenta)
 
     }
     while(x!=0);
-    return x;
+    main();
 }
 
 ///MENU DE ADMIN
-int menuAdmin()
+void menuAdmin()
 {
     int x;
     do
@@ -274,8 +246,8 @@ int menuAdmin()
             system("pause");
             break;
         case 0:
-            main();
             printf("Saliendo del menu...");
+            main();
             break;
         default:
             system("cls");
@@ -287,7 +259,6 @@ int menuAdmin()
     while(x!=0);
 
 
-    return x;
 }
 
 

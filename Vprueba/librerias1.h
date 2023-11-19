@@ -103,16 +103,14 @@ void movimientoAArchivo(movimiento aux);
 
 ///Menu principal:
 int opcionMenuPrincipal();
-int menuPrincipal(int opcionElegida);
+void menuPrincipal(int opcionElegida);
 usuario crea1Usuario (usuario nuevoUsuario);
 void CrearUsuario();
-usuario cajaEnCero(usuario usu, int cbu);
-void crearSaldo(int cbu);
 usuario inicioSesion();
-int detectaUsuario(usuario usuBuscado, usuario ingreso);
+int chequeoCredenciales(usuario usuBuscado, usuario ingreso);
 
 ///menu de sesion iniciada:
-int menuInicioSesion(nodoArbol * cuenta);
+void menuInicioSesion(nodoArbol * cuenta);
 void muestraSaldo(usuario usu);
 void prestamo(int cbu);
 usuario prestamoSaldo(int cbu,usuario usu);
@@ -122,7 +120,7 @@ void carga1Transfer (nodoArbol * raiz,nodoArbol * cuenta);
 usuario cambio1(usuario usu, movimiento tran);
 usuario cambio2(usuario usu, movimiento tran);
 void tranferencia(nodoArbol * cuenta);
-usuario newPass(usuario usu, char contrasenia[20]);
+usuario newPass(usuario usu);
 void modPass(char contrasenia[20], int cbu);
 int generarDigitoAleatorio();
 int generarCBU(int digitos);
@@ -130,7 +128,7 @@ int generarCBU(int digitos);
 
 ///ADMINISTRADOR:
 int chequeoAdmin(int flag, usuario admin);
-int menuAdmin();
+void menuAdmin();
 void verUsuariosMenu();
 usuario busquedaUsuXCBU(int cbu,int *flag);
 void muestraUsuarioAdmin(usuario usu);

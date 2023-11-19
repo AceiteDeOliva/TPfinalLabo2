@@ -207,7 +207,7 @@ usuario crea1Usuario (usuario nuevoUsuario)
 }
 
 ///RETORNA 1 SI EL MAIL Y LA CONTRASEÑA PERTENECENEN A UNA CUENTA Y 0 SI NO
-int detectaUsuario(usuario usuBuscado, usuario ingreso) //se deberia hacer por arbol
+int chequeoCredenciales(usuario usuBuscado, usuario ingreso) //se deberia hacer por arbol
 {
     int flag=0;
     if(strcmp(usuBuscado.mail, ingreso.mail)== 0 && strcmp(usuBuscado.contrasenia,ingreso.contrasenia)== 0)
@@ -224,7 +224,6 @@ int detectaUsuario(usuario usuBuscado, usuario ingreso) //se deberia hacer por a
 usuario inicioSesion()
 {
     usuario usuInicioSesion;
-
     printf("DNI:\n");
     fflush(stdin);
     scanf("%i",&usuInicioSesion.dni);
@@ -328,6 +327,7 @@ movimiento generarDeposito(nodoArbol * cuenta)
 }
 
 ///Pide y el monto de transferencia hace los chequeos y modifica el arbol y el archivo
+//Carga datos de la transferencia
 void carga1Transfer (nodoArbol * raiz,nodoArbol * cuenta)
 {
     movimiento transfer;
@@ -392,7 +392,7 @@ void carga1Transfer (nodoArbol * raiz,nodoArbol * cuenta)
     }
 }
 
-//carga el archivo de transferencias
+//carga el archivo de movimientos
 void movimientoAArchivo(movimiento aux)
 {
     FILE* file = fopen(archivo3, "ab");
@@ -407,7 +407,7 @@ void movimientoAArchivo(movimiento aux)
 
     fclose(file);
 }
-
+//Pasa del archivo de movimientos a la fila
 void fromFileToFila(nodoArbol * cuenta)
 {
     movimiento aux;
@@ -440,48 +440,35 @@ void fromFileToFila(nodoArbol * cuenta)
     fclose(file);
 }
 
-
 //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
 ///RETORNA UN USUARIO CON LA NUEVA CONTRASEÑA
-usuario newPass(usuario usu, char contrasenia[20])
+usuario newPass(usuario usu)
 {
-
-    strcpy(usu.contrasenia, contrasenia);
-
+    char contrasenia[20];
+    char confirmacion[20];
+    do
+    {
+        printf("                                                 +-----------------+\n");
+        printf("                                                 |  BANCO CENTRAL  |  \n");
+        printf("                                                 +-----------------+\n");
+        printf("\n\n");
+        printf("Ingrese su contrasenia nueva por favor...\n");
+        fflush(stdin);
+        scanf("%s", contrasenia);
+        printf("\nIngrese nuevamente la contrasenia:\n");
+        fflush(stdin);
+        scanf("%s", confirmacion);
+        if(strcmp(contrasenia, confirmacion)!=0)
+        {
+            printf("Las contrasenias ingresadas no son iguales, por favor, vuelva a ingresar");
+        }
+    }
+    while(strcmp(contrasenia, confirmacion)!=0);
+    strcpy(usu.contrasenia,confirmacion);
     return usu;
 }
 
-///SOBREESCRIBIMOS EL ARCHIVO CON LA NUEVA CONTRASEÑA
-void modPass(char contrasenia[20], int cbu)
-{
-
-    usuario usu;
-    FILE*buffer=fopen(archivo, "r+b");
-    int posicion;
-
-    if(buffer!=NULL)
-    {
-        fread(&usu,sizeof(usuario),1,buffer);
-        while(!feof(buffer))
-        {
-            if(cbu == usu.cbu)
-            {
-                posicion=ftell(buffer)-sizeof(usuario);
-                usu=newPass(usu, contrasenia);
-                fseek(buffer, posicion, SEEK_SET);
-                fwrite(&usu,sizeof(usuario),1,buffer);
-                break;
-            }
-            fread(&usu,sizeof(usuario),1,buffer);
-        }
-        fclose(buffer);
-    }
-    else
-    {
-        printf("ERROR AL INGRESAR AL ARCHIVO");
-    }
-}
 
 ///BUSCA UN USUARIO EN EL ARCHIVO POR SU CBU
 usuario busquedaUsuXCBU(int cbu,int *flag)
@@ -539,36 +526,6 @@ usuario desactivar(usuario usu)
     usu.estado=0;
 
     return usu;
-}
-
-///REESCRIBE EN EL ARCHIVO Y DESACTIVA LA CUENTA
-void desactivarCuenta(int cbu)
-{
-    usuario usu;
-    FILE*buffer=fopen(archivo, "r+b");
-    int posicion;
-
-    if(buffer!=NULL)
-    {
-        fread(&usu,sizeof(usuario),1,buffer);
-        while(!feof(buffer))
-        {
-            if(cbu == usu.cbu)
-            {
-                posicion=ftell(buffer)-sizeof(usuario);
-                usu=desactivar(usu);
-                fseek(buffer, posicion, SEEK_SET);
-                fwrite(&usu,sizeof(usuario),1,buffer);
-                break;
-            }
-            fread(&usu,sizeof(usuario),1,buffer);
-        }
-        fclose(buffer);
-    }
-    else
-    {
-        printf("ERROR AL ABRIR EL ARCHIVO");
-    }
 }
 
 ///SI ENCUENTRA EL CBU RETORNA 1 SINO 0
