@@ -67,6 +67,7 @@ int chequeomail (char mail[])
     }
     return flag;
 }
+
 ///CARGA A UN ARCHIVO LOS DATOS DE UN USUARIO NUEVO
 void CrearUsuario()
 {
@@ -220,7 +221,26 @@ int chequeoCredenciales(usuario usuBuscado, usuario ingreso) //se deberia hacer 
     return flag;
 }
 
-///CARGA EL MAIL Y LA CONTRASEÑA Y LOS RETORNA EN UNA STRUCT
+//Genera un numero aleatorio del 0 al 9
+int generarDigitoAleatorio()
+{
+    return rand() % 10;
+}
+
+//funcion para generar el cbu se le pasa la cantidad de digitos (8)
+int generarCBU(int digitos)
+{
+    if (digitos == 0)
+    {
+        return 0;
+    }
+    else
+    {
+        int digito = generarDigitoAleatorio();
+        return generarCBU(digitos - 1) * 10 + digito;
+    }
+}
+
 usuario inicioSesion()
 {
     usuario usuInicioSesion;
@@ -240,6 +260,7 @@ usuario inicioSesion()
 }
 
 ///FUNCIONES LUEGO DE INICIAR SESION:
+
 
 //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 void depositarExtraer(nodoArbol * cuenta)
@@ -326,7 +347,6 @@ movimiento generarDeposito(nodoArbol * cuenta)
     return nuevoDeposito;
 }
 
-///Pide y el monto de transferencia hace los chequeos y modifica el arbol y el archivo
 //Carga datos de la transferencia
 void carga1Transfer (nodoArbol * raiz,nodoArbol * cuenta)
 {
@@ -469,39 +489,13 @@ usuario newPass(usuario usu)
     return usu;
 }
 
-
-///BUSCA UN USUARIO EN EL ARCHIVO POR SU CBU
-usuario busquedaUsuXCBU(int cbu,int *flag)
+///RETORNO 0 PARA DESACTIVAR LA CUENTA
+usuario desactivar(usuario usu)
 {
-    *flag=0;
-    usuario usu;
-    FILE*buffer=fopen(archivo,"rb");
 
-    if(buffer!=NULL)
-    {
-        while(*flag==0 &&  (fread(&usu, sizeof(usuario), 1, buffer)>0))
-        {
-            if(cbu == usu.cbu)
-            {
-                *flag=1;
-            }
-        }
-        fclose(buffer);
-    }
+    usu.estado=0;
+
     return usu;
-}
-
-///MUESTRA DATOS DE UN USUARIO
-void muestra1Usuario(usuario usu)
-{
-    puts("---------------------------------------------");
-    printf("Nombre y apellido:");
-    puts(usu.nombreApellido);
-    printf("Genero:%c\n", usu.genero);
-    printf("DNI:%i\n", usu.dni);
-    printf("Mail:%s\n", usu.mail);
-    printf("CBU:%i\n", usu.cbu);
-    puts("---------------------------------------------");
 }
 
 ///PREGUNTA SI ESTAS SEGURO DE ELIMINAR LA CUENTA RETORNA 1-0
@@ -519,44 +513,39 @@ int seguroDeseaEliminar()
     return desicion;
 }
 
-///RETORNO 0 PARA DESCATIVAR LA CUENTA
-usuario desactivar(usuario usu)
+///MUESTRA DATOS DE UN USUARIO
+void muestra1Usuario(usuario usu)
 {
-
-    usu.estado=0;
-
-    return usu;
+    puts("---------------------------------------------");
+    printf("Nombre y apellido:");
+    puts(usu.nombreApellido);
+    printf("Genero:%c\n", usu.genero);
+    printf("DNI:%i\n", usu.dni);
+    printf("Mail:%s\n", usu.mail);
+    printf("CBU:%i\n", usu.cbu);
+    puts("---------------------------------------------");
 }
 
-///SI ENCUENTRA EL CBU RETORNA 1 SINO 0
-int chequeoCBU(int cbu)
+///IMPRIME UN USUARIO POR PANTALLA
+void muestraUsuarioAdmin(usuario usu)
 {
-    usuario usu;
-    int flag=0;
-    FILE* buffer;
-    buffer=fopen(archivo,"rb");
-
-    if(buffer!=NULL)
+    puts("---------------------------------------------");
+    if(usu.estado==1)
     {
-        while(flag==0 && fread(&usu, sizeof(usuario), 1, buffer)>0)
-        {
-            if(usu.cbu == cbu)
-            {
-                flag=1;
-            }
-            else
-            {
-                flag=0;
-            }
-        }
-        fclose(buffer);
+        printf("Estado: ACTIVO\n");
     }
     else
     {
-        printf("ERROR AL ABRIR EL ARCHIVO");
-        system("pause");
+        printf("Estado: INACTIVO\n");
     }
-    return flag;
+    printf("Nombre y apellido:");
+    printf("%s\n", usu.nombreApellido);
+    printf("Genero:");
+    printf("%c\n", usu.genero);
+    printf("DNI:%i\n", usu.dni);
+    printf("Mail:%s\n", usu.mail);
+    printf("CBU:%08d\n", usu.cbu);
+    puts("---------------------------------------------");
 }
 
 ///SI ENCUENTRA EL DNI RETORNA 1 SINO 0
@@ -590,185 +579,6 @@ int chequeoDNI(int dni)
     return flag;
 }
 
-///BUSCA UN USUARIO POR SU DNI
-usuario busquedaUsuXDNI(int dni, int *flag)
-{
-    *flag=0;
-    usuario usu;
-    FILE*buffer=fopen(archivo,"rb");
-
-    if(buffer!=NULL)
-    {
-        while(*flag==0 && (fread(&usu, sizeof(usuario), 1, buffer)>0))
-        {
-            if(dni==usu.dni)
-            {
-                *flag=1;
-            }
-        }
-        fclose(buffer);
-    }
-    return usu;
-}
-
-///FUNCION EN LA QUE EL ADMIN DA DE BAJA A UN USUARIO
-void darDeBajaOAltaAdmin()
-{
-    usuario usu;
-    int cbu;
-    int validar;
-
-    do
-    {
-        printf("Que usuario desea dar de baja?(ingrese el cbu del mismo)\n");
-        fflush(stdin);
-        scanf("%i", &cbu);
-        validar=chequeoCBU(cbu);
-        if(validar!=1)
-        {
-            printf("CBU No fue encontrado, ingrese otro\n");
-        }
-    }
-    while(validar!=1);
-
-    int posicion;
-    FILE*buffer=fopen(archivo, "r+b");
-    if(buffer!=NULL)
-    {
-        while((fread(&usu, sizeof(usuario), 1, buffer)>0))
-        {
-            if(cbu == usu.cbu)
-            {
-                posicion=ftell(buffer)-sizeof(usuario);
-                usu=desactivar(usu);
-                fseek(buffer, posicion, SEEK_SET);
-                fwrite(&usu,sizeof(usuario),1,buffer);
-                printf("ELIMINADO CORRECTAMENTE\n");
-                break;
-            }
-        }
-        fclose(buffer);
-    }
-    else
-    {
-        printf("ERROR AL ABRIR EL ARCHIVO");
-        system("pause");
-    }
-
-}
-
-///SIRVE PARA INICIAR SESION COMO ADMIN
-int chequeoAdmin(int flag, usuario admin)
-{
-    char usu[10]="admin";
-    usuario usua;
-    char contrasenia[10]="123";
-    int x=flag;
-    FILE*buffer=fopen(archivo, "rb");
-
-    if(buffer!=NULL)
-    {
-        while(fread(&usua, sizeof(usuario), 1, buffer)>0)
-        {
-            if(strcmp(admin.mail, usua.mail)==0 && strcmp(admin.contrasenia, usua.contrasenia)==0)
-            {
-                if(strcmp(admin.mail, usu)==0&&strcmp(admin.contrasenia, contrasenia)==0)
-                {
-                    x=2;//devuelve 2 para diferenciarse de la funcion "detectaUsuario"
-                    break;//agrego break para que corte el ciclo una vez encontrado el usuario y contraseña correctos.
-                }
-            }
-        }
-        fclose(buffer);
-    }
-    else
-    {
-        printf("ERROR AL ABRIR EL ARCHIVO");
-    }
-    return x;
-}
-
-///ORDENA UN ARREGLO DE ESTRUCTURAS POR DNI
-void ordenaxDNI(usuario arrayUsu[], int validos)
-{
-    usuario usuAux;
-    int i, j;
-
-    for (i=1; i<validos; i++)
-    {
-        usuAux=arrayUsu[i];
-        j=i-1;
-
-        while (j >= 0 && arrayUsu[j].dni> usuAux.dni)
-        {
-            arrayUsu[j + 1]=arrayUsu[j];
-            j--;
-        }
-
-        arrayUsu[j + 1]=usuAux;
-    }
-}
-
-///PASA LOS REGISTROS DEL ARCHIVO A UN ARREGLO DE ESTRUCTURAS
-int ArchiToArray(usuario arrayUsu[], int dimension)
-{
-    int i=0;
-    usuario usu;
-    FILE* buffer=fopen(archivo, "rb");
-    if(buffer)
-    {
-        fread(&usu, sizeof(usuario), 1, buffer);
-        while(!feof(buffer) && i<dimension)
-        {
-            arrayUsu[i]=usu;
-            i++;
-            fread(&usu, sizeof(usuario), 1, buffer);
-        }
-        fclose(buffer);
-    }
-    return i;
-}
-
-///IMPRIME UN USUARIO POR PANTALLA
-void muestraUsuarioAdmin(usuario usu)
-{
-    puts("---------------------------------------------");
-    if(usu.estado==1)
-    {
-        printf("Estado: ACTIVO\n");
-    }
-    else
-    {
-        printf("Estado: INACTIVO\n");
-    }
-    printf("Nombre y apellido:");
-    printf("%s\n", usu.nombreApellido);
-    printf("Genero:");
-    printf("%c\n", usu.genero);
-    printf("DNI:%i\n", usu.dni);
-    printf("Mail:%s\n", usu.mail);
-    printf("CBU:%08d\n", usu.cbu);
-    puts("---------------------------------------------");
-}
-
-//Genera un numero aleatorio del 0 al 9
-int generarDigitoAleatorio()
-{
-    return rand() % 10;
-}
-//funcion para generar el cbu se le pasa la cantidad de digitos (8)
-int generarCBU(int digitos)
-{
-    if (digitos == 0)
-    {
-        return 0;
-    }
-    else
-    {
-        int digito = generarDigitoAleatorio();
-        return generarCBU(digitos - 1) * 10 + digito;
-    }
-}
 
 //eliminar usuario (cambiar estado a 0)
 nodoArbol * cambiarEstado(nodoArbol * arbol)

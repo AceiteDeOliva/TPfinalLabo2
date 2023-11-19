@@ -374,6 +374,7 @@ void menuOpcionesAdminUsuario(nodoArbol* usuarioBuscado)
             system("cls");
             fromFileToFila(usuarioBuscado);
             mostrarListaDoble(usuarioBuscado->movimiento.cabecera);
+            printf("Saldo:%li\n", usuarioBuscado->dato.saldo);
             system("pause");
             break;
         case 0:

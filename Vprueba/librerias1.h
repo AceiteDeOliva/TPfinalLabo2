@@ -7,7 +7,6 @@
 #define archivo4 "empleados"
 
 ///ESTRUCTURAS
-
 typedef struct
 {
     int estado; // 0 para inactivo o 1 para activo
@@ -92,8 +91,6 @@ typedef struct
 
 
 ///funciones generales/utilidades:
-usuario AdminCreate(usuario Admin);
-void crearAdmin();
 void muestra1Usuario(usuario usu);
 int chequeomail (char mail[]);
 void funcionConBarraDeCarga();
@@ -102,7 +99,6 @@ void menuOpcionesAdminUsuario(nodoArbol* usuarioBuscado);
 void movimientoAArchivo(movimiento aux);
 
 ///Menu principal:
-int opcionMenuPrincipal();
 void menuPrincipal(int opcionElegida);
 usuario crea1Usuario (usuario nuevoUsuario);
 void CrearUsuario();
@@ -111,14 +107,7 @@ int chequeoCredenciales(usuario usuBuscado, usuario ingreso);
 
 ///menu de sesion iniciada:
 void menuInicioSesion(nodoArbol * cuenta);
-void muestraSaldo(usuario usu);
-void prestamo(int cbu);
-usuario prestamoSaldo(int cbu,usuario usu);
-usuario deudaApagar(usuario deuda);
-void pagarPrestamo(int cbu);
 void carga1Transfer (nodoArbol * raiz,nodoArbol * cuenta);
-usuario cambio1(usuario usu, movimiento tran);
-usuario cambio2(usuario usu, movimiento tran);
 void tranferencia(nodoArbol * cuenta);
 usuario newPass(usuario usu);
 void modPass(char contrasenia[20], int cbu);
@@ -127,24 +116,13 @@ int generarCBU(int digitos);
 
 
 ///ADMINISTRADOR:
-int chequeoAdmin(int flag, usuario admin);
 void menuAdmin();
 void verUsuariosMenu();
-usuario busquedaUsuXCBU(int cbu,int *flag);
 void muestraUsuarioAdmin(usuario usu);
 int seguroDeseaEliminar();
 usuario desactivar(usuario usu);
-void desactivarCuenta(int cbu);
 int chequeoDNI(int dni);
-int chequeoCBU(int cbu);
-usuario busquedaUsuXDNI(int dni, int *flag);
-void darDeBajaOAltaAdmin();
-int chequeoAdmin(int flag, usuario admin);
-void ordenaxDNI(usuario arrayUsu[], int validos);
-int ArchiToArray(usuario arrayUsu[], int dimension);
-void menuAdmin2(long int dni);
-void fromArchiToTransfer();
-void modificaArchivo(usuario dato);
+
 
 //Filas
 void inicFila(fila * fila);
@@ -164,7 +142,7 @@ nodoArbol* cargarArbolOrdenDNI(nodoArbol* arbol, nodoArbol* nuevo);
 nodoArbol* fromArchiToArbolDNI(nodoArbol* arbol);
 nodoArbol* buscarDNIenArbol(nodoArbol* arbol,int dni);
 nodoArbol* modificarUsuario(nodoArbol * arbol);
-nodoArbol * cambiarEstado(nodoArbol * arbol);
+nodoArbol* cambiarEstado(nodoArbol * arbol);
 void mostrarArbolInorden(nodoArbol* arbol);
 nodoArbol* buscarCBUenArbol(nodoArbol* arbol,int cbu);
 nodoArbol* fromArchiToArbolCBU(nodoArbol* arbol);

@@ -3,12 +3,12 @@
 #include <string.h>
 #include "time.h"
 #include "librerias1.h"
-
+//Inicializa nodoArbol
 nodoArbol* inicArbol()
 {
     return NULL;
 }
-
+// crea nodo de arbol
 nodoArbol* crearNodoArbol(usuario dato)
 {
     nodoArbol* aux=(nodoArbol*)malloc(sizeof(nodoArbol));
@@ -18,7 +18,7 @@ nodoArbol* crearNodoArbol(usuario dato)
     aux->der=NULL;
 return aux;
 }
-
+//Carga arbol ordenado por DNI
 nodoArbol* cargarArbolOrdenDNI(nodoArbol* arbol, nodoArbol* nuevo)
 {
     if(arbol==NULL)
@@ -33,7 +33,7 @@ nodoArbol* cargarArbolOrdenDNI(nodoArbol* arbol, nodoArbol* nuevo)
     }
 return arbol;
 }
-
+//Pasa de archivo a arbol ordenado por DNI
 nodoArbol* fromArchiToArbolDNI(nodoArbol* arbol)
 {
    FILE* buffer=fopen(archivo, "rb");
@@ -50,7 +50,7 @@ nodoArbol* fromArchiToArbolDNI(nodoArbol* arbol)
    }
 return arbol;
 }
-
+//Busca DNI en arbol ordenado por DNI
 nodoArbol* buscarDNIenArbol(nodoArbol* arbol,int dni)
 {
     nodoArbol* rta=NULL;
@@ -72,7 +72,7 @@ nodoArbol* buscarDNIenArbol(nodoArbol* arbol,int dni)
     }
 return rta;
 }
-
+//Muestra un arbol en inorden
 void mostrarArbolInorden(nodoArbol* arbol)
 {
     if(arbol)
@@ -82,7 +82,7 @@ void mostrarArbolInorden(nodoArbol* arbol)
         mostrarArbolInorden(arbol->der);
     }
 }
-
+//Carga arbol en orden por cbu
 nodoArbol* cargarArbolOrdenCBU(nodoArbol* arbol, nodoArbol* nuevo)
 {
     if(arbol==NULL)
@@ -97,7 +97,7 @@ nodoArbol* cargarArbolOrdenCBU(nodoArbol* arbol, nodoArbol* nuevo)
     }
 return arbol;
 }
-
+//Pasa del archivo a un arbol ordenado por CBU
 nodoArbol* fromArchiToArbolCBU(nodoArbol* arbol)
 {
    FILE* buffer=fopen(archivo, "rb");
@@ -114,7 +114,7 @@ nodoArbol* fromArchiToArbolCBU(nodoArbol* arbol)
    }
 return arbol;
 }
-
+//Busca CBU en arbol ordenado por CBU
 nodoArbol* buscarCBUenArbol(nodoArbol* arbol,int cbu)
 {
     nodoArbol* rta=NULL;
