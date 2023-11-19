@@ -319,7 +319,7 @@
 	"time.h"
 	"librerias1.h"
 
-1700424782 source:c:\users\valentin\documents\github\tpfinallabo2\vprueba\libreria1.c
+1700432829 source:c:\users\valentin\documents\github\tpfinallabo2\vprueba\libreria1.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -335,7 +335,7 @@
 	<unistd.h>
 	"librerias1.h"
 
-1700424730 source:c:\users\valentin\documents\github\tpfinallabo2\vprueba\main.c
+1700430964 source:c:\users\valentin\documents\github\tpfinallabo2\vprueba\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>

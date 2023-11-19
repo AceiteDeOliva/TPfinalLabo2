@@ -441,7 +441,7 @@ void fromFileToFila(nodoArbol * cuenta)
 }
 
 //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-
+//Modificacion de usuario
 ///RETORNA UN USUARIO CON LA NUEVA CONTRASEÑA
 usuario newPass(usuario usu)
 {

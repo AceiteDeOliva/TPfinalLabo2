@@ -85,22 +85,23 @@ void menuPrincipal(int opcionElegida)
         {
             ingreso = inicioSesion();
             cuenta = buscarDNIenArbol(raiz, ingreso.dni);
-            if (cuenta->dato.estado == 0)
+            if(cuenta)
             {
-                printf("Usuario desactivado hablar con administracion\n");
-            }
-            else if(cuenta)
-            {
-                chequeo = chequeoCredenciales(cuenta->dato, ingreso);
-                if (chequeo == 1)
+                if (cuenta->dato.estado == 0)
                 {
-                    menuInicioSesion(cuenta);
+                    printf("Usuario desactivado hablar con administracion\n");
                 }
-                else if (chequeo == 0)
+                else
                 {
-                    printf("Usuario incorrecto o contraseña incorrecta.\nSi esto le ocurre varias veces, puede que su cuenta haya sido desactivada forzozamente por deudas\n");
+                    chequeo = chequeoCredenciales(cuenta->dato, ingreso);
+                    if (chequeo == 1)
+                    {
+                        menuInicioSesion(cuenta);
+                    }
+
                 }
             }
+            printf("Usuario incorrecto o contrasenia incorrecta.\n");
             intentos++;
         }
         while (intentos < 3);
@@ -261,7 +262,6 @@ void menuAdmin()
 
 }
 
-
 ///MENU DE ADMIN PARA VER USUARIOS DE DISTINTAS FORMAS
 void verUsuariosMenu()
 {
@@ -363,7 +363,6 @@ void menuOpcionesAdminUsuario(nodoArbol* usuarioBuscado)
 
             usuarioBuscado = modificarUsuario(usuarioBuscado);
             reemplazarDato(usuarioBuscado->dato);
-
             system("pause");
             break;
         case 2:
@@ -407,7 +406,7 @@ void verEmpleadosMenu()
         puts("-----------------------------------|");
         printf("[1]VER EMPLEADOS ORDENADOS POR DNI\n");
         puts("-----------------------------------|");
-        printf("[2]BUSCAR EMPLEAD0 POR DNI\n");
+        printf("[2]BUSCAR EMPLEADO POR DNI\n");
         puts("-----------------------------------|");
         printf("[3]AGREGAR NUEVO EMPLEADO\n");
         puts("-----------------------------------|");
