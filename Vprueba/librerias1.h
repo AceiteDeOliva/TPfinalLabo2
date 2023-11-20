@@ -96,6 +96,7 @@ void funcionConBarraDeCarga();
 void reemplazarDato(usuario usu);
 void menuOpcionesAdminUsuario(nodoArbol* usuarioBuscado);
 void movimientoAArchivo(movimiento aux);
+void dibujoBancoCentral();
 
 ///Menu principal:
 void menuPrincipal(int opcionElegida);

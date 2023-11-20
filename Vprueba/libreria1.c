@@ -96,7 +96,7 @@ usuario crea1Usuario (usuario nuevoUsuario)
 {
     int flag=0;
     int flag1=0;
-dibujoBancoCentral();
+    dibujoBancoCentral();
 
     printf("PORFAVOR INGRESE LOS SIGUIENTES DATOS.\n");
 
@@ -246,7 +246,7 @@ int generarCBU(int digitos)
 
 usuario inicioSesion()
 {
-dibujoBancoCentral();
+    dibujoBancoCentral();
     usuario usuInicioSesion;
     printf("\nDNI: ");
     fflush(stdin);
@@ -515,8 +515,8 @@ usuario altaBaja (usuario usu)
 
     int eleccion = -1;
     system("cls");
-     dibujoBancoCentral();
-muestraUsuarioAdmin(usu);
+    dibujoBancoCentral();
+    muestraUsuarioAdmin(usu);
     puts("-----------------------------------|");
     printf("[1]DAR DE BAJA\n");
     puts("-----------------------------------|");
@@ -525,21 +525,22 @@ muestraUsuarioAdmin(usu);
     fflush(stdin);
     scanf("%i",&eleccion);
 
-    switch(eleccion){
-case 1:
-    usu = desactivar(usu);
-    break;
-case 2:
-    usu = activar(usu);
-     case 0:
-            menuOpcionesAdminUsuario(usuarioBuscado);
-            break;
-    break;
-default:
-    printf("opcion no valida.\n");
-    break;
+    switch(eleccion)
+    {
+    case 1:
+        usu = desactivar(usu);
+        break;
+    case 2:
+        usu = activar(usu);
+    case 0:
+        menuOpcionesAdminUsuario(usuarioBuscado);
+        break;
+        break;
+    default:
+        printf("opcion no valida.\n");
+        break;
     }
-return usu;
+    return usu;
 }
 
 ///RETORNO 0 PARA DESACTIVAR LA CUENTA
@@ -660,7 +661,7 @@ nodoArbol* modificarUsuario(nodoArbol * arbol)
     {
 
         system("cls");
-dibujoBancoCentral();
+        dibujoBancoCentral();
         muestraUsuarioAdmin(arbol->dato);
 
         printf("[MODIFICAR]\n");
@@ -717,7 +718,7 @@ void funcionConBarraDeCarga()
     const int totalIteraciones = 100; // N�mero total de iteraciones de tu funci�n
     int progreso;
 
-printf("\n\n\n\n\n\n\n\n\n");
+    printf("\n\n\n\n\n\n\n\n\n");
     for (progreso = 0; progreso <= totalIteraciones; ++progreso)
     {
         // Simula la ejecuci�n de tu funci�n
