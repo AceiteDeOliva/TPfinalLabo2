@@ -84,13 +84,80 @@ void mostrarMovimiento(movimiento m)
     else if(m.tipoDeOperacion == 0)
     {
 
-      printf("Extraccion\n");
+        printf("Extraccion\n");
 
-    }else{
+    }
+    else
+    {
 
-    printf("Deposito\n");
+        printf("Deposito\n");
 
     }
     printf("Fecha de operacion: %s", ctime(&m.fecha));
     puts("-----------------------------------------|\n");
+}
+
+movimiento extraer(fila * fila)
+{
+    movimiento resp;
+
+    if(fila->cabecera)
+    {
+
+        resp = verPrimero(fila->cabecera);
+        fila->cabecera = borrarPrimero(fila->cabecera);
+
+        if(!fila->cabecera)
+        {
+
+            fila->cola = NULL;
+
+        }
+
+    }
+    return resp;
+}
+
+movimiento verPrimero(nodoDoble * lista)
+{
+    movimiento resp;
+    if(lista)
+    {
+
+        resp = lista->dato;
+
+    }
+
+    return resp;
+
+}
+
+nodoDoble * borrarPrimero(nodoDoble * lista)
+{
+
+    nodoDoble * aBorrar = lista;
+
+    if(lista)
+    {
+
+        lista = lista->siguiente;
+        if(lista)
+        {
+            lista->anterior = NULL;
+        }
+        free(aBorrar);
+
+    }
+    return lista;
+}
+
+void recorrerMostrarExtraerFila(fila * fila)
+{
+    movimiento aux;
+    while(fila->cabecera)
+    {
+        aux = extraer(fila);
+        mostrarMovimiento(aux);
+    }
+
 }

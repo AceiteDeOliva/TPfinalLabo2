@@ -260,7 +260,7 @@ usuario inicioSesion()
 }
 //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 ///FUNCIONES LUEGO DE INICIAR SESION:
-void depositarExtraer(nodoArbol * cuenta)
+void depositarExtraer(nodoArbol * cuenta, fila * filita)
 {
     int opcion = -1;
     movimiento efectivo;
@@ -287,7 +287,7 @@ void depositarExtraer(nodoArbol * cuenta)
         efectivo.tipoDeOperacion = 1;
         cuenta->dato.saldo += efectivo.monto;
         reemplazarDato(cuenta->dato);
-        agregarAFila(&cuenta->movimiento, efectivo);
+        agregarAFila(filita, efectivo);
         movimientoAArchivo(efectivo);
         break;
 
@@ -298,7 +298,7 @@ void depositarExtraer(nodoArbol * cuenta)
 
             cuenta->dato.saldo -= efectivo.monto;
             reemplazarDato(cuenta->dato);
-            agregarAFila(&cuenta->movimiento, efectivo);
+            agregarAFila(filita, efectivo);
             movimientoAArchivo(efectivo);
 
         }
@@ -345,7 +345,7 @@ movimiento generarDeposito(nodoArbol * cuenta)
 }
 
 //Carga datos de la transferencia
-void carga1Transfer (nodoArbol * raiz,nodoArbol * cuenta)
+void carga1Transfer (nodoArbol * raiz,nodoArbol * cuenta,fila * filita)
 {
     movimiento transfer;
     transfer.fecha = time(NULL);
@@ -384,7 +384,7 @@ void carga1Transfer (nodoArbol * raiz,nodoArbol * cuenta)
                 {
                     cuenta->dato.saldo -= transfer.monto;
                     reemplazarDato(cuenta->dato);
-                    agregarAFila(&cuenta->movimiento, transfer);
+                    agregarAFila(filita, transfer);
                     movimientoAArchivo(transfer);
 
                     receptor->dato.saldo += transfer.monto;
@@ -424,8 +424,9 @@ void movimientoAArchivo(movimiento aux)
 
     fclose(file);
 }
+
 //Pasa del archivo de movimientos a la fila
-void fromFileToFila(nodoArbol * cuenta)
+void fromFileToFila(nodoArbol * cuenta,fila * filita)
 {
     movimiento aux;
     FILE* file = fopen(archivo3, "rb");
@@ -441,13 +442,13 @@ void fromFileToFila(nodoArbol * cuenta)
         if(cuenta->dato.cbu == aux.cbuEmisor && aux.tipoDeOperacion ==0)
         {
 
-            agregarAFila(&cuenta->movimiento,aux);
+            agregarAFila(filita,aux);
 
         }
         else if(cuenta->dato.cbu == aux.cbuReceptor && aux.tipoDeOperacion == 1)
         {
 
-            agregarAFila(&cuenta->movimiento,aux);
+            agregarAFila(filita,aux);
 
         }
 

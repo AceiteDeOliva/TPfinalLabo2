@@ -44,7 +44,6 @@ typedef struct
 typedef struct nodoArbol
 {
     usuario dato;
-    fila movimiento;
     struct nodoArbol* izq;
     struct nodoArbol* der;
 }nodoArbol;
@@ -107,7 +106,7 @@ int chequeoCredenciales(usuario usuBuscado, usuario ingreso);
 
 ///menu de sesion iniciada:
 void menuInicioSesion(nodoArbol * cuenta);
-void carga1Transfer (nodoArbol * raiz,nodoArbol * cuenta);
+void carga1Transfer (nodoArbol * raiz,nodoArbol * cuenta,fila * filita);
 void tranferencia(nodoArbol * cuenta);
 usuario newPass(usuario usu);
 void modPass(char contrasenia[20], int cbu);
@@ -133,9 +132,12 @@ nodoDoble* crearNodoDoble(movimiento dato);
 nodoDoble * buscarUltimo(nodoDoble * lista);
 void mostrarMovimiento(movimiento m);
 void mostrarListaDoble(nodoDoble * lista);
-void fromFileToFila(nodoArbol * cuenta);
+void fromFileToFila(nodoArbol * cuenta,fila * filita);
 movimiento generarDeposito(nodoArbol * cuenta);
-void depositarExtraer(nodoArbol * cuenta);
+void depositarExtraer(nodoArbol * cuenta, fila * filita);
+movimiento verPrimero(nodoDoble * lista);
+nodoDoble * borrarPrimero(nodoDoble * lista);
+void recorrerMostrarExtraerFila(fila * fila);
 
 ///ARBOLES
 nodoArbol* inicArbol();

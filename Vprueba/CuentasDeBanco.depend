@@ -293,14 +293,14 @@
 	"time.h"
 	"librerias1.h"
 
-1700433883 source:c:\users\valentin\documents\github\tpfinallabo2\vprueba\arboles.c
+1700500237 source:c:\users\valentin\documents\github\tpfinallabo2\vprueba\arboles.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"time.h"
 	"librerias1.h"
 
-1700440962 c:\users\valentin\documents\github\tpfinallabo2\vprueba\librerias1.h
+1700500446 c:\users\valentin\documents\github\tpfinallabo2\vprueba\librerias1.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -312,14 +312,14 @@
 	<unistd.h>
 	"librerias1.h"
 
-1700446600 source:c:\users\valentin\documents\github\tpfinallabo2\vprueba\filas.c
+1700499785 source:c:\users\valentin\documents\github\tpfinallabo2\vprueba\filas.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"time.h"
 	"librerias1.h"
 
-1700440953 source:c:\users\valentin\documents\github\tpfinallabo2\vprueba\libreria1.c
+1700500460 source:c:\users\valentin\documents\github\tpfinallabo2\vprueba\libreria1.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -335,7 +335,7 @@
 	<unistd.h>
 	"librerias1.h"
 
-1700444143 source:c:\users\valentin\documents\github\tpfinallabo2\vprueba\main.c
+1700500900 source:c:\users\valentin\documents\github\tpfinallabo2\vprueba\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>

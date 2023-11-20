@@ -8,8 +8,9 @@
 int main()
 {
     system("color A0");
-    int opcion;
-    do
+    int opcion = -1;
+
+    while(opcion != 0)
     {
         system("cls");
 
@@ -54,7 +55,6 @@ int main()
 
         }
     }
-    while(opcion != 0);
 
     return 0;
 }
@@ -125,7 +125,8 @@ void menuInicioSesion(nodoArbol * cuenta)
 {
     int x;
     int seguro = 0;
-    fromFileToFila(cuenta);
+    fila movimientos;
+    inicFila(&movimientos);
     nodoArbol * raiz = NULL;
     raiz = fromArchiToArbolCBU(raiz);
 
@@ -158,7 +159,8 @@ void menuInicioSesion(nodoArbol * cuenta)
         {
         case 1:
             system("cls");
-            mostrarListaDoble(cuenta->movimiento.cabecera);
+            fromFileToFila(cuenta,&movimientos);
+            recorrerMostrarExtraerFila(&movimientos);
             printf("Su saldo actual es:%li\n",cuenta->dato.saldo);
             puts("-----------------------------------|");
             system("pause");
@@ -166,12 +168,12 @@ void menuInicioSesion(nodoArbol * cuenta)
 
         case 2:
             system("cls");
-            depositarExtraer(cuenta);
+            depositarExtraer(cuenta,&movimientos);
             system("pause");
             break;
         case 3:
             system("cls");
-            carga1Transfer (raiz,cuenta);
+            carga1Transfer (raiz,cuenta,&movimientos);
             system("pause");
             break;
         case 4:
@@ -338,6 +340,8 @@ void verUsuariosMenu()
 void menuOpcionesAdminUsuario(nodoArbol* usuarioBuscado)
 {
     int x;
+    fila movimientos;
+    inicFila(&movimientos);
 
     do
     {
@@ -373,8 +377,8 @@ void menuOpcionesAdminUsuario(nodoArbol* usuarioBuscado)
             break;
         case 3:
             system("cls");
-            fromFileToFila(usuarioBuscado);
-            mostrarListaDoble(usuarioBuscado->movimiento.cabecera);
+            fromFileToFila(usuarioBuscado,&movimientos);
+            recorrerMostrarExtraerFila(&movimientos);
             printf("Saldo:%li\n", usuarioBuscado->dato.saldo);
 
             system("pause");

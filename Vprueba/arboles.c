@@ -13,7 +13,6 @@ nodoArbol* crearNodoArbol(usuario dato)
 {
     nodoArbol* aux=(nodoArbol*)malloc(sizeof(nodoArbol));
     aux->dato=dato;
-    inicFila(&aux->movimiento);
     aux->izq=NULL;
     aux->der=NULL;
 return aux;
