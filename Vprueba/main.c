@@ -130,7 +130,6 @@ void menuInicioSesion(nodoArbol * cuenta)
     inicFila(&movimientos);
     nodoArbol * raiz = NULL;
     raiz = fromArchiToArbolCBU(raiz);
-
     do
     {
         system("cls");
@@ -169,12 +168,12 @@ void menuInicioSesion(nodoArbol * cuenta)
 
         case 2:
             system("cls");
-            depositarExtraer(cuenta,&movimientos);
+            depositarExtraer(cuenta);
             system("pause");
             break;
         case 3:
             system("cls");
-            carga1Transfer (raiz,cuenta,&movimientos);
+            carga1Transfer (raiz,cuenta);
             system("pause");
             break;
         case 4:

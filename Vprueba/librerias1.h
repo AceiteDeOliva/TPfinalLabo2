@@ -106,7 +106,7 @@ int chequeoCredenciales(usuario usuBuscado, usuario ingreso);
 
 ///menu de sesion iniciada:
 void menuInicioSesion(nodoArbol * cuenta);
-void carga1Transfer (nodoArbol * raiz,nodoArbol * cuenta,fila * filita);
+void carga1Transfer (nodoArbol * raiz,nodoArbol * cuenta);
 void tranferencia(nodoArbol * cuenta);
 usuario newPass(usuario usu);
 void modPass(char contrasenia[20], int cbu);
@@ -133,7 +133,7 @@ nodoDoble * buscarUltimo(nodoDoble * lista);
 void mostrarMovimiento(movimiento m);
 void fromFileToFila(nodoArbol * cuenta,fila * filita);
 movimiento generarDeposito(nodoArbol * cuenta);
-void depositarExtraer(nodoArbol * cuenta, fila * filita);
+void depositarExtraer(nodoArbol * cuenta);
 movimiento verPrimero(nodoDoble * lista);
 nodoDoble * borrarPrimero(nodoDoble * lista);
 void recorrerMostrarExtraerFila(fila * fila);

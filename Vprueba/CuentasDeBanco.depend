@@ -300,7 +300,7 @@
 	"time.h"
 	"librerias1.h"
 
-1700505992 c:\users\valentin\documents\github\tpfinallabo2\vprueba\librerias1.h
+1700507687 c:\users\valentin\documents\github\tpfinallabo2\vprueba\librerias1.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -319,7 +319,7 @@
 	"time.h"
 	"librerias1.h"
 
-1700500460 source:c:\users\valentin\documents\github\tpfinallabo2\vprueba\libreria1.c
+1700508052 source:c:\users\valentin\documents\github\tpfinallabo2\vprueba\libreria1.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -328,14 +328,14 @@
 	<conio.h>
 	<unistd.h>
 
-1700505992 source:c:\users\valentin\documents\github\tpfinallabo2\vprueba\listasimple.c
+1700506119 source:c:\users\valentin\documents\github\tpfinallabo2\vprueba\listasimple.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	<unistd.h>
 	"librerias1.h"
 
-1700506083 source:c:\users\valentin\documents\github\tpfinallabo2\vprueba\main.c
+1700507704 source:c:\users\valentin\documents\github\tpfinallabo2\vprueba\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>

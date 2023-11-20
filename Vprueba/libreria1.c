@@ -260,7 +260,7 @@ usuario inicioSesion()
 }
 //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 ///FUNCIONES LUEGO DE INICIAR SESION:
-void depositarExtraer(nodoArbol * cuenta, fila * filita)
+void depositarExtraer(nodoArbol * cuenta)
 {
     int opcion = -1;
     movimiento efectivo;
@@ -287,7 +287,6 @@ void depositarExtraer(nodoArbol * cuenta, fila * filita)
         efectivo.tipoDeOperacion = 1;
         cuenta->dato.saldo += efectivo.monto;
         reemplazarDato(cuenta->dato);
-        agregarAFila(filita, efectivo);
         movimientoAArchivo(efectivo);
         break;
 
@@ -298,7 +297,6 @@ void depositarExtraer(nodoArbol * cuenta, fila * filita)
 
             cuenta->dato.saldo -= efectivo.monto;
             reemplazarDato(cuenta->dato);
-            agregarAFila(filita, efectivo);
             movimientoAArchivo(efectivo);
 
         }
@@ -345,7 +343,7 @@ movimiento generarDeposito(nodoArbol * cuenta)
 }
 
 //Carga datos de la transferencia
-void carga1Transfer (nodoArbol * raiz,nodoArbol * cuenta,fila * filita)
+void carga1Transfer (nodoArbol * raiz,nodoArbol * cuenta)
 {
     movimiento transfer;
     transfer.fecha = time(NULL);
@@ -384,7 +382,6 @@ void carga1Transfer (nodoArbol * raiz,nodoArbol * cuenta,fila * filita)
                 {
                     cuenta->dato.saldo -= transfer.monto;
                     reemplazarDato(cuenta->dato);
-                    agregarAFila(filita, transfer);
                     movimientoAArchivo(transfer);
 
                     receptor->dato.saldo += transfer.monto;
@@ -556,7 +553,7 @@ void muestra1Usuario(usuario usu)
     printf("Genero:%c\n", usu.genero);
     printf("DNI:%i\n", usu.dni);
     printf("Mail:%s\n", usu.mail);
-    printf("CBU:%i\n", usu.cbu);
+    printf("CBU:%08d\n", usu.cbu);
     puts("---------------------------------------------");
 }
 
