@@ -367,7 +367,8 @@ void menuOpcionesAdminUsuario(nodoArbol* usuarioBuscado)
             break;
         case 2:
             system("cls");
-
+            usuarioBuscado->dato = altaBaja(usuarioBuscado->dato);
+            reemplazarDato(usuarioBuscado->dato);
             system("pause");
             break;
         case 3:
@@ -375,6 +376,7 @@ void menuOpcionesAdminUsuario(nodoArbol* usuarioBuscado)
             fromFileToFila(usuarioBuscado);
             mostrarListaDoble(usuarioBuscado->movimiento.cabecera);
             printf("Saldo:%li\n", usuarioBuscado->dato.saldo);
+
             system("pause");
             break;
         case 0:

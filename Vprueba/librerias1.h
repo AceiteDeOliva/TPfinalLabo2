@@ -121,6 +121,8 @@ void verUsuariosMenu();
 void muestraUsuarioAdmin(usuario usu);
 int seguroDeseaEliminar();
 usuario desactivar(usuario usu);
+usuario activar(usuario usu);
+usuario altaBaja (usuario usu);
 int chequeoDNI(int dni);
 
 

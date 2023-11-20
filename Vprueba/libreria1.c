@@ -258,11 +258,8 @@ usuario inicioSesion()
 
     return usuInicioSesion;
 }
-
-///FUNCIONES LUEGO DE INICIAR SESION:
-
-
 //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+///FUNCIONES LUEGO DE INICIAR SESION:
 void depositarExtraer(nodoArbol * cuenta)
 {
     int opcion = -1;
@@ -489,11 +486,47 @@ usuario newPass(usuario usu)
     return usu;
 }
 
+
+usuario altaBaja (usuario usu)
+{
+    muestraUsuarioAdmin(usu);
+
+    int eleccion = -1;
+    puts("-----------------------------------|");
+    printf("[1]DAR DE BAJA\n");
+    puts("-----------------------------------|");
+    printf("[2]DAR DE ALTA\n");
+    puts("-----------------------------------|");
+    fflush(stdin);
+    scanf("%i",&eleccion);
+
+    switch(eleccion){
+case 1:
+    usu = desactivar(usu);
+    break;
+case 2:
+    usu = activar(usu);
+    break;
+default:
+    printf("opcion no valida.\n");
+    break;
+    }
+return usu;
+}
+
 ///RETORNO 0 PARA DESACTIVAR LA CUENTA
 usuario desactivar(usuario usu)
 {
 
     usu.estado=0;
+
+    return usu;
+}
+///RETORNO 1 PARA ACTIVAR LA CUENTA
+usuario activar(usuario usu)
+{
+
+    usu.estado=1;
 
     return usu;
 }

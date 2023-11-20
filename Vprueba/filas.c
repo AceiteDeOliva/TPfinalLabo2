@@ -61,7 +61,7 @@ void mostrarListaDoble(nodoDoble * lista)
 //muestra una variable tipo movimiento
 void mostrarMovimiento(movimiento m)
 {
-    puts("-----------------------------------------\n");
+    puts("-----------------------------------------|\n");
     if(m.tipoDeOperacion == 0)
     {
         printf("Importe:-%i\n",m.monto);
@@ -91,9 +91,6 @@ void mostrarMovimiento(movimiento m)
     printf("Deposito\n");
 
     }
-
-
-
     printf("Fecha de operacion: %s", ctime(&m.fecha));
-    puts("-----------------------------------------\n");
+    puts("-----------------------------------------|\n");
 }
