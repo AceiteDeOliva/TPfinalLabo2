@@ -312,7 +312,7 @@
 	<unistd.h>
 	"librerias1.h"
 
-1700499785 source:c:\users\valentin\documents\github\tpfinallabo2\vprueba\filas.c
+1700501359 source:c:\users\valentin\documents\github\tpfinallabo2\vprueba\filas.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -335,7 +335,7 @@
 	<unistd.h>
 	"librerias1.h"
 
-1700500929 source:c:\users\valentin\documents\github\tpfinallabo2\vprueba\main.c
+1700501877 source:c:\users\valentin\documents\github\tpfinallabo2\vprueba\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>

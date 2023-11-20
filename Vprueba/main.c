@@ -51,6 +51,7 @@ int main()
             break;
         default:
             printf("Opcion no valida\n");
+            system("pause");
             break;
 
         }
