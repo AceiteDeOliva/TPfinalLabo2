@@ -131,7 +131,6 @@ void agregarAFila(fila * fila,movimiento dato);
 nodoDoble* crearNodoDoble(movimiento dato);
 nodoDoble * buscarUltimo(nodoDoble * lista);
 void mostrarMovimiento(movimiento m);
-void mostrarListaDoble(nodoDoble * lista);
 void fromFileToFila(nodoArbol * cuenta,fila * filita);
 movimiento generarDeposito(nodoArbol * cuenta);
 void depositarExtraer(nodoArbol * cuenta, fila * filita);

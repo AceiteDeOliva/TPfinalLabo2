@@ -44,20 +44,7 @@ void agregarAFila(fila * fila,movimiento dato)
     }
 
 }
-//Muestra la lista doble dentro de la fila
-void mostrarListaDoble(nodoDoble * lista)
-{
-    nodoDoble* seg=lista;
 
-    if(seg)
-    {
-        while(seg)
-        {
-            mostrarMovimiento(seg->dato);
-            seg=seg->siguiente;
-        }
-    }
-}
 //muestra una variable tipo movimiento
 void mostrarMovimiento(movimiento m)
 {
@@ -96,7 +83,7 @@ void mostrarMovimiento(movimiento m)
     printf("Fecha de operacion: %s", ctime(&m.fecha));
     puts("-----------------------------------------|\n");
 }
-
+//Extrae el dato del primer nodo de una lista doble
 movimiento extraer(fila * fila)
 {
     movimiento resp;
@@ -117,7 +104,7 @@ movimiento extraer(fila * fila)
     }
     return resp;
 }
-
+// devuelve el primer miembre de una lista doble
 movimiento verPrimero(nodoDoble * lista)
 {
     movimiento resp;
@@ -131,7 +118,7 @@ movimiento verPrimero(nodoDoble * lista)
     return resp;
 
 }
-
+//Borra el primer nodo de la lista y lo reemplaza con el segundo
 nodoDoble * borrarPrimero(nodoDoble * lista)
 {
 
@@ -150,7 +137,7 @@ nodoDoble * borrarPrimero(nodoDoble * lista)
     }
     return lista;
 }
-
+//recorre toda la fila y la va mostrando a medida que elimina los nodos
 void recorrerMostrarExtraerFila(fila * fila)
 {
     movimiento aux;
