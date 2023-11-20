@@ -13,7 +13,7 @@ int main()
     while(opcion != 0)
     {
         system("cls");
-        dibujoBancoCentral();
+dibujoBancoCentral();
         puts("------------------------------|");
         printf("[1]CREAR CUENTA\n");
         puts("------------------------------|");
@@ -37,6 +37,7 @@ int main()
             break;
 
         case 3:
+            printf("Abriendo ventana admin\n");
             menuAdmin();
             system("pause");
             system("cls");
@@ -46,6 +47,7 @@ int main()
             break;
         default:
             printf("Opcion no valida\n");
+            system("pause");
             break;
 
         }
@@ -151,7 +153,7 @@ void menuInicioSesion(nodoArbol * cuenta)
         {
         case 1:
             system("cls");
-            dibujoBancoCentral();
+dibujoBancoCentral();
             fromFileToFila(cuenta,&movimientos);
             recorrerMostrarExtraerFila(&movimientos);
             printf("Su saldo actual es:%li\n",cuenta->dato.saldo);
@@ -162,24 +164,24 @@ void menuInicioSesion(nodoArbol * cuenta)
         case 2:
             system("cls");
             dibujoBancoCentral();
-            depositarExtraer(cuenta,&movimientos);
+            depositarExtraer(cuenta);
             system("pause");
             break;
         case 3:
             system("cls");
             dibujoBancoCentral();
-            carga1Transfer (raiz,cuenta,&movimientos);
+            carga1Transfer (raiz,cuenta);
             system("pause");
             break;
         case 4:
             system("cls");
-            dibujoBancoCentral();
+dibujoBancoCentral();
             muestra1Usuario(cuenta->dato);
             system("pause");
             break;
         case 5:
             system("cls");
-            dibujoBancoCentral();
+dibujoBancoCentral();
             cuenta->dato = newPass(cuenta->dato);
             reemplazarDato(cuenta->dato);
             printf("Contrasenia cambiada con exito...\n");
@@ -187,7 +189,7 @@ void menuInicioSesion(nodoArbol * cuenta)
             break;
         case 6:
             system("cls");
-            dibujoBancoCentral();
+dibujoBancoCentral();
             seguro=seguroDeseaEliminar();
             if(seguro==1)
             {
@@ -216,7 +218,7 @@ void menuInicioSesion(nodoArbol * cuenta)
 ///MENU DE ADMIN
 void menuAdmin()
 {
-    funcionConBarraDeCarga();
+funcionConBarraDeCarga();
     int x;
     do
     {
@@ -250,7 +252,7 @@ void menuAdmin()
             break;
         default:
             system("cls");
-            printf("Ha seleccionado una opcion que no está entre las posibles... volviendo al menu\n");
+            printf("Ha seleccionado una opcion que no estï¿½ entre las posibles... volviendo al menu\n");
             system("pause");
             break;
         }
@@ -268,7 +270,7 @@ void verUsuariosMenu()
     nodoArbol* arbol=inicArbol();
     nodoListaS* lista=inicLista();
     nodoArbol* nodoBuscado = NULL;
-
+    arbol = fromArchiToArbolDNI(nodoBuscado);
     do
     {
         system("cls");
@@ -277,6 +279,8 @@ void verUsuariosMenu()
         printf("[1]VER USUARIOS ORDENADOS POR DNI\n");
         puts("-----------------------------------|");
         printf("[2]BUSCAR USUARIO POR DNI\n");
+        puts("-----------------------------------|");
+        printf("[3]MOSTRAR USUARIOS DADOS DE BAJA\n");
         puts("-----------------------------------|");
         printf("[0]SALIR\n");
         puts("-----------------------------------|");
@@ -287,12 +291,10 @@ void verUsuariosMenu()
         {
         case 1:
             system("cls");
-            dibujoBancoCentral();
+dibujoBancoCentral();
             printf("ORDENADO POR DNI:\n");
-            nodoBuscado = fromArchiToArbolDNI(nodoBuscado);
-            mostrarArbolInorden(nodoBuscado);
-//            lista=FromArchiAListaOrdenada(lista);
-//            mostrarLista(lista);
+            mostrarArbolInorden(arbol);
+
             system("pause");
             break;
         case 2:
@@ -301,8 +303,8 @@ void verUsuariosMenu()
             printf("\nINGRESE DNI DEL USUARIO QUE DESEA BUSCAR: ");
             fflush(stdin);
             scanf("%ld", &dni);
-            arbol=fromArchiToArbolDNI(arbol);
             nodoBuscado=buscarDNIenArbol(arbol, dni);
+
             if(nodoBuscado != NULL)
             {
                 menuOpcionesAdminUsuario(nodoBuscado);
@@ -314,7 +316,14 @@ void verUsuariosMenu()
             }
             system("pause");
             break;
+        case 3:
+            system("cls");
+            lista=FromArchiAListaOrdenadaDesactivados(lista);
+            mostrarLista(lista);
+            system("pause");
+            break;
         case 0:
+            borrarArbol(arbol);
             menuAdmin();
             break;
         default:
@@ -336,8 +345,9 @@ void menuOpcionesAdminUsuario(nodoArbol* usuarioBuscado)
     do
     {
         system("cls");
-        dibujoBancoCentral();
+dibujoBancoCentral();
         muestra1Usuario(usuarioBuscado->dato);
+
         puts("-----------------------------------|");
         printf("[1]MODIFICAR USUARIO\n");
         puts("-----------------------------------|");
@@ -354,6 +364,7 @@ void menuOpcionesAdminUsuario(nodoArbol* usuarioBuscado)
         {
         case 1:
             system("cls");
+
             usuarioBuscado = modificarUsuario(usuarioBuscado);
             reemplazarDato(usuarioBuscado->dato);
             system("pause");
@@ -361,19 +372,19 @@ void menuOpcionesAdminUsuario(nodoArbol* usuarioBuscado)
         case 2:
             system("cls");
             dibujoBancoCentral();
-            usuarioBuscado = altaBaja(usuarioBuscado);
+            usuarioBuscado->dato = altaBaja(usuarioBuscado->dato);
             reemplazarDato(usuarioBuscado->dato);
             system("pause");
             break;
         case 3:
             system("cls");
-            dibujoBancoCentral();
+dibujoBancoCentral();
             puts("------------");
             printf("SALDO: %li |\n", usuarioBuscado->dato.saldo);
             puts("------------\n");
             fromFileToFila(usuarioBuscado,&movimientos);
             recorrerMostrarExtraerFila(&movimientos);
-            system("pause");
+                        system("pause");
             break;
         case 0:
             verUsuariosMenu();
@@ -415,14 +426,14 @@ void verEmpleadosMenu()
         {
         case 1:
             system("cls");
-            dibujoBancoCentral();
+dibujoBancoCentral();
             validos=fromArchiEmpleadosToADL(adlEmpleados, 5);
             mostrarADLempleados(adlEmpleados,validos);
             system("pause");
             break;
         case 2:
             system("cls");
-            dibujoBancoCentral();
+dibujoBancoCentral();
             mostrarArchi();
             system("pause");
             break;

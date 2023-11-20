@@ -21,7 +21,7 @@ void reemplazarDato(usuario usu)
 
             if(usu.dni==aux.dni)
             {
-                fseek(archi, -sizeof(usuario), SEEK_CUR);  // Retrocede el cursor y vuelve un paso para atras para que quede em eñ mismo lugar
+                fseek(archi, -sizeof(usuario), SEEK_CUR);  // Retrocede el cursor y vuelve un paso para atras para que quede em eï¿½ mismo lugar
                 fwrite(&usu, sizeof(usuario), 1, archi);
                 break;
 
@@ -96,7 +96,7 @@ usuario crea1Usuario (usuario nuevoUsuario)
 {
     int flag=0;
     int flag1=0;
-     dibujoBancoCentral();
+dibujoBancoCentral();
 
     printf("PORFAVOR INGRESE LOS SIGUIENTES DATOS.\n");
 
@@ -141,7 +141,7 @@ usuario crea1Usuario (usuario nuevoUsuario)
         printf("\nMAIL: ");
         fflush(stdin);
         gets(nuevoUsuario.mail);
-        nuevoUsuario.mail[strcspn(nuevoUsuario.mail, "\n")] = '\0'; // Eliminar el salto de línea al final
+        nuevoUsuario.mail[strcspn(nuevoUsuario.mail, "\n")] = '\0'; // Eliminar el salto de lï¿½nea al final
 
         // Verificar si el email contiene '@'
         tieneArroba = strchr(nuevoUsuario.mail, '@') != NULL;
@@ -149,7 +149,7 @@ usuario crea1Usuario (usuario nuevoUsuario)
         // Si no contiene '@', mostrar un mensaje de error
         if (!tieneArroba)
         {
-            printf("El email debe contener '@'. Por favor, inténtelo de nuevo.\n");
+            printf("El email debe contener '@'. Por favor, intï¿½ntelo de nuevo.\n");
         }
 
 
@@ -179,26 +179,26 @@ usuario crea1Usuario (usuario nuevoUsuario)
 
         if (ch == 13)
         {
-            break;  // Si el carácter es 'Enter', rompe el bucle
+            break;  // Si el carï¿½cter es 'Enter', rompe el bucle
         }
         else if (ch == 8 && i > 0)
         {
-            // Si el carácter es Backspace y hay caracteres para borrar
-            printf("\b \b");  // Borra el último carácter en la pantalla
+            // Si el carï¿½cter es Backspace y hay caracteres para borrar
+            printf("\b \b");  // Borra el ï¿½ltimo carï¿½cter en la pantalla
             i--;
         }
         else if (i < sizeof(contrasenia) - 1)
         {
-            // Si hay espacio para más caracteres
+            // Si hay espacio para mï¿½s caracteres
             contrasenia[i++] = ch;
-            printf("*");  // Muestra un asterisco en lugar del carácter
+            printf("*");  // Muestra un asterisco en lugar del carï¿½cter
         }
     }
 
     contrasenia[i] = '\0';
 
     strcpy(nuevoUsuario.contrasenia,contrasenia);
-    //printf("la contrseña es %s ",nuevoUsuario.contrasenia);
+    //printf("la contrseï¿½a es %s ",nuevoUsuario.contrasenia);
 
     srand((unsigned int)time(NULL));
     nuevoUsuario.cbu = generarCBU(8);
@@ -210,7 +210,7 @@ usuario crea1Usuario (usuario nuevoUsuario)
     return nuevoUsuario;
 }
 
-///RETORNA 1 SI EL MAIL Y LA CONTRASEÑA PERTENECENEN A UNA CUENTA Y 0 SI NO
+///RETORNA 1 SI EL MAIL Y LA CONTRASEï¿½A PERTENECENEN A UNA CUENTA Y 0 SI NO
 int chequeoCredenciales(usuario usuBuscado, usuario ingreso) //se deberia hacer por arbol
 {
     int flag=0;
@@ -246,7 +246,7 @@ int generarCBU(int digitos)
 
 usuario inicioSesion()
 {
-    dibujoBancoCentral();
+dibujoBancoCentral();
     usuario usuInicioSesion;
     printf("\nDNI: ");
     fflush(stdin);
@@ -266,19 +266,19 @@ usuario inicioSesion()
 
         if (ch == 13)
         {
-            break;  // Si el carácter es 'Enter', rompe el bucle
+            break;  // Si el carï¿½cter es 'Enter', rompe el bucle
         }
         else if (ch == 8 && i > 0)
         {
-            // Si el carácter es Backspace y hay caracteres para borrar
-            printf("\b \b");  // Borra el último carácter en la pantalla
+            // Si el carï¿½cter es Backspace y hay caracteres para borrar
+            printf("\b \b");  // Borra el ï¿½ltimo carï¿½cter en la pantalla
             i--;
         }
         else if (i < sizeof(contrasenia) - 1)
         {
-            // Si hay espacio para más caracteres
+            // Si hay espacio para mï¿½s caracteres
             contrasenia[i++] = ch;
-            printf("*");  // Muestra un asterisco en lugar del carácter
+            printf("*");  // Muestra un asterisco en lugar del carï¿½cter
         }
     }
 
@@ -290,69 +290,64 @@ usuario inicioSesion()
 }
 //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 ///FUNCIONES LUEGO DE INICIAR SESION:
-void depositarExtraer(nodoArbol * cuenta, fila * filita)
+void depositarExtraer(nodoArbol * cuenta)
 {
-    int opcion;
-    do
+    int opcion = -1;
+    movimiento efectivo;
+    system("cls");
+    dibujoBancoCentral();
+    puts("-----------------------------------|");
+    printf("[1]DEPOSITAR\n");
+    puts("-----------------------------------|");
+    printf("[2]EXTRAER\n");
+    puts("-----------------------------------|");
+    printf("[0]SALIR\n");
+    puts("-----------------------------------|");
+    fflush(stdin);
+    scanf("%i",&opcion);
+    efectivo = generarDeposito(cuenta);
+    switch(opcion)
     {
-        movimiento efectivo;
-        system("cls");
-        dibujoBancoCentral();
-        puts("-----------------------------------|");
-        printf("[1]DEPOSITAR\n");
-        puts("-----------------------------------|");
-        printf("[2]EXTRAER\n");
-        puts("-----------------------------------|");
-        printf("[0]SALIR\n");
-        puts("-----------------------------------|");
-        fflush(stdin);
-        scanf("%i",&opcion);
-        switch(opcion)
+
+    case 1:
+
+        efectivo.tipoDeOperacion = 1;
+        cuenta->dato.saldo += efectivo.monto;
+        reemplazarDato(cuenta->dato);
+        movimientoAArchivo(efectivo);
+        break;
+
+    case 2:
+        efectivo.tipoDeOperacion = 0;
+        if(cuenta->dato.saldo >= efectivo.monto)
         {
 
-        case 1:
-            efectivo = generarDeposito(cuenta);
-            efectivo.tipoDeOperacion = 1;
-            cuenta->dato.saldo += efectivo.monto;
+            cuenta->dato.saldo -= efectivo.monto;
             reemplazarDato(cuenta->dato);
-            agregarAFila(filita, efectivo);
             movimientoAArchivo(efectivo);
-            break;
 
-        case 2:
-            efectivo = generarDeposito(cuenta);
-            efectivo.tipoDeOperacion = 0;
-            if(cuenta->dato.saldo >= efectivo.monto)
-            {
-
-                cuenta->dato.saldo -= efectivo.monto;
-                reemplazarDato(cuenta->dato);
-                agregarAFila(filita, efectivo);
-                movimientoAArchivo(efectivo);
-
-            }
-            else
-            {
-
-                printf("Saldo insuficiente\n");
-
-            }
-
-            break;
-        case 0:
-            menuInicioSesion(cuenta);
-            break;
-
-        default:
-
-            printf("Opcion no valida\n");
         }
+        else
+        {
+
+            printf("Saldo insuficiente\n");
+
+        }
+
+        break;
+
+    case 0:
+        menuInicioSesion(cuenta);
+        break;
+
+    default:
+
+        printf("Opcion no valida\n");
+        break;
+
     }
 
-    while(opcion!=0);
-
 }
-
 ///MOVIMIENTOS
 movimiento generarDeposito(nodoArbol * cuenta)
 {
@@ -375,7 +370,7 @@ movimiento generarDeposito(nodoArbol * cuenta)
 }
 
 //Carga datos de la transferencia
-void carga1Transfer (nodoArbol * raiz,nodoArbol * cuenta,fila * filita)
+void carga1Transfer (nodoArbol * raiz,nodoArbol * cuenta)
 {
     movimiento transfer;
     transfer.fecha = time(NULL);
@@ -397,7 +392,7 @@ void carga1Transfer (nodoArbol * raiz,nodoArbol * cuenta,fila * filita)
 
             if (transfer.cbuReceptor == -1)
             {
-                printf("Operación cancelada.\n");
+                printf("Operaciï¿½n cancelada.\n");
                 break;
             }
 
@@ -414,7 +409,6 @@ void carga1Transfer (nodoArbol * raiz,nodoArbol * cuenta,fila * filita)
                 {
                     cuenta->dato.saldo -= transfer.monto;
                     reemplazarDato(cuenta->dato);
-                    agregarAFila(filita, transfer);
                     movimientoAArchivo(transfer);
 
                     receptor->dato.saldo += transfer.monto;
@@ -490,7 +484,7 @@ void fromFileToFila(nodoArbol * cuenta,fila * filita)
 
 //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 //Modificacion de usuario
-///RETORNA UN USUARIO CON LA NUEVA CONTRASEÑA
+///RETORNA UN USUARIO CON LA NUEVA CONTRASEï¿½A
 usuario newPass(usuario usu)
 {
     char contrasenia[20];
@@ -515,43 +509,37 @@ usuario newPass(usuario usu)
 }
 
 
-nodoArbol* altaBaja (nodoArbol* usuarioBuscado)
+usuario altaBaja (usuario usu)
 {
+    muestraUsuarioAdmin(usu);
 
     int eleccion = -1;
+    system("cls");
+     dibujoBancoCentral();
+muestraUsuarioAdmin(usu);
+    puts("-----------------------------------|");
+    printf("[1]DAR DE BAJA\n");
+    puts("-----------------------------------|");
+    printf("[2]DAR DE ALTA\n");
+    puts("-----------------------------------|");
+    fflush(stdin);
+    scanf("%i",&eleccion);
 
-    while(eleccion!=0)
-    {
-        system("cls");
-        dibujoBancoCentral();
-        muestraUsuarioAdmin(usuarioBuscado->dato);
-        puts("-----------------------------------|");
-        printf("[1]DAR DE BAJA\n");
-        puts("-----------------------------------|");
-        printf("[2]DAR DE ALTA\n");
-        puts("-----------------------------------|");
-        printf("[0]SALIR\n");
-        puts("-----------------------------------|");
-        fflush(stdin);
-        scanf("%i",&eleccion);
-
-        switch(eleccion)
-        {
-        case 1:
-            usuarioBuscado->dato = desactivar(usuarioBuscado->dato);
-            break;
-        case 2:
-            usuarioBuscado->dato = activar(usuarioBuscado->dato);
-            break;
-        case 0:
+    switch(eleccion){
+case 1:
+    usu = desactivar(usu);
+    break;
+case 2:
+    usu = activar(usu);
+     case 0:
             menuOpcionesAdminUsuario(usuarioBuscado);
             break;
-        default:
-            printf("opcion no valida.\n");
-            break;
-        }
+    break;
+default:
+    printf("opcion no valida.\n");
+    break;
     }
-    return usuarioBuscado;
+return usu;
 }
 
 ///RETORNO 0 PARA DESACTIVAR LA CUENTA
@@ -595,7 +583,7 @@ void muestra1Usuario(usuario usu)
     printf("Genero:%c\n", usu.genero);
     printf("DNI:%i\n", usu.dni);
     printf("Mail:%s\n", usu.mail);
-    printf("CBU:%i\n", usu.cbu);
+    printf("CBU:%08d\n", usu.cbu);
     puts("---------------------------------------------");
 }
 
@@ -672,8 +660,9 @@ nodoArbol* modificarUsuario(nodoArbol * arbol)
     {
 
         system("cls");
-        dibujoBancoCentral();
+dibujoBancoCentral();
         muestraUsuarioAdmin(arbol->dato);
+
         printf("[MODIFICAR]\n");
         puts("-----------------------------------|");
         printf("[1]NOMBRE Y APELLIDO\n");
@@ -715,7 +704,7 @@ nodoArbol* modificarUsuario(nodoArbol * arbol)
             menuOpcionesAdminUsuario(arbol);
             break;
         default:
-            printf("Opción no válida\n");
+            printf("Opciï¿½n no vï¿½lida\n");
             break;
         }
     }
@@ -725,13 +714,13 @@ nodoArbol* modificarUsuario(nodoArbol * arbol)
 
 void funcionConBarraDeCarga()
 {
-    const int totalIteraciones = 100; // Número total de iteraciones de tu función
+    const int totalIteraciones = 100; // Nï¿½mero total de iteraciones de tu funciï¿½n
     int progreso;
 
-    printf("\n\n\n\n\n\n\n\n\n");
+printf("\n\n\n\n\n\n\n\n\n");
     for (progreso = 0; progreso <= totalIteraciones; ++progreso)
     {
-        // Simula la ejecución de tu función
+        // Simula la ejecuciï¿½n de tu funciï¿½n
         // ...
 
         // Imprime la barra de carga

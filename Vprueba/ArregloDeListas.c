@@ -76,7 +76,7 @@ stRegistroEmpleado cargarDatosEmpleado()///faltan todas las validaciones y chequ
     printf("\nNUMERO DE TELEFONO: ");
     scanf("%d", &e.NumeroTelefono);
 
-    printf("\n");
+printf("\n");
     e.estado=1;
 return e;
 }
@@ -253,7 +253,7 @@ void mostrarDatosListaEmpleados(nodoEmpleado* lista)
     printf("DNI: %i\n", lista->dato.dni);
     printf("FECHA DE NACIMIENTO: %s\n", lista->dato.fechaDeNacimiento);
     printf("NUMERO DE TELEFONO: %d\n",lista->dato.NumeroTelefono);
-    puts("....................................\n");
+puts("....................................\n");
 }
 
 
