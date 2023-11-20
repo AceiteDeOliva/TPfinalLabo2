@@ -17,7 +17,7 @@ nodoListaS* crearNodoListaS(usuario dato)
 return aux;
 }
 
-nodoListaS* FromArchiAListaOrdenadaDesactivados(nodoListaS* lista)
+nodoListaS* FromArchiAListaOrdenada(nodoListaS* lista)
 {
     FILE* buffer=fopen(archivo, "rb");
     usuario usu;
@@ -26,10 +26,8 @@ nodoListaS* FromArchiAListaOrdenadaDesactivados(nodoListaS* lista)
     {
         while(fread(&usu, sizeof(usuario), 1, buffer)>0)
         {
-            if(usu.estado == 0){
             nodoListaS* aux=crearNodoListaS(usu);
             lista=agregarEnOrden(lista, aux);
-            }
         }
 
         fclose(buffer);
@@ -89,7 +87,7 @@ void mostrarLista(nodoListaS* lista)
     {
          while(seg)
          {
-             muestraUsuarioAdmin(seg->dato);
+             muestra1Usuario(seg->dato);
              seg=seg->siguiente;
          }
     }

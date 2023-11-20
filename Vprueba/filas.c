@@ -48,7 +48,7 @@ void agregarAFila(fila * fila,movimiento dato)
 //muestra una variable tipo movimiento
 void mostrarMovimiento(movimiento m)
 {
-    puts("-----------------------------------------|\n");
+    puts("--------------------------------------------|\n");
     if(m.tipoDeOperacion == 0)
     {
         printf("Importe:-%i\n",m.monto);
@@ -81,7 +81,7 @@ void mostrarMovimiento(movimiento m)
 
     }
     printf("Fecha de operacion: %s", ctime(&m.fecha));
-    puts("-----------------------------------------|\n");
+    puts("\n--------------------------------------------|\n");
 }
 //Extrae el dato del primer nodo de una lista doble
 movimiento extraer(fila * fila)

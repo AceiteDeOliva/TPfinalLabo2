@@ -54,9 +54,9 @@ void cargarArchiEmpleados()
 stRegistroEmpleado cargarDatosEmpleado()///faltan todas las validaciones y chequeos.
 {
     stRegistroEmpleado e;
-    printf("                                 |");
-    printf("\n    INGRESE LOS SIGUIENTES DATOS |\n");
-    puts("---------------------------------");
+    puts("-----------------------------");
+    printf("INGRESE LOS SIGUIENTES DATOS |\n");
+    puts("-----------------------------");
 
     printf("\nNOMBRE DEL TRABAJO: ");
     fflush(stdin);
@@ -76,6 +76,7 @@ stRegistroEmpleado cargarDatosEmpleado()///faltan todas las validaciones y chequ
     printf("\nNUMERO DE TELEFONO: ");
     scanf("%d", &e.NumeroTelefono);
 
+    printf("\n");
     e.estado=1;
 return e;
 }
@@ -243,11 +244,16 @@ void mostrarListaEmpleados(nodoEmpleado* lista)
 
 void mostrarDatosListaEmpleados(nodoEmpleado* lista)
 {
-    printf("ESTADO: %d\n", lista->dato.estado);
+    puts("....................................");
+    if(lista->dato.estado==1)
+        printf("ESTADO: ACTIVO\n");
+    else
+        printf("ESTADO: INACTIVO\n");
     printf("NOMBRE Y APELLIDO: %s\n", lista->dato.nombreYapellido);
     printf("DNI: %i\n", lista->dato.dni);
     printf("FECHA DE NACIMIENTO: %s\n", lista->dato.fechaDeNacimiento);
     printf("NUMERO DE TELEFONO: %d\n",lista->dato.NumeroTelefono);
+    puts("....................................\n");
 }
 
 
