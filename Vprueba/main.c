@@ -273,7 +273,7 @@ void verUsuariosMenu()
     nodoArbol* arbol=inicArbol();
     nodoListaS* lista=inicLista();
     nodoArbol* nodoBuscado = NULL;
-
+    arbol = fromArchiToArbolDNI(nodoBuscado);
     do
     {
         system("cls");
@@ -286,6 +286,8 @@ void verUsuariosMenu()
         puts("-----------------------------------|");
         printf("[2]BUSCAR USUARIO POR DNI\n");
         puts("-----------------------------------|");
+        printf("[3]MOSTRAR USUARIOS DADOS DE BAJA\n");
+        puts("-----------------------------------|");
         printf("[0]SALIR\n");
         puts("-----------------------------------|");
         fflush(stdin);
@@ -296,10 +298,8 @@ void verUsuariosMenu()
         case 1:
             system("cls");
             printf("ORDENADO POR DNI:\n");
-            nodoBuscado = fromArchiToArbolDNI(nodoBuscado);
-            mostrarArbolInorden(nodoBuscado);
-//            lista=FromArchiAListaOrdenada(lista);
-//            mostrarLista(lista);
+            mostrarArbolInorden(arbol);
+
             system("pause");
             break;
         case 2:
@@ -311,7 +311,6 @@ void verUsuariosMenu()
             printf("\nINGRESE DNI DEL USUARIO QUE DESEA BUSCAR: ");
             fflush(stdin);
             scanf("%ld", &dni);
-            arbol=fromArchiToArbolDNI(arbol);
             nodoBuscado=buscarDNIenArbol(arbol, dni);
 
             if(nodoBuscado != NULL)
@@ -325,7 +324,14 @@ void verUsuariosMenu()
             }
             system("pause");
             break;
+        case 3:
+            system("cls");
+            lista=FromArchiAListaOrdenadaDesactivados(lista);
+            mostrarLista(lista);
+            system("pause");
+            break;
         case 0:
+            borrarArbol(arbol);
             menuAdmin();
             break;
         default:
