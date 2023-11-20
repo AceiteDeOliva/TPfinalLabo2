@@ -13,7 +13,7 @@ int main()
     while(opcion != 0)
     {
         system("cls");
-dibujoBancoCentral();
+        dibujoBancoCentral();
         puts("------------------------------|");
         printf("[1]CREAR CUENTA\n");
         puts("------------------------------|");
@@ -153,7 +153,7 @@ void menuInicioSesion(nodoArbol * cuenta)
         {
         case 1:
             system("cls");
-dibujoBancoCentral();
+            dibujoBancoCentral();
             fromFileToFila(cuenta,&movimientos);
             recorrerMostrarExtraerFila(&movimientos);
             printf("Su saldo actual es:%li\n",cuenta->dato.saldo);
@@ -175,13 +175,13 @@ dibujoBancoCentral();
             break;
         case 4:
             system("cls");
-dibujoBancoCentral();
+            dibujoBancoCentral();
             muestra1Usuario(cuenta->dato);
             system("pause");
             break;
         case 5:
             system("cls");
-dibujoBancoCentral();
+            dibujoBancoCentral();
             cuenta->dato = newPass(cuenta->dato);
             reemplazarDato(cuenta->dato);
             printf("Contrasenia cambiada con exito...\n");
@@ -189,7 +189,7 @@ dibujoBancoCentral();
             break;
         case 6:
             system("cls");
-dibujoBancoCentral();
+            dibujoBancoCentral();
             seguro=seguroDeseaEliminar();
             if(seguro==1)
             {
@@ -218,7 +218,7 @@ dibujoBancoCentral();
 ///MENU DE ADMIN
 void menuAdmin()
 {
-funcionConBarraDeCarga();
+    funcionConBarraDeCarga();
     int x;
     do
     {
@@ -270,7 +270,7 @@ void verUsuariosMenu()
     nodoArbol* arbol=inicArbol();
     nodoListaS* lista=inicLista();
     nodoArbol* nodoBuscado = NULL;
-    arbol = fromArchiToArbolDNI(nodoBuscado);
+    arbol = fromArchiToArbolDNI(arbol);
     do
     {
         system("cls");
@@ -291,7 +291,7 @@ void verUsuariosMenu()
         {
         case 1:
             system("cls");
-dibujoBancoCentral();
+            dibujoBancoCentral();
             printf("ORDENADO POR DNI:\n");
             mostrarArbolInorden(arbol);
 
@@ -345,7 +345,7 @@ void menuOpcionesAdminUsuario(nodoArbol* usuarioBuscado)
     do
     {
         system("cls");
-dibujoBancoCentral();
+        dibujoBancoCentral();
         muestra1Usuario(usuarioBuscado->dato);
 
         puts("-----------------------------------|");
@@ -378,13 +378,13 @@ dibujoBancoCentral();
             break;
         case 3:
             system("cls");
-dibujoBancoCentral();
+            dibujoBancoCentral();
             puts("------------");
             printf("SALDO: %li |\n", usuarioBuscado->dato.saldo);
             puts("------------\n");
             fromFileToFila(usuarioBuscado,&movimientos);
             recorrerMostrarExtraerFila(&movimientos);
-                        system("pause");
+            system("pause");
             break;
         case 0:
             verUsuariosMenu();
@@ -426,14 +426,14 @@ void verEmpleadosMenu()
         {
         case 1:
             system("cls");
-dibujoBancoCentral();
+            dibujoBancoCentral();
             validos=fromArchiEmpleadosToADL(adlEmpleados, 5);
             mostrarADLempleados(adlEmpleados,validos);
             system("pause");
             break;
         case 2:
             system("cls");
-dibujoBancoCentral();
+            dibujoBancoCentral();
             mostrarArchi();
             system("pause");
             break;

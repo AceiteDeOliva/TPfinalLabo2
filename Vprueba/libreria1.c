@@ -522,6 +522,8 @@ usuario altaBaja (usuario usu)
     puts("-----------------------------------|");
     printf("[2]DAR DE ALTA\n");
     puts("-----------------------------------|");
+    printf("[0]SALIR\n");
+    puts("-----------------------------------|");
     fflush(stdin);
     scanf("%i",&eleccion);
 
@@ -533,8 +535,6 @@ usuario altaBaja (usuario usu)
     case 2:
         usu = activar(usu);
     case 0:
-        menuOpcionesAdminUsuario(usuarioBuscado);
-        break;
         break;
     default:
         printf("opcion no valida.\n");
