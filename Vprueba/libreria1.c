@@ -149,7 +149,7 @@ usuario crea1Usuario (usuario nuevoUsuario)
         // Si no contiene '@', mostrar un mensaje de error
         if (!tieneArroba)
         {
-            printf("El email debe contener '@'. Por favor, int�ntelo de nuevo.\n");
+            printf("El email debe contener '@'. Por favor, intentelo de nuevo.\n");
         }
 
 
