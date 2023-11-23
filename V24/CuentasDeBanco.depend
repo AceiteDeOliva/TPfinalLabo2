@@ -1,0 +1,932 @@
+# depslib dependency file v1.0
+1688013696 source:d:\proyectos codeblocks\cuentasdebanco\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+	<unistd.h>
+
+1688013605 source:d:\proyectos codeblocks\cuentasdebanco\libreria1.c
+	"librerias1.h"
+	<unistd.h>
+
+1688013614 d:\proyectos codeblocks\cuentasdebanco\librerias1.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+
+1687957906 source:c:\users\hp\desktop\cuentasdebanco\libreria1.c
+	"librerias1.h"
+
+1687957694 c:\users\hp\desktop\cuentasdebanco\librerias1.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+
+1687958148 source:c:\users\hp\desktop\cuentasdebanco\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+
+1687985291 source:c:\users\faust\desktop\cuentasdebanco actualizado\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+	<unistd.h>
+
+1687983252 c:\users\faust\desktop\cuentasdebanco actualizado\librerias1.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+
+1687986006 source:c:\users\faust\desktop\cuentasdebanco actualizado\libreria1.c
+	"librerias1.h"
+	<unistd.h>
+
+1490112217 source:d:\proyectos codeblocks\cuentasdebanco\pila.c
+	"pila.h"
+
+1490112217 d:\proyectos codeblocks\cuentasdebanco\pila.h
+	<stdio.h>
+	<malloc.h>
+
+1687999332 source:c:\users\faust\desktop\carpeta final\trabajo finalizado\libreria1.c
+	"librerias1.h"
+	<unistd.h>
+
+1687999214 c:\users\faust\desktop\carpeta final\trabajo finalizado\librerias1.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+
+1687999296 source:c:\users\faust\desktop\carpeta final\trabajo finalizado\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+	<unistd.h>
+
+1699969184 source:c:\users\faust\desktop\primer cuatri\tp final labo 1\libreria1.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<unistd.h>
+	"time.h"
+	"librerias1.h"
+
+1699971267 c:\users\faust\desktop\primer cuatri\tp final labo 1\librerias1.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+
+1699969184 source:c:\users\faust\desktop\primer cuatri\tp final labo 1\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<unistd.h>
+	"time.h"
+	"librerias1.h"
+
+1699969290 source:c:\users\faust\desktop\primer cuatri\tp final labo 1\arboles.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<unistd.h>
+	"time.h"
+	"librerias1.h"
+
+1699973723 source:c:\users\faust\desktop\primer cuatri\v2\arboles.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+
+1699975768 c:\users\faust\desktop\primer cuatri\v2\librerias1.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1699971966 source:c:\users\faust\desktop\primer cuatri\v2\libreria1.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+
+1699975784 source:c:\users\faust\desktop\primer cuatri\v2\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+
+1699975473 source:c:\users\faust\desktop\primer cuatri\v2\listasimple.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<unistd.h>
+	"librerias1.h"
+
+1699973723 source:c:\users\faust\desktop\primer cuatri\v3\arboles.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+
+1699985933 c:\users\faust\desktop\primer cuatri\v3\librerias1.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1699985483 source:c:\users\faust\desktop\primer cuatri\v3\libreria1.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+
+1699975473 source:c:\users\faust\desktop\primer cuatri\v3\listasimple.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<unistd.h>
+	"librerias1.h"
+
+1699985933 source:c:\users\faust\desktop\primer cuatri\v3\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+
+1699973723 source:c:\users\faust\desktop\v3\arboles.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+
+1700061216 c:\users\faust\desktop\v3\librerias1.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1700059518 source:c:\users\faust\desktop\v3\libreria1.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+
+1699975473 source:c:\users\faust\desktop\v3\listasimple.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<unistd.h>
+	"librerias1.h"
+
+1700060407 source:c:\users\faust\desktop\v3\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+
+1699973723 source:c:\users\faust\desktop\v4\arboles.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+
+1700165877 c:\users\faust\desktop\v4\librerias1.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1700160073 source:c:\users\faust\desktop\v4\listasimple.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<unistd.h>
+	"librerias1.h"
+
+1700165724 source:c:\users\faust\desktop\v4\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<unistd.h>
+	"time.h"
+	"librerias1.h"
+
+1700163859 source:c:\users\faust\desktop\v4\libreria1.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+
+1700164704 source:c:\users\faust\desktop\v4\arreglodelistas.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<unistd.h>
+	"librerias1.h"
+
+1700176610 source:c:\users\valentin\documents\github\tpfinallabo2\v5\arboles.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+
+1700177596 c:\users\valentin\documents\github\tpfinallabo2\v5\librerias1.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1700174546 source:c:\users\valentin\documents\github\tpfinallabo2\v5\arreglodelistas.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<unistd.h>
+	"librerias1.h"
+
+1700177972 source:c:\users\valentin\documents\github\tpfinallabo2\v5\libreria1.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+
+1700173876 source:c:\users\valentin\documents\github\tpfinallabo2\v5\listasimple.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<unistd.h>
+	"librerias1.h"
+
+1700178609 source:c:\users\valentin\documents\github\tpfinallabo2\v5\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+
+1700172223 source:c:\users\valentin\documents\github\tpfinallabo2\v5\filas.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+
+1700500237 source:c:\users\valentin\documents\github\tpfinallabo2\vprueba\arboles.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+
+1700510998 c:\users\valentin\documents\github\tpfinallabo2\vprueba\librerias1.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1700510295 source:c:\users\valentin\documents\github\tpfinallabo2\vprueba\arreglodelistas.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<unistd.h>
+	"librerias1.h"
+
+1700510332 source:c:\users\valentin\documents\github\tpfinallabo2\vprueba\filas.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+
+1700511351 source:c:\users\valentin\documents\github\tpfinallabo2\vprueba\libreria1.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+	<conio.h>
+	<unistd.h>
+
+1700506119 source:c:\users\valentin\documents\github\tpfinallabo2\vprueba\listasimple.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<unistd.h>
+	"librerias1.h"
+
+1700511222 source:c:\users\valentin\documents\github\tpfinallabo2\vprueba\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+
+1700221342 source:c:\users\josev\onedrive\documentos\github\tpfinallabo2\vprueba\arreglodelistas.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<unistd.h>
+	"librerias1.h"
+
+1700232349 c:\users\josev\onedrive\documentos\github\tpfinallabo2\vprueba\librerias1.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1700220798 source:c:\users\josev\onedrive\documentos\github\tpfinallabo2\vprueba\filas.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+
+1700232349 source:c:\users\josev\onedrive\documentos\github\tpfinallabo2\vprueba\libreria1.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+	<conio.h>
+	<unistd.h>
+
+1700220798 source:c:\users\josev\onedrive\documentos\github\tpfinallabo2\vprueba\listasimple.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<unistd.h>
+	"librerias1.h"
+
+1700232095 source:c:\users\josev\onedrive\documentos\github\tpfinallabo2\vprueba\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+
+1700225160 source:c:\users\josev\onedrive\documentos\github\tpfinallabo2\vprueba\arboles.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+
+1700482236 source:c:\users\usuario\documents\v15-20231121t140220z-001\v15\arboles.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+
+1700581410 c:\users\usuario\documents\v15-20231121t140220z-001\v15\librerias1.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1700492332 source:c:\users\usuario\documents\v15-20231121t140220z-001\v15\filas.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+
+1700581658 source:c:\users\usuario\documents\v15-20231121t140220z-001\v15\libreria1.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+	<conio.h>
+	<unistd.h>
+
+1700488118 source:c:\users\usuario\documents\v15-20231121t140220z-001\v15\listasimple.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<unistd.h>
+	"librerias1.h"
+
+1700581691 source:c:\users\usuario\documents\v15-20231121t140220z-001\v15\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+
+1700581400 source:c:\users\usuario\documents\v15-20231121t140220z-001\v15\arreglodelistas.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<unistd.h>
+	"librerias1.h"
+
+1700464236 source:c:\users\franc\onedrive\escritorio\practica de lab2\v16\arboles.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+
+1700563410 c:\users\franc\onedrive\escritorio\practica de lab2\v16\librerias1.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1700474332 source:c:\users\franc\onedrive\escritorio\practica de lab2\v16\filas.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+
+1700563658 source:c:\users\franc\onedrive\escritorio\practica de lab2\v16\libreria1.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+	<conio.h>
+	<unistd.h>
+
+1700470118 source:c:\users\franc\onedrive\escritorio\practica de lab2\v16\listasimple.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<unistd.h>
+	"librerias1.h"
+
+1700563722 source:c:\users\franc\onedrive\escritorio\practica de lab2\v16\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+
+1700591825 source:c:\users\franc\onedrive\escritorio\practica de lab2\v16\arreglodelistas.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<unistd.h>
+	"librerias1.h"
+
+1700446236 source:c:\users\usuario\documents\v17-20231122t144342z-001\v17\arboles.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+
+1700664415 c:\users\usuario\documents\v17-20231122t144342z-001\v17\librerias1.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1700666088 source:c:\users\usuario\documents\v17-20231122t144342z-001\v17\arreglodelistas.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<unistd.h>
+	"librerias1.h"
+
+1700456332 source:c:\users\usuario\documents\v17-20231122t144342z-001\v17\filas.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+
+1700545658 source:c:\users\usuario\documents\v17-20231122t144342z-001\v17\libreria1.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+	<conio.h>
+	<unistd.h>
+
+1700452118 source:c:\users\usuario\documents\v17-20231122t144342z-001\v17\listasimple.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<unistd.h>
+	"librerias1.h"
+
+1700667146 source:c:\users\usuario\documents\v17-20231122t144342z-001\v17\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+
+1700698740 source:c:\users\fausto\desktop\v18\arboles.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+
+1700705545 c:\users\fausto\desktop\v18\librerias1.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1700706017 source:c:\users\fausto\desktop\v18\arreglodelistas.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<unistd.h>
+	"librerias1.h"
+
+1700438332 source:c:\users\fausto\desktop\v18\filas.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+
+1700705695 source:c:\users\fausto\desktop\v18\libreria1.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+	<conio.h>
+	<unistd.h>
+
+1700434118 source:c:\users\fausto\desktop\v18\listasimple.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<unistd.h>
+	"librerias1.h"
+
+1700705545 source:c:\users\fausto\desktop\v18\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+
+1700698740 source:c:\users\fausto\desktop\v19\arboles.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+
+1700705545 c:\users\fausto\desktop\v19\librerias1.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1700706083 source:c:\users\fausto\desktop\v19\arreglodelistas.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<unistd.h>
+	"librerias1.h"
+
+1700438332 source:c:\users\fausto\desktop\v19\filas.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+
+1700705695 source:c:\users\fausto\desktop\v19\libreria1.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+	<conio.h>
+	<unistd.h>
+
+1700434118 source:c:\users\fausto\desktop\v19\listasimple.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<unistd.h>
+	"librerias1.h"
+
+1700705545 source:c:\users\fausto\desktop\v19\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+
+1700680740 source:c:\users\usuario\documents\v19-20231123t023935z-001\v19\arboles.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+
+1700710113 c:\users\usuario\documents\v19-20231123t023935z-001\v19\librerias1.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1700709279 source:c:\users\usuario\documents\v19-20231123t023935z-001\v19\arreglodelistas.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<unistd.h>
+	"librerias1.h"
+
+1700420332 source:c:\users\usuario\documents\v19-20231123t023935z-001\v19\filas.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+
+1700710172 source:c:\users\usuario\documents\v19-20231123t023935z-001\v19\libreria1.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+	<conio.h>
+	<unistd.h>
+
+1700416118 source:c:\users\usuario\documents\v19-20231123t023935z-001\v19\listasimple.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<unistd.h>
+	"librerias1.h"
+
+1700710291 source:c:\users\usuario\documents\v19-20231123t023935z-001\v19\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+
+1700680740 source:c:\users\usuario\documents\v19-20231123t023935z-001\v20\arboles.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+
+1700710113 c:\users\usuario\documents\v19-20231123t023935z-001\v20\librerias1.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1700712451 source:c:\users\usuario\documents\v19-20231123t023935z-001\v20\arreglodelistas.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<unistd.h>
+	"librerias1.h"
+
+1700420332 source:c:\users\usuario\documents\v19-20231123t023935z-001\v20\filas.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+
+1700712126 source:c:\users\usuario\documents\v19-20231123t023935z-001\v20\libreria1.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+	<conio.h>
+	<unistd.h>
+
+1700416118 source:c:\users\usuario\documents\v19-20231123t023935z-001\v20\listasimple.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<unistd.h>
+	"librerias1.h"
+
+1700712126 source:c:\users\usuario\documents\v19-20231123t023935z-001\v20\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+
+1700662740 source:c:\users\fausto\desktop\v20\arboles.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+
+1700746990 c:\users\fausto\desktop\v20\librerias1.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1700694450 source:c:\users\fausto\desktop\v20\arreglodelistas.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<unistd.h>
+	"librerias1.h"
+
+1700402332 source:c:\users\fausto\desktop\v20\filas.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+
+1700747013 source:c:\users\fausto\desktop\v20\libreria1.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+	<conio.h>
+	<unistd.h>
+
+1700398118 source:c:\users\fausto\desktop\v20\listasimple.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<unistd.h>
+	"librerias1.h"
+
+1700747125 source:c:\users\fausto\desktop\v20\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+
+1700644740 source:c:\users\usuario\documents\v21-20231123t135022z-001\v21\arboles.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+
+1700728990 c:\users\usuario\documents\v21-20231123t135022z-001\v21\librerias1.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1700676450 source:c:\users\usuario\documents\v21-20231123t135022z-001\v21\arreglodelistas.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<unistd.h>
+	"librerias1.h"
+
+1700384332 source:c:\users\usuario\documents\v21-20231123t135022z-001\v21\filas.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+
+1700747761 source:c:\users\usuario\documents\v21-20231123t135022z-001\v21\libreria1.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+	<conio.h>
+	<unistd.h>
+
+1700380118 source:c:\users\usuario\documents\v21-20231123t135022z-001\v21\listasimple.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<unistd.h>
+	"librerias1.h"
+
+1700729124 source:c:\users\usuario\documents\v21-20231123t135022z-001\v21\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+
+1700751326 source:c:\users\valentin\documents\github\tpfinallabo2\v22\arboles.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+
+1700750259 c:\users\valentin\documents\github\tpfinallabo2\v22\librerias1.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1700751656 source:c:\users\valentin\documents\github\tpfinallabo2\v22\arreglodelistas.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<unistd.h>
+	"librerias1.h"
+
+1700748689 source:c:\users\valentin\documents\github\tpfinallabo2\v22\filas.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+
+1700750436 source:c:\users\valentin\documents\github\tpfinallabo2\v22\libreria1.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+	<conio.h>
+	<unistd.h>
+
+1700751761 source:c:\users\valentin\documents\github\tpfinallabo2\v22\listasimple.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<unistd.h>
+	"librerias1.h"
+
+1700752152 source:c:\users\valentin\documents\github\tpfinallabo2\v22\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+
+1700733326 source:c:\users\fausto\desktop\v23\arboles.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+
+1700763733 c:\users\fausto\desktop\v23\librerias1.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1700733656 source:c:\users\fausto\desktop\v23\arreglodelistas.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<unistd.h>
+	"librerias1.h"
+
+1700730688 source:c:\users\fausto\desktop\v23\filas.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+
+1700767268 source:c:\users\fausto\desktop\v23\libreria1.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+	<conio.h>
+	<unistd.h>
+
+1700733760 source:c:\users\fausto\desktop\v23\listasimple.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<unistd.h>
+	"librerias1.h"
+
+1700766693 source:c:\users\fausto\desktop\v23\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+
