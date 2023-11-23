@@ -134,6 +134,7 @@ void menuInicioSesion(nodoArbol * cuenta)
     nodoArbol * raiz = NULL;
     raiz = fromArchiToArbolCBU(raiz);
 
+
     do
     {
         system("cls");

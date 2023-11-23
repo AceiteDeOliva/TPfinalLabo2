@@ -588,7 +588,7 @@ void muestra1Usuario(usuario usu)
 {
     char genero[10];
     char estado[10];
-    if(usu.genero=='m')
+    if(usu.genero=='f')
     {
         strcpy(genero, "FEMENINO");
     }

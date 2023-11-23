@@ -930,3 +930,52 @@
 	"time.h"
 	"librerias1.h"
 
+1700761071 source:c:\users\josev\onedrive\documentos\github\tpfinallabo2\vexp\arboles.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+
+1700763597 c:\users\josev\onedrive\documentos\github\tpfinallabo2\vexp\librerias1.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1700761071 source:c:\users\josev\onedrive\documentos\github\tpfinallabo2\vexp\arreglodelistas.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<unistd.h>
+	"librerias1.h"
+
+1700761071 source:c:\users\josev\onedrive\documentos\github\tpfinallabo2\vexp\filas.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+
+1700765095 source:c:\users\josev\onedrive\documentos\github\tpfinallabo2\vexp\libreria1.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+	<conio.h>
+	<unistd.h>
+
+1700761071 source:c:\users\josev\onedrive\documentos\github\tpfinallabo2\vexp\listasimple.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<unistd.h>
+	"librerias1.h"
+
+1700765504 source:c:\users\josev\onedrive\documentos\github\tpfinallabo2\vexp\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+
