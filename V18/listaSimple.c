@@ -94,3 +94,14 @@ void mostrarLista(nodoListaS* lista)
          }
     }
 }
+
+void borrarLista(nodoListaS ** lista) {
+    nodoListaS* aux = *lista;
+    nodoListaS* seg;
+
+    while (aux != NULL) {
+        seg = aux->siguiente;
+        free(aux);
+        aux = seg;
+    }
+}

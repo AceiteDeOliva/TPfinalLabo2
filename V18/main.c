@@ -271,6 +271,7 @@ void verUsuariosMenu()
     nodoListaS* lista=inicLista();
     nodoArbol* nodoBuscado = NULL;
     arbol = fromArchiToArbolDNI(arbol);
+    lista=FromArchiAListaOrdenadaDesactivados(lista);
     do
     {
         system("cls");
@@ -294,7 +295,6 @@ void verUsuariosMenu()
             dibujoBancoCentral();
             printf("ORDENADO POR DNI:\n");
             mostrarArbolInorden(arbol);
-
             system("pause");
             break;
         case 2:
@@ -318,8 +318,8 @@ void verUsuariosMenu()
             break;
         case 3:
             system("cls");
-            lista=FromArchiAListaOrdenadaDesactivados(lista);
             mostrarLista(lista);
+            borrarLista(lista);
             system("pause");
             break;
         case 0:

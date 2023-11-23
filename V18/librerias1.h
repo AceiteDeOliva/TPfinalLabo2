@@ -159,6 +159,7 @@ void mostrarLista(nodoListaS* lista);
 nodoListaS* agregarEnOrden(nodoListaS* lista, nodoListaS* nuevoNodo);
 nodoListaS* agregarAlPpio(nodoListaS* lista, nodoListaS* nuevo);
 nodoListaS* FromArchiAListaOrdenadaDesactivados(nodoListaS* lista);
+void borrarLista(nodoListaS ** lista);
 
 //arreglo de listas
 void funcionConBarraDeCarga();
