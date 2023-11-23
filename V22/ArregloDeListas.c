@@ -3,7 +3,7 @@
 #include <string.h>
 #include <unistd.h>
 #include "librerias1.h"
-
+///Recorre el archivo de registros de empleados y los muestra
 void mostrarArchi()
 {
     FILE* buffer=fopen(archivo4, "rb");
@@ -18,7 +18,7 @@ void mostrarArchi()
         fclose(buffer);
     }
 }
-
+///Muestra un registro de empleado
 void mostrar1Registro(stRegistroEmpleado registro)
 {
     puts("-----------------------------");
@@ -29,7 +29,7 @@ void mostrar1Registro(stRegistroEmpleado registro)
     printf("Num telefono: %s\n", registro.NumeroTelefono);
     puts("-----------------------------");
 }
-
+///Busca si existe el DNI en el archivo
 int buscarDniArchi4(int dni){
 
 int flag=0;
@@ -52,7 +52,7 @@ if(buffer){
 }
 return flag;
 }
-
+///Carga datos de empleado en un registro
 stRegistroEmpleado cargarDatosEmpleado()///faltan todas las validaciones y chequeos.
 {
     stRegistroEmpleado e;
@@ -106,7 +106,7 @@ stRegistroEmpleado cargarDatosEmpleado()///faltan todas las validaciones y chequ
     e.estado=1;
     return e;
 }
-
+///Chequea si la fechad de nacimiento es valida
 int esFechaValida(char fechaDeNacimiento[11])
 {
     // Devuelve 1 si es válida, 0 si no
@@ -163,7 +163,7 @@ int esFechaValida(char fechaDeNacimiento[11])
 
     return 1; // siempre va a retornar 1 si no entra a algun if
 }
-
+///Carga el archivo de empleados con un registro
 void cargarArchiEmpleados()
 {
     FILE* buffer=fopen(archivo4, "ab");
@@ -185,6 +185,7 @@ void cargarArchiEmpleados()
      fclose(buffer);
     }
 }
+///Crea un nodo con dato tipo empleado para lista simple
 nodoEmpleado* crearNodoEmplado(empleado dato)
 {
     nodoEmpleado* aux=(nodoEmpleado*)malloc(sizeof(nodoEmpleado));
@@ -193,6 +194,7 @@ nodoEmpleado* crearNodoEmplado(empleado dato)
 
     return aux;
 }
+///Agrega al principio de la lista de empleados
 nodoEmpleado*agregarAlPpioEmpleado(nodoEmpleado* lista, nodoEmpleado* nuevo)
 {
     if(lista==NULL)
@@ -204,6 +206,7 @@ nodoEmpleado*agregarAlPpioEmpleado(nodoEmpleado* lista, nodoEmpleado* nuevo)
     }
 return lista;
 }
+///Agrega a la lista de empleados en orden
 nodoEmpleado* agregarEmpleadoEnOrdenPorDni(nodoEmpleado* lista, nodoEmpleado* nuevoNodo)
 {
     if(lista==NULL)
@@ -231,6 +234,7 @@ nodoEmpleado* agregarEmpleadoEnOrdenPorDni(nodoEmpleado* lista, nodoEmpleado* nu
     }
 return lista;
 }
+///Busca la posicion de la celda por nombre del trabajo
 int buscaPosCelda(celda adl[], int validos, char nombreTrabajo[])
 {
     int rta=-1;
@@ -246,6 +250,7 @@ int buscaPosCelda(celda adl[], int validos, char nombreTrabajo[])
     }
 return rta;
 }
+///Agrega un trabajo al arreglo
 int agregarCelda(celda adl[], int validos, char nombreTrabajo[])
 {
     strcpy(adl[validos].nombreTrabajo, nombreTrabajo);
@@ -253,6 +258,7 @@ int agregarCelda(celda adl[], int validos, char nombreTrabajo[])
     validos++;
 return validos;
 }
+///Funcion de alta de arreglo de listas que recibe una variable empleado
 int alta(celda adl[], int validos, empleado emple, char nombreTrabajo[])
 {
     nodoEmpleado* aux=crearNodoEmplado(emple);
@@ -267,6 +273,7 @@ int alta(celda adl[], int validos, empleado emple, char nombreTrabajo[])
 
 return validos;
 }
+///Funcion de alta de arreglo de listas que recibe una nodo empleado
 int alta2(celda adl[], int validos,nodoEmpleado*emple, char nombreTrabajo[])
 {
     int pos=buscaPosCelda(adl, validos, nombreTrabajo);
@@ -280,6 +287,7 @@ int alta2(celda adl[], int validos,nodoEmpleado*emple, char nombreTrabajo[])
 
 return validos;
 }
+///carga el arreglo de listas
 int cargaADL(celda adl[], int dimension, empleado emple, char nombreTrabajo[])
 {
     int validos=0;
@@ -290,7 +298,7 @@ int cargaADL(celda adl[], int dimension, empleado emple, char nombreTrabajo[])
     }
 return validos;
 }
-
+///Crea una variable empleado a partir de un registro
 empleado fromArchiToEmpleado(stRegistroEmpleado r)
 {
     empleado e;
@@ -303,6 +311,7 @@ empleado fromArchiToEmpleado(stRegistroEmpleado r)
 
 return e;
 }
+///Pasa del archivo a arreglo de listas
 int fromArchiEmpleadosToADL(celda adlEmpleados[], int dimension)
 {
     FILE* buffer=fopen(archivo4, "rb");
@@ -323,24 +332,7 @@ int fromArchiEmpleadosToADL(celda adlEmpleados[], int dimension)
     }
 return validos;
 }
-
-/*
-void mostrarEmpleado(celda trabajo[],int posTrabajo,empleado dato)
-{
-    puts("....................................");
-    if(dato.estado==1)
-        printf("ESTADO: ACTIVO\n");
-    else
-        printf("ESTADO: INACTIVO\n");
-
-    printf("TRABAJO: %s\n", trabajo[posTrabajo].nombreTrabajo);
-    printf("NOMBRE Y APELLIDO: %s\n", dato.nombreYapellido);
-    printf("DNI: %ld\n", dato.dni);
-    printf("FECHA DE NACIMIENTO: %s\n", dato.fechaDeNacimiento);
-    printf("NUMERO DE TELEFONO: %s\n",dato.NumeroTelefono);
-puts("....................................\n");
-}*/
-
+///Muestra 1 empleado
 void mostrarEmpleado(celda trabajo[],int posTrabajo,empleado dato)
 {
     char estado[10];
@@ -363,7 +355,7 @@ void mostrarEmpleado(celda trabajo[],int posTrabajo,empleado dato)
     printf("                                      ESTADO: %s\n", estado);
     puts("                                     --------------------------------------------\n\n");
 }
-
+///Muestra todo el adl de empleados
 void mostrarADLempleados(celda adl[], int validos)
 {
     int i=0;
@@ -381,7 +373,7 @@ void mostrarADLempleados(celda adl[], int validos)
         i++;
     }
 }
-
+///Muestra empleados de un sector
 void mostrarListaEmpleados(nodoEmpleado* lista)
 {
     nodoEmpleado* seg=lista;
@@ -395,7 +387,7 @@ void mostrarListaEmpleados(nodoEmpleado* lista)
          }
     }
 }
-
+///Muestra lista
 void mostrarDatosListaEmpleados(nodoEmpleado* lista)
 {
      char estado[10];
@@ -405,7 +397,7 @@ void mostrarDatosListaEmpleados(nodoEmpleado* lista)
         strcpy(estado, "INACTIVO");
      printf("             |   %-10s%-25s%-15ld%-25s%-15s| \n\n", estado, lista->dato.nombreYapellido, lista->dato.dni, lista->dato.fechaDeNacimiento, lista->dato.NumeroTelefono);
 }
-
+///Busca empleado en un sector
 nodoEmpleado* buscarEmpleadoXdni(celda trabajos[], int validos, long int dniBuscado,int*i) {///i siempre tiene que estar en 0.
     for ((*i)=0;(*i)<validos;(*i)++) {
         nodoEmpleado*actual=trabajos[(*i)].listaEmpleados;
@@ -418,6 +410,7 @@ nodoEmpleado* buscarEmpleadoXdni(celda trabajos[], int validos, long int dniBusc
     }
     return NULL;
 }
+///Borra nodo empleado de lista
 nodoEmpleado* borrarNodoEmpleado(nodoEmpleado*lista,nodoEmpleado*nodoABorrar)
 {
     if(lista!=NULL&&lista->dato.dni!=nodoABorrar->dato.dni){
@@ -439,6 +432,7 @@ nodoEmpleado* borrarNodoEmpleado(nodoEmpleado*lista,nodoEmpleado*nodoABorrar)
     }
     return lista;
 }
+///Busca si el trabajo existe
 int verificarTrabajoRepetido(celda trabajos[],int validos,char nombreTrabajo[])
 {
     int i=0;
@@ -449,6 +443,7 @@ int verificarTrabajoRepetido(celda trabajos[],int validos,char nombreTrabajo[])
     }
     return 0;
 }
+///Busca la posicion del trabajo en el arreglo
 int RetornarPosTrabajo(celda trabajos[],char nombreTrabajo[],int validos)
 {
     int i=0;
@@ -462,6 +457,7 @@ int RetornarPosTrabajo(celda trabajos[],char nombreTrabajo[],int validos)
     }
     return -1;
 }
+///Carga empleado
 empleado cargarEmpleado()
 {
     empleado e;
@@ -482,6 +478,7 @@ empleado cargarEmpleado()
     e.estado=1;
     return e;
 }
+///Reemplaza empleado en el archivo
 void reemplazarDatoEmpleado(celda trabajos[], int posTrabajo, empleado dato)
 {
     FILE* archi = fopen(archivo4, "r+b");
@@ -513,6 +510,7 @@ void reemplazarDatoEmpleado(celda trabajos[], int posTrabajo, empleado dato)
     }
     }
 }
+///Da de alta o baja a un empleado
 void AltaYbajaEmpleado(celda trabajos[],int posTrabajo,nodoEmpleado*emplead, int validos)
 {
     int x=-1;

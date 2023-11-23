@@ -147,7 +147,6 @@ nodoArbol* cargarArbolOrdenDNI(nodoArbol* arbol, nodoArbol* nuevo);
 nodoArbol* fromArchiToArbolDNI(nodoArbol* arbol);
 nodoArbol* buscarDNIenArbol(nodoArbol* arbol,int dni);
 nodoArbol* modificarUsuario(nodoArbol * arbol);
-nodoArbol* cambiarEstado(nodoArbol * arbol);
 void mostrarArbolInorden(nodoArbol* arbol);
 nodoArbol* buscarCBUenArbol(nodoArbol* arbol,int cbu);
 nodoArbol* fromArchiToArbolCBU(nodoArbol* arbol);
@@ -160,7 +159,7 @@ void mostrarLista(nodoListaS* lista);
 nodoListaS* agregarEnOrden(nodoListaS* lista, nodoListaS* nuevoNodo);
 nodoListaS* agregarAlPpio(nodoListaS* lista, nodoListaS* nuevo);
 nodoListaS* FromArchiAListaOrdenadaDesactivados(nodoListaS* lista);
-
+void borrarLista(nodoListaS** lista);
 //arreglo de listas
 void funcionConBarraDeCarga();
 void funcionConBarraDeCargaLento();

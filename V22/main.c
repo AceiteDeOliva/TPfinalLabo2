@@ -102,11 +102,16 @@ void menuPrincipal(int opcionElegida)
             }
             printf("Usuario incorrecto o contrasenia incorrecta.\n");
             intentos++;
+            system("pause");
+            system("cls");
         }
         while (intentos < 3);
+
         if (intentos == 3)
         {
+            dibujoBancoCentral();
             printf("Demasiados intentos, volviendo al menu anterior\n");
+            system("pause");
         }
         break;
     default:
@@ -324,8 +329,8 @@ void verUsuariosMenu()
             break;
         case 3:
             system("cls");
-            lista=FromArchiAListaOrdenadaDesactivados(lista);
             dibujoBancoCentral();
+            lista=FromArchiAListaOrdenadaDesactivados(lista);
             puts("--------------------");
             printf(" USUARIOS INACTIVOS |\n");
             puts("--------------------\n\n");
@@ -333,6 +338,7 @@ void verUsuariosMenu()
             printf("      | %-15s%-23s%-13s%-15s%-30s%-9s|", "ESTADO", "NOMBRE Y APELLIDO", "GENERO", "DNI", "MAIL", "CBU");
             puts("             ----------------------------------------------------------------------------------------------------------");
             mostrarLista(lista);
+            borrarLista(&lista);
             puts("       ----------------------------------------------------------------------------------------------------------");
             system("pause");
             break;
@@ -349,7 +355,7 @@ void verUsuariosMenu()
     }
     while(x!=0);
 }
-
+///MENU DE MODIFICACION DE USUARIOS
 void menuOpcionesAdminUsuario(nodoArbol* usuarioBuscado)
 {
     int x;
@@ -415,6 +421,7 @@ void menuOpcionesAdminUsuario(nodoArbol* usuarioBuscado)
     }
     while(x!=0);
 }
+///MENU DE MODIFICACION DE EMPLEADOS
 void menuOpcionesAdminEmpleado(celda trabajo[],int posTrabajo,nodoEmpleado*empleadoBuscado,int validos)
 {
     int x;
@@ -422,43 +429,44 @@ void menuOpcionesAdminEmpleado(celda trabajo[],int posTrabajo,nodoEmpleado*emple
     system("cls");
     dibujoBancoCentral();
     mostrarEmpleado(trabajo,posTrabajo,empleadoBuscado->dato);
-        puts("-----------------------------------|");
-        printf("[1]MODIFICAR EMPLEADO\n");
-        puts("-----------------------------------|");
-        printf("[2]DAR DE BAJA/ALTA\n");
-        puts("-----------------------------------|");
-        printf("[0]SALIR\n");
-        puts("-----------------------------------|");
-        fflush(stdin);
-        scanf("%d", &x);
+    puts("-----------------------------------|");
+    printf("[1]MODIFICAR EMPLEADO\n");
+    puts("-----------------------------------|");
+    printf("[2]DAR DE BAJA/ALTA\n");
+    puts("-----------------------------------|");
+    printf("[0]SALIR\n");
+    puts("-----------------------------------|");
+    fflush(stdin);
+    scanf("%d", &x);
 
-        switch(x)
-        {
-        case 1:
-            system("cls");
+    switch(x)
+    {
+    case 1:
+        system("cls");
 
-            posTrabajo=modificarEmpleado(trabajo,posTrabajo,&empleadoBuscado,&validos);
-            reemplazarDatoEmpleado(trabajo,posTrabajo,empleadoBuscado->dato);
+        posTrabajo=modificarEmpleado(trabajo,posTrabajo,&empleadoBuscado,&validos);
+        reemplazarDatoEmpleado(trabajo,posTrabajo,empleadoBuscado->dato);
 
-            printf("Empleado modificado!\n");
-            break;
-        case 2:
-            system("cls");
-            dibujoBancoCentral();
-            AltaYbajaEmpleado(trabajo,posTrabajo,empleadoBuscado, validos);
-            system("pause");
-            break;
-        case 0:
-            verEmpleadosMenu();
-            break;
-        default:
-            system("cls");
-            printf("Ha ingresado una opcion que esta fuera de las posibles... volviendo al menu");
-            system("pause");
-            break;
-        }
+        printf("Empleado modificado!\n");
+        break;
+    case 2:
+        system("cls");
+        dibujoBancoCentral();
+        AltaYbajaEmpleado(trabajo,posTrabajo,empleadoBuscado, validos);
+        system("pause");
+        break;
+    case 0:
+        verEmpleadosMenu();
+        break;
+    default:
+        system("cls");
+        printf("Ha ingresado una opcion que esta fuera de las posibles... volviendo al menu");
+        system("pause");
+        break;
+    }
     verEmpleadosMenu();
 }
+///MENU DE EMPLEADOS PARA ADMIN
 void verEmpleadosMenu()
 {
     long int dni=0;
@@ -469,60 +477,62 @@ void verEmpleadosMenu()
     celda adlEmpleados[10];
     validos=fromArchiEmpleadosToADL(adlEmpleados, 10);
 
+    system("cls");
+    dibujoBancoCentral();
+    puts("-----------------------------------|");
+    printf("[1]VER EMPLEADOS ORDENADOS POR TRABAJO Y DNI\n");
+    puts("-----------------------------------|");
+    printf("[2]BUSCAR EMPLEADO POR DNI\n");
+    puts("-----------------------------------|");
+    printf("[3]AGREGAR NUEVO EMPLEADO\n");
+    puts("-----------------------------------|");
+    printf("[0]SALIR\n");
+    puts("-----------------------------------|");
+    fflush(stdin);
+    scanf("%d", &x);
+
+    switch(x)
+    {
+    case 1:
         system("cls");
         dibujoBancoCentral();
-        puts("-----------------------------------|");
-        printf("[1]VER EMPLEADOS ORDENADOS POR TRABAJO Y DNI\n");
-        puts("-----------------------------------|");
-        printf("[2]BUSCAR EMPLEADO POR DNI\n");
-        puts("-----------------------------------|");
-        printf("[3]AGREGAR NUEVO EMPLEADO\n");
-        puts("-----------------------------------|");
-        printf("[0]SALIR\n");
-        puts("-----------------------------------|");
+        mostrarADLempleados(adlEmpleados,validos);
+        system("pause");
+        break;
+    case 2:
+        system("cls");
+        dibujoBancoCentral();
+        printf("Ingrese DNI: ");
         fflush(stdin);
-        scanf("%d", &x);
-
-        switch(x)
+        scanf("%ld", &dni);
+        system("cls");
+        dibujoBancoCentral();
+        nodoBuscado=buscarEmpleadoXdni(adlEmpleados,validos,dni,&i);
+        if(nodoBuscado!=NULL)
         {
-        case 1:
-            system("cls");
-            dibujoBancoCentral();
-            mostrarADLempleados(adlEmpleados,validos);
-            system("pause");
-            break;
-        case 2:
-            system("cls");
-            dibujoBancoCentral();
-            printf("Ingrese DNI: ");
-            fflush(stdin);
-            scanf("%ld", &dni);
-            system("cls");
-            dibujoBancoCentral();
-            nodoBuscado=buscarEmpleadoXdni(adlEmpleados,validos,dni,&i);
-            if(nodoBuscado!=NULL){
-                menuOpcionesAdminEmpleado(adlEmpleados,i,nodoBuscado,validos);
-            }
-            else{
-                printf("\nEl DNI no fue encontrado.");
-            }
-            system("pause");
-            break;
-        case 3:
-                system("cls");
-                dibujoBancoCentral();
-                cargarArchiEmpleados();
-            break;
-        case 0:
-            menuAdmin();
-            break;
-        default:
-            system("cls");
-            printf("Ha ingresado una opcion que esta fuera de las posibles... volviendo al menu\n");
-            system("pause");
-            break;
+            menuOpcionesAdminEmpleado(adlEmpleados,i,nodoBuscado,validos);
         }
-       verEmpleadosMenu();
+        else
+        {
+            printf("\nEl DNI no fue encontrado.");
+        }
+        system("pause");
+        break;
+    case 3:
+        system("cls");
+        dibujoBancoCentral();
+        cargarArchiEmpleados();
+        break;
+    case 0:
+        menuAdmin();
+        break;
+    default:
+        system("cls");
+        printf("Ha ingresado una opcion que esta fuera de las posibles... volviendo al menu\n");
+        system("pause");
+        break;
     }
+    verEmpleadosMenu();
+}
 
 

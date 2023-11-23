@@ -6,7 +6,8 @@
 #include <conio.h>
 #include <unistd.h>
 
-//funciones de sistema
+///Funciones de sistema
+///sobreescribe un dato usuario en el archivo
 void reemplazarDato(usuario usu)
 {
 
@@ -230,7 +231,7 @@ int generarDigitoAleatorio()
     return rand() % 10;
 }
 
-//funcion para generar el cbu se le pasa la cantidad de digitos (8)
+//funcion para generar el cbu, se le pasa la cantidad de digitos (8)
 int generarCBU(int digitos)
 {
     if (digitos == 0)
@@ -243,7 +244,7 @@ int generarCBU(int digitos)
         return generarCBU(digitos - 1) * 10 + digito;
     }
 }
-
+///Carga una variable usuario para luego comparar con el arbol y validar el inicio de sesion
 usuario inicioSesion()
 {
     dibujoBancoCentral();
@@ -290,6 +291,7 @@ usuario inicioSesion()
 }
 //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 ///FUNCIONES LUEGO DE INICIAR SESION:
+///Agrega/resta saldo a la cuenta
 void depositarExtraer(nodoArbol * cuenta)
 {
     int opcion = -1;
@@ -349,6 +351,7 @@ void depositarExtraer(nodoArbol * cuenta)
 
 }
 ///MOVIMIENTOS
+/// genera una variable movimiento de un deposito o extraccino para luego guardar en el archivo
 movimiento generarDeposito(nodoArbol * cuenta)
 {
 
@@ -370,6 +373,7 @@ movimiento generarDeposito(nodoArbol * cuenta)
 }
 
 //Carga datos de la transferencia
+///genera la varible movimiento de una transferencia que luego se guarda en el archivo y se agrega a la lista
 void carga1Transfer (nodoArbol * raiz,nodoArbol * cuenta)
 {
     movimiento transfer;
@@ -484,7 +488,7 @@ void fromFileToFila(nodoArbol * cuenta,fila * filita)
 
 //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 //Modificacion de usuario
-///RETORNA UN USUARIO CON LA NUEVA CONTRASE�A
+///RETORNA UN USUARIO CON LA NUEVA CONTRASENIA
 usuario newPass(usuario usu)
 {
     char contrasenia[20];
@@ -508,7 +512,7 @@ usuario newPass(usuario usu)
     return usu;
 }
 
-
+///Da de baja o alta el usuario(cambia su estado a 1 o 0) y devuelve el usuario modificado
 usuario altaBaja (usuario usu, nodoArbol* arbol)
 {
     muestraUsuarioAdmin(usu);
@@ -552,7 +556,6 @@ usuario altaBaja (usuario usu, nodoArbol* arbol)
 ///RETORNO 0 PARA DESACTIVAR LA CUENTA
 usuario desactivar(usuario usu)
 {
-
     usu.estado=0;
 
     return usu;
@@ -616,8 +619,6 @@ void muestra1Usuario(usuario usu)
 }
 
 ///IMPRIME UN USUARIO POR PANTALLA
-
-
 void muestraUsuarioAdmin(usuario usu)
 {
     char estado[9];
@@ -673,16 +674,6 @@ int chequeoDNI(int dni)
         system("pause");
     }
     return flag;
-}
-
-
-//eliminar usuario (cambiar estado a 0)
-nodoArbol * cambiarEstado(nodoArbol * arbol)
-{
-
-    arbol->dato.estado = 0;
-
-    return arbol;
 }
 
 //Modifica un usuario dependiendo de la opcion que elija
@@ -747,6 +738,7 @@ nodoArbol* modificarUsuario(nodoArbol * arbol)
     return arbol;
 }
 
+///funcion para grafico de barra de carga
 void funcionConBarraDeCarga()
 {
     const int totalIteraciones = 100; // N�mero total de iteraciones de tu funci�n
@@ -777,6 +769,7 @@ void funcionConBarraDeCarga()
     printf("\n");
 }
 
+///funcion para grafico de barra de carga
 void funcionConBarraDeCargaLento()
 {
     const int totalIteraciones = 100; // N�mero total de iteraciones de tu funci�n
@@ -806,7 +799,7 @@ void funcionConBarraDeCargaLento()
 
     printf("\n");
 }
-
+///funcion de prints para mostrar el logo del banco
 void dibujoBancoCentral()
 {
     printf("\n");
@@ -816,6 +809,7 @@ void dibujoBancoCentral()
     printf("\n\n\n\n\n");
 }
 
+///Funcion que modifica el empleado dependiendo de la eleccion
 int modificarEmpleado(celda trabajo[],int posTrabajo,nodoEmpleado**empleadoBuscado,int*validos)///inicializar i en 0
 {
     int i2=-1;

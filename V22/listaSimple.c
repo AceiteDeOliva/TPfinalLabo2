@@ -3,12 +3,12 @@
 #include <string.h>
 #include <unistd.h>
 #include "librerias1.h"
-
+///inicializa la lista
 nodoListaS* inicLista()
 {
     return NULL;
 }
-
+///Crea un nodo de la lista
 nodoListaS* crearNodoListaS(usuario dato)
 {
     nodoListaS* aux=(nodoListaS*)malloc(sizeof(nodoListaS));
@@ -16,7 +16,7 @@ nodoListaS* crearNodoListaS(usuario dato)
     aux->siguiente=NULL;
 return aux;
 }
-
+///Pasa del archivo a una lista los usuarios que esten en estado 0
 nodoListaS* FromArchiAListaOrdenadaDesactivados(nodoListaS* lista)
 {
     FILE* buffer=fopen(archivo, "rb");
@@ -37,7 +37,7 @@ nodoListaS* FromArchiAListaOrdenadaDesactivados(nodoListaS* lista)
 
     return lista;
 }
-
+///Agrega en orden de DNI a la lista
 nodoListaS* agregarEnOrden(nodoListaS* lista, nodoListaS* nuevoNodo)
 {
     if(lista==NULL)
@@ -66,7 +66,7 @@ nodoListaS* agregarEnOrden(nodoListaS* lista, nodoListaS* nuevoNodo)
 
     return lista;
 }
-
+///agrega al principio de la lista
 nodoListaS* agregarAlPpio(nodoListaS* lista, nodoListaS* nuevo)
 {
     if(lista==NULL)
@@ -80,7 +80,7 @@ nodoListaS* agregarAlPpio(nodoListaS* lista, nodoListaS* nuevo)
     }
     return lista;
 }
-
+///Muestra la lista
 void mostrarLista(nodoListaS* lista)
 {
     nodoListaS* seg=lista;
@@ -93,4 +93,17 @@ void mostrarLista(nodoListaS* lista)
              seg=seg->siguiente;
          }
     }
+}
+///Borra la lista completamente
+void borrarLista(nodoListaS** lista) {
+    nodoListaS* aux = *lista;
+    nodoListaS* seg;
+
+    while (aux != NULL) {
+        seg = aux->siguiente;
+        free(aux);
+        aux = seg;
+    }
+
+    *lista = NULL;
 }
