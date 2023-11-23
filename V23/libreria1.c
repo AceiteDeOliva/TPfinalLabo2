@@ -513,7 +513,7 @@ usuario newPass(usuario usu)
 }
 
 ///Da de baja o alta el usuario(cambia su estado a 1 o 0) y devuelve el usuario modificado
-usuario altaBaja (usuario usu, nodoArbol* arbol)
+usuario altaBaja (usuario usu)
 {
     muestraUsuarioAdmin(usu);
 
@@ -543,7 +543,6 @@ usuario altaBaja (usuario usu, nodoArbol* arbol)
             usu = activar(usu);
             break;
         case 0:
-             menuOpcionesAdminUsuario(arbol);
             break;
         default:
             printf("opcion no valida.\n");
@@ -633,7 +632,7 @@ void muestraUsuarioAdmin(usuario usu)
         strcpy(estado, "INACTIVO");
     }
 
-    if(usu.genero=='m')
+    if(usu.genero=='f')
     {
          strcpy(genero, "FEMENINO");
     }
@@ -677,7 +676,7 @@ int chequeoDNI(int dni)
 }
 
 //Modifica un usuario dependiendo de la opcion que elija
-nodoArbol* modificarUsuario(nodoArbol * arbol)
+usuario modificarUsuario(usuario dato)
 {
     int eleccion = -1;
 
@@ -687,7 +686,7 @@ nodoArbol* modificarUsuario(nodoArbol * arbol)
 
         system("cls");
         dibujoBancoCentral();
-        muestra1Usuario(arbol->dato);
+        muestra1Usuario(dato);
 
         printf("[MODIFICAR]\n");
         puts("-----------------------------------|");
@@ -709,22 +708,22 @@ nodoArbol* modificarUsuario(nodoArbol * arbol)
         case 1:
             printf("Nuevo nombre y apellido:\n");
             fflush(stdin);
-            gets(arbol->dato.nombreApellido);
+            gets(dato.nombreApellido);
             break;
         case 2:
             printf("Nuevo genero:\n");
             fflush(stdin);
-            scanf(" %c", &arbol->dato.genero);
+            scanf("%c", &dato.genero);
             break;
         case 3:
             printf("Nuevo mail:\n");
             fflush(stdin);
-            gets(arbol->dato.mail);
+            gets(dato.mail);
             break;
         case 4:
             printf("Nueva contrasenia:\n");
             fflush(stdin);
-            gets(arbol->dato.contrasenia);
+            gets(dato.contrasenia);
             break;
         case 0:
 
@@ -735,7 +734,7 @@ nodoArbol* modificarUsuario(nodoArbol * arbol)
         }
     }
 
-    return arbol;
+    return dato;
 }
 
 ///funcion para grafico de barra de carga

@@ -881,3 +881,52 @@
 	"time.h"
 	"librerias1.h"
 
+1700761071 source:c:\users\josev\onedrive\documentos\github\tpfinallabo2\v23\arboles.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+
+1700763597 c:\users\josev\onedrive\documentos\github\tpfinallabo2\v23\librerias1.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1700761071 source:c:\users\josev\onedrive\documentos\github\tpfinallabo2\v23\arreglodelistas.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<unistd.h>
+	"librerias1.h"
+
+1700761071 source:c:\users\josev\onedrive\documentos\github\tpfinallabo2\v23\filas.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+
+1700763634 source:c:\users\josev\onedrive\documentos\github\tpfinallabo2\v23\libreria1.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+	<conio.h>
+	<unistd.h>
+
+1700761071 source:c:\users\josev\onedrive\documentos\github\tpfinallabo2\v23\listasimple.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<unistd.h>
+	"librerias1.h"
+
+1700763561 source:c:\users\josev\onedrive\documentos\github\tpfinallabo2\v23\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"time.h"
+	"librerias1.h"
+

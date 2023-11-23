@@ -277,6 +277,7 @@ void verUsuariosMenu()
     nodoListaS* lista=inicLista();
     nodoArbol* nodoBuscado = NULL;
     arbol = fromArchiToArbolDNI(arbol);
+
     do
     {
         system("cls");
@@ -388,14 +389,14 @@ void menuOpcionesAdminUsuario(nodoArbol* usuarioBuscado)
         {
         case 1:
             system("cls");
-            usuarioBuscado = modificarUsuario(usuarioBuscado);
+            usuarioBuscado->dato = modificarUsuario(usuarioBuscado->dato);
             reemplazarDato(usuarioBuscado->dato);
             system("pause");
             break;
         case 2:
             system("cls");
             dibujoBancoCentral();
-            usuarioBuscado->dato = altaBaja(usuarioBuscado->dato, usuarioBuscado);
+            usuarioBuscado->dato = altaBaja(usuarioBuscado->dato);
             reemplazarDato(usuarioBuscado->dato);
             system("pause");
             break;
