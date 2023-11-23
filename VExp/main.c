@@ -404,11 +404,11 @@ void menuOpcionesAdminUsuario(nodoArbol* usuarioBuscado)
         case 3:
             system("cls");
             dibujoBancoCentral();
+            fromFileToFila(usuarioBuscado,&movimientos);
+            recorrerMostrarExtraerFila(&movimientos);
             puts("------------");
             printf("SALDO: %li |\n", usuarioBuscado->dato.saldo);
             puts("------------\n");
-            fromFileToFila(usuarioBuscado,&movimientos);
-            recorrerMostrarExtraerFila(&movimientos);
             system("pause");
             break;
         case 0:
