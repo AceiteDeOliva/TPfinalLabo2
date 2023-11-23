@@ -2,14 +2,9 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Debug" />
-	<File name="ArregloDeListas.c" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="7" zoom_2="0">
+	<File name="filas.c" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="3" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="412" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="main.c" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="7" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1324" topLine="33" />
+			<Cursor1 position="2674" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="librerias1.h" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="5" zoom_2="0">
@@ -17,7 +12,22 @@
 			<Cursor1 position="3756" topLine="68" />
 		</Cursor>
 	</File>
-	<File name="libreria1.c" open="1" top="1" tabpos="2" split="0" active="1" splitpos="0" zoom_1="3" zoom_2="0">
+	<File name="listaSimple.c" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="5" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="288" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="main.c" open="1" top="1" tabpos="1" split="0" active="1" splitpos="0" zoom_1="7" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1324" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="ArregloDeListas.c" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="7" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="412" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="libreria1.c" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="3" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="25724" topLine="596" />
 		</Cursor>
@@ -65,13 +75,7 @@
 			<Collapse line="471" />
 			<Collapse line="477" />
 			<Collapse line="557" />
-			<Collapse line="633" />
 		</Folding>
-	</File>
-	<File name="filas.c" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="3" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2674" topLine="0" />
-		</Cursor>
 	</File>
 	<File name="arboles.c" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="4" zoom_2="0">
 		<Cursor>
@@ -82,25 +86,6 @@
 			<Collapse line="21" />
 			<Collapse line="25" />
 			<Collapse line="26" />
-			<Collapse line="36" />
-			<Collapse line="41" />
-			<Collapse line="43" />
-			<Collapse line="91" />
-			<Collapse line="101" />
-			<Collapse line="106" />
-			<Collapse line="108" />
-			<Collapse line="118" />
-			<Collapse line="121" />
-			<Collapse line="125" />
-			<Collapse line="127" />
-			<Collapse line="131" />
-			<Collapse line="140" />
-			<Collapse line="142" />
 		</Folding>
-	</File>
-	<File name="listaSimple.c" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="5" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="288" topLine="0" />
-		</Cursor>
 	</File>
 </CodeBlocks_layout_file>
