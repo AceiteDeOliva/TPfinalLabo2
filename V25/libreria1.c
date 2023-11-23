@@ -708,34 +708,24 @@ usuario modificarUsuario(usuario dato)
             }
             break;
         case 3:
-            do
-            {
-                printf("Ingrese el nuevo Mail: \n");
-                fflush(stdin);
-                gets(dato.mail);
-                dato.mail[strcspn(dato.mail, "\n")] = '\0';
+    do {
+        printf("Ingrese el nuevo Mail: \n");
+        fflush(stdin);
 
-                tieneArroba = strchr(dato.mail, '@') != NULL;
+        fgets(dato.mail, sizeof(dato.mail), stdin);
+        dato.mail[strcspn(dato.mail, "\n")] = '\0'; // Remove newline character
 
-                if (!tieneArroba)
-                {
-                    printf("El email debe contener '@'. Por favor, int�ntelo de nuevo.\n");
-                }
+        tieneArroba = strchr(dato.mail, '@') != NULL;
 
-                flag=chequeomail(dato.mail);
-                do
-                {
-                    if (flag==1)
-                    {
-                        printf("Este mail ya existe, ingrese otro por favor: ");
-                        fflush(stdin);
-                        gets(dato.mail);
-                        flag=chequeomail(dato.mail);
-                    }
-                }
-                while(flag==1);
+        if (!tieneArroba) {
+            printf("El email debe contener '@'. Por favor, inténtelo de nuevo.\n");
+        } else {
+            flag = chequeomail(dato.mail);
+            if (flag == 1) {
+                printf("Este mail ya existe, ingrese otro por favor: ");
             }
-            while (!tieneArroba && flag !=1);
+        }
+    } while (!tieneArroba || flag == 1);
             break;
         case 4:
             printf("Nueva contrasenia:\n");
