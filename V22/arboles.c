@@ -72,6 +72,7 @@ nodoArbol* buscarDNIenArbol(nodoArbol* arbol,int dni)
 return rta;
 }
 //Muestra un arbol en inorden
+
 void mostrarArbolInorden(nodoArbol* arbol)
 {
     if(arbol)
@@ -81,6 +82,9 @@ void mostrarArbolInorden(nodoArbol* arbol)
         mostrarArbolInorden(arbol->der);
     }
 }
+
+
+
 //Carga arbol en orden por cbu
 nodoArbol* cargarArbolOrdenCBU(nodoArbol* arbol, nodoArbol* nuevo)
 {

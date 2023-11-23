@@ -509,36 +509,42 @@ usuario newPass(usuario usu)
 }
 
 
-usuario altaBaja (usuario usu)
+usuario altaBaja (usuario usu, nodoArbol* arbol)
 {
     muestraUsuarioAdmin(usu);
 
     int eleccion = -1;
-    system("cls");
-    dibujoBancoCentral();
-    muestraUsuarioAdmin(usu);
-    puts("-----------------------------------|");
-    printf("[1]DAR DE BAJA\n");
-    puts("-----------------------------------|");
-    printf("[2]DAR DE ALTA\n");
-    puts("-----------------------------------|");
-    printf("[0]SALIR\n");
-    puts("-----------------------------------|");
-    fflush(stdin);
-    scanf("%i",&eleccion);
 
-    switch(eleccion)
+    while(eleccion!=0)
     {
-    case 1:
-        usu = desactivar(usu);
-        break;
-    case 2:
-        usu = activar(usu);
-    case 0:
-        break;
-    default:
-        printf("opcion no valida.\n");
-        break;
+        system("cls");
+        dibujoBancoCentral();
+        muestra1Usuario(usu);
+        puts("\n-----------------------------------|");
+        printf("[1]DAR DE BAJA\n");
+        puts("-----------------------------------|");
+        printf("[2]DAR DE ALTA\n");
+        puts("-----------------------------------|");
+        printf("[0]SALIR\n");
+        puts("-----------------------------------|");
+        fflush(stdin);
+        scanf("%i",&eleccion);
+
+        switch(eleccion)
+        {
+        case 1:
+            usu = desactivar(usu);
+            break;
+        case 2:
+            usu = activar(usu);
+            break;
+        case 0:
+             menuOpcionesAdminUsuario(arbol);
+            break;
+        default:
+            printf("opcion no valida.\n");
+            break;
+        }
     }
     return usu;
 }
@@ -578,36 +584,64 @@ int seguroDeseaEliminar()
 ///MUESTRA DATOS DE UN USUARIO
 void muestra1Usuario(usuario usu)
 {
-    puts("---------------------------------------------");
-    printf("Nombre y apellido:");
-    puts(usu.nombreApellido);
-    printf("Genero:%c\n", usu.genero);
-    printf("DNI:%i\n", usu.dni);
-    printf("Mail:%s\n", usu.mail);
-    printf("CBU:%08d\n", usu.cbu);
-    puts("---------------------------------------------");
-}
-
-///IMPRIME UN USUARIO POR PANTALLA
-void muestraUsuarioAdmin(usuario usu)
-{
-    puts("---------------------------------------------");
-    if(usu.estado==1)
+    char genero[10];
+    char estado[10];
+    if(usu.genero=='m')
     {
-        printf("ESTADO: ACTIVO\n");
+        strcpy(genero, "FEMENINO");
     }
     else
     {
-        printf("ESTADO: INACTIVO\n");
+        strcpy(genero, "MASCULINO");
     }
-    printf("NOMBRE Y APELLIDO:");
-    printf("%s\n", usu.nombreApellido);
-    printf("GENERO:");
-    printf("%c\n", usu.genero);
-    printf("DNI:%i\n", usu.dni);
-    printf("MAIL:%s\n", usu.mail);
-    printf("CBU:%08d\n", usu.cbu);
-    puts("---------------------------------------------");
+
+    if(usu.estado==1)
+    {
+        strcpy(estado, "ACTIVO");
+    }
+    else
+    {
+        strcpy(estado, "INACTIVO");
+    }
+
+
+    puts("                                     --------------------------------------------");
+    printf("                                    | DNI: %-8i                              |\n", usu.dni);
+    printf("                                      NOMBRE Y APELLIDO: %s\n", usu.nombreApellido);
+    printf("                                    | GENERO: %-8s                           |\n", genero);
+    printf("                                      MAIL: %s\n", usu.mail);
+    printf("                                    | CBU: %08d                              |\n", usu.cbu);
+    printf("                                      ESTADO: %s\n", estado);
+    puts("                                     --------------------------------------------");
+}
+
+///IMPRIME UN USUARIO POR PANTALLA
+
+
+void muestraUsuarioAdmin(usuario usu)
+{
+    char estado[9];
+    char genero[10];
+
+    if(usu.estado==1)
+    {
+     strcpy(estado, "ACTIVO");
+    }
+    else
+    {
+        strcpy(estado, "INACTIVO");
+    }
+
+    if(usu.genero=='m')
+    {
+         strcpy(genero, "FEMENINO");
+    }
+    else
+    {
+         strcpy(genero, "MASCULINO");
+    }
+    printf("      | %-15s%-23s%-13s%-15d%-30s%-9d|\n", estado, usu.nombreApellido, genero, usu.dni, usu.mail, usu.cbu);
+
 }
 
 ///SI ENCUENTRA EL DNI RETORNA 1 SINO 0
@@ -662,7 +696,7 @@ nodoArbol* modificarUsuario(nodoArbol * arbol)
 
         system("cls");
         dibujoBancoCentral();
-        muestraUsuarioAdmin(arbol->dato);
+        muestra1Usuario(arbol->dato);
 
         printf("[MODIFICAR]\n");
         puts("-----------------------------------|");
@@ -702,7 +736,7 @@ nodoArbol* modificarUsuario(nodoArbol * arbol)
             gets(arbol->dato.contrasenia);
             break;
         case 0:
-            menuOpcionesAdminUsuario(arbol);
+
             break;
         default:
             printf("Opci�n no v�lida\n");
@@ -743,6 +777,36 @@ void funcionConBarraDeCarga()
     printf("\n");
 }
 
+void funcionConBarraDeCargaLento()
+{
+    const int totalIteraciones = 100; // N�mero total de iteraciones de tu funci�n
+    int progreso;
+
+    printf("\n\n\n\n\n\n\n\n\n");
+    for (progreso = 0; progreso <= totalIteraciones; ++progreso)
+    {
+        // Simula la ejecuci�n de tu funci�n
+        // ...
+
+        // Imprime la barra de carga
+        printf("\r                        Progreso: [");
+        for (int i = 0; i < progreso * 50 / totalIteraciones; ++i)
+        {
+            printf("#");
+        }
+        for (int i = progreso * 50 / totalIteraciones; i < 50; ++i)
+        {
+            printf(" ");
+        }
+        printf("] %3d%%", progreso * 100 / totalIteraciones);
+
+        // Simula un retardo para ajustar la velocidad de la barra de carga
+        usleep(50000);  // Retardo de 50,000 microsegundos (0.05 segundos)
+    }
+
+    printf("\n");
+}
+
 void dibujoBancoCentral()
 {
     printf("\n");
@@ -751,87 +815,94 @@ void dibujoBancoCentral()
     printf("                                           $-----------------------------$\n");
     printf("\n\n\n\n\n");
 }
+
 int modificarEmpleado(celda trabajo[],int posTrabajo,nodoEmpleado**empleadoBuscado,int*validos)///inicializar i en 0
 {
     int i2=-1;
     int eleccion=-1;
-    printf("                                                 +-----------------+\n");
-    printf("                                                 |  BANCO CENTRAL  |  \n");
-    printf("                                                 +-----------------+\n");
-    printf("\n\n");
-    mostrarEmpleado(trabajo,posTrabajo,(*empleadoBuscado)->dato);
-    printf("[MODIFICAR]\n");
-    puts("-----------------------------------|");
-    printf("[1]NOMBRE Y APELLIDO\n");
-    puts("-----------------------------------|");
-    printf("[2]FECHA DE NACIMIENTO\n");
-    puts("-----------------------------------|");
-    printf("[3]TRABAJO\n");
-    puts("-----------------------------------|");
-    printf("[4]NUMERO DE TELEFONO\n");
-    puts("-----------------------------------|");
-    printf("[0]SALIR\n");
-    puts("-----------------------------------|");
-    fflush(stdin);
-    scanf("%i",&eleccion);
 
-    switch(eleccion)
+    while(eleccion != 0)
     {
-    case 1:
-        printf("Nuevo nombre y apellido:\n");
+        dibujoBancoCentral();
+        mostrarEmpleado(trabajo,posTrabajo,(*empleadoBuscado)->dato);
+        printf("[MODIFICAR]\n");
+        puts("-----------------------------------|");
+        printf("[1]NOMBRE Y APELLIDO\n");
+        puts("-----------------------------------|");
+        printf("[2]FECHA DE NACIMIENTO\n");
+        puts("-----------------------------------|");
+        printf("[3]TRABAJO\n");
+        puts("-----------------------------------|");
+        printf("[4]NUMERO DE TELEFONO\n");
+        puts("-----------------------------------|");
+        printf("[0]SALIR\n");
+        puts("-----------------------------------|");
         fflush(stdin);
-        gets((*empleadoBuscado)->dato.nombreYapellido);
-        break;
-    case 2:
-        printf("Nueva fecha(xx/xx/xxxx):\n");
-        fflush(stdin);
-        gets((*empleadoBuscado)->dato.fechaDeNacimiento);
-        break;
-    case 3:
-        system("cls");
-        printf("Nuevo trabajo:\n");
-        fflush(stdin);
-        char trabajoNom[20];
+        scanf("%i",&eleccion);
 
-        fflush(stdin);
-        scanf("%s",trabajoNom);
-        if(verificarTrabajoRepetido(trabajo,*validos,trabajoNom)==1){
-
-            i2=RetornarPosTrabajo(trabajo,trabajoNom,*validos);
-            trabajo[i2].listaEmpleados=agregarEmpleadoEnOrdenPorDni(trabajo[i2].listaEmpleados,*empleadoBuscado);
-            trabajo[posTrabajo].listaEmpleados=borrarNodoEmpleado(trabajo[posTrabajo].listaEmpleados,*empleadoBuscado);
-        }
-        else{
-            char control='s';
-            char nuevoTrabajo[30];
-            printf("El trabajo elegido no existe. Desea crear uno nuevo y cargar a este empleado?s/n\n");
+        switch(eleccion)
+        {
+        case 1:
+            printf("Nuevo nombre y apellido:\n");
             fflush(stdin);
-            scanf("%c",&control);
-            if(control=='s'){
-                system("cls");
-                printf("Ingrese nombre del trabajo nuevo:\n");
+            gets((*empleadoBuscado)->dato.nombreYapellido);
+            break;
+        case 2:
+            printf("Nueva fecha(xx/xx/xxxx):\n");
+            fflush(stdin);
+            gets((*empleadoBuscado)->dato.fechaDeNacimiento);
+            break;
+        case 3:
+
+            printf("Nuevo trabajo:\n");
+            fflush(stdin);
+            char trabajoNom[20];
+            scanf("%s",trabajoNom);
+
+            if(verificarTrabajoRepetido(trabajo,*validos,trabajoNom)==1)
+            {
+                i2=posTrabajo;
+                posTrabajo=RetornarPosTrabajo(trabajo,trabajoNom,*validos);
+                trabajo[posTrabajo].listaEmpleados=agregarEmpleadoEnOrdenPorDni(trabajo[posTrabajo].listaEmpleados,*empleadoBuscado);
+                trabajo[i2].listaEmpleados=borrarNodoEmpleado(trabajo[i2].listaEmpleados,*empleadoBuscado);
+            }
+            else
+            {
+                char control='s';
+                char nuevoTrabajo[30];
+                printf("El trabajo elegido no existe. Desea crear uno nuevo y cargar a este empleado?s/n\n");
                 fflush(stdin);
-                scanf("%s",nuevoTrabajo);
-                alta2(trabajo,*validos,(*empleadoBuscado),nuevoTrabajo);
-                trabajo[posTrabajo].listaEmpleados=borrarNodoEmpleado(trabajo[posTrabajo].listaEmpleados,*empleadoBuscado);
-                i2=*validos;
+                scanf("%c",&control);
+                if(control=='s')
+                {
+                    system("cls");
+                    dibujoBancoCentral();
+                    i2=posTrabajo;
+                    printf("Ingrese nombre del trabajo nuevo:\n");
+                    fflush(stdin);
+                    scanf("%s",nuevoTrabajo);
+                    alta2(trabajo,*validos,(*empleadoBuscado),nuevoTrabajo);
+                    trabajo[i2].listaEmpleados=borrarNodoEmpleado(trabajo[i2].listaEmpleados,*empleadoBuscado);
+                    posTrabajo=*validos;
+                }
+                else
+                {
+                    system("pause");
+                }
             }
-            else{
-                system("pause");
-            }
+            break;
+        case 4:
+            printf("Nuevo numero de telefono:\n");
+            fflush(stdin);
+            scanf("%s",(*empleadoBuscado)->dato.NumeroTelefono);
+            break;
+        case 0:
+
+            break;
+        default:
+            printf("opcion no valida\n");
+            break;
         }
-        break;
-    case 4:
-        printf("Nuevo numero de telefono:\n");
-        fflush(stdin);
-        scanf("%s",(*empleadoBuscado)->dato.NumeroTelefono);
-        break;
-    case 0:
-        verEmpleadosMenu();
-        break;
-    default:
-        printf("opcion no valida\n");
-        break;
     }
-return i2;
+    return posTrabajo;
 }

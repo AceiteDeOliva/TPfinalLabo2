@@ -119,10 +119,11 @@ int generarCBU(int digitos);
 void menuAdmin();
 void verUsuariosMenu();
 void muestraUsuarioAdmin(usuario usu);
+void menuOpcionesAdminEmpleado(celda trabajo[],int posTrabajo,nodoEmpleado*empleadoBuscado,int validos);
 int seguroDeseaEliminar();
 usuario desactivar(usuario usu);
 usuario activar(usuario usu);
-usuario altaBaja (usuario usu);
+usuario altaBaja (usuario usu, nodoArbol* arbol);
 int chequeoDNI(int dni);
 
 
@@ -159,10 +160,10 @@ void mostrarLista(nodoListaS* lista);
 nodoListaS* agregarEnOrden(nodoListaS* lista, nodoListaS* nuevoNodo);
 nodoListaS* agregarAlPpio(nodoListaS* lista, nodoListaS* nuevo);
 nodoListaS* FromArchiAListaOrdenadaDesactivados(nodoListaS* lista);
-void borrarLista(nodoListaS ** lista);
 
 //arreglo de listas
 void funcionConBarraDeCarga();
+void funcionConBarraDeCargaLento();
 void verEmpleadosMenu();
 void cargarArchiEmpleados();
 stRegistroEmpleado cargarDatosEmpleado();
@@ -181,7 +182,7 @@ void mostrarADLempleados(celda adl[], int validos);
 void mostrarListaEmpleados(nodoEmpleado* lista);
 void mostrarDatosListaEmpleados(nodoEmpleado*nodo);
 nodoEmpleado* buscarEmpleadoXdni(celda trabajos[], int validos, long int dniBuscado,int*i);
-void AltaYbajaEmpleado(celda trabajos[],int posTrabajo,nodoEmpleado*emplead);
+void AltaYbajaEmpleado(celda trabajos[],int posTrabajo,nodoEmpleado*emplead, int validos);
 void reemplazarDatoEmpleado(celda trabajos[], int posTrabajo, empleado dato);
 int modificarEmpleado(celda trabajo[],int posTrabajo,nodoEmpleado**empleadoBuscado,int*validos);
 int verificarTrabajoRepetido(celda trabajos[],int validos,char nombreTrabajo[]);

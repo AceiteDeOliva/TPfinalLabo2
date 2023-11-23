@@ -324,19 +324,7 @@ int fromArchiEmpleadosToADL(celda adlEmpleados[], int dimension)
 return validos;
 }
 
-void mostrarDatosListaEmpleados(nodoEmpleado* lista)
-{
-    puts("....................................");
-    if(lista->dato.estado==1)
-        printf("ESTADO: ACTIVO\n");
-    else
-        printf("ESTADO: INACTIVO\n");
-    printf("NOMBRE Y APELLIDO: %s\n", lista->dato.nombreYapellido);
-    printf("DNI: %ld\n", lista->dato.dni);
-    printf("FECHA DE NACIMIENTO: %s\n", lista->dato.fechaDeNacimiento);
-    printf("NUMERO DE TELEFONO: %s\n",lista->dato.NumeroTelefono);
-puts("....................................\n");
-}
+/*
 void mostrarEmpleado(celda trabajo[],int posTrabajo,empleado dato)
 {
     puts("....................................");
@@ -344,23 +332,38 @@ void mostrarEmpleado(celda trabajo[],int posTrabajo,empleado dato)
         printf("ESTADO: ACTIVO\n");
     else
         printf("ESTADO: INACTIVO\n");
+
     printf("TRABAJO: %s\n", trabajo[posTrabajo].nombreTrabajo);
     printf("NOMBRE Y APELLIDO: %s\n", dato.nombreYapellido);
     printf("DNI: %ld\n", dato.dni);
     printf("FECHA DE NACIMIENTO: %s\n", dato.fechaDeNacimiento);
     printf("NUMERO DE TELEFONO: %s\n",dato.NumeroTelefono);
 puts("....................................\n");
-}
-void mostrarListaEmpleados(nodoEmpleado* lista)
+}*/
+
+void mostrarEmpleado(celda trabajo[],int posTrabajo,empleado dato)
 {
-    nodoEmpleado* seg=lista;
-    if(seg){
-         while(seg){
-             mostrarDatosListaEmpleados(seg);
-             seg=seg->siguiente;
-         }
+    char estado[10];
+
+    if(dato.estado==1)
+    {
+        strcpy(estado, "ACTIVO");
     }
+    else
+    {
+        strcpy(estado, "INACTIVO");
+    }
+
+    puts("                                     --------------------------------------------");
+    printf("                                    | DNI: %-8li                              |\n", dato.dni);
+    printf("                                      NOMBRE Y APELLIDO: %s\n", dato.nombreYapellido);
+    printf("                                    | FECHA DE NACIMIENTO: %-8s             |\n", dato.fechaDeNacimiento);
+    printf("                                      TRABAJO: %s\n", trabajo[posTrabajo].nombreTrabajo);
+    printf("                                    | NUM TELEFONO: %8s                    |\n", dato.NumeroTelefono);
+    printf("                                      ESTADO: %s\n", estado);
+    puts("                                     --------------------------------------------\n\n");
 }
+
 void mostrarADLempleados(celda adl[], int validos)
 {
     int i=0;
@@ -370,11 +373,39 @@ void mostrarADLempleados(celda adl[], int validos)
 
         puts("-------------------");
         printf("TRABAJO: %s |\n", adl[i].nombreTrabajo);
-        puts("-------------------\n");
+        puts("-------------------\n\n");
+        puts("              ---------------------------------------------------------------------------------------------");
+        printf("             |   %-10s%-25s%-15s%-25s%-15s\n", "ESTADO", "NOMBRE Y APELLIDO", "DNI", "FECHA DE NACIMIENTO", "NUM TELEFONO   |");
+        puts("              ---------------------------------------------------------------------------------------------");
         mostrarListaEmpleados(adl[i].listaEmpleados);
         i++;
     }
 }
+
+void mostrarListaEmpleados(nodoEmpleado* lista)
+{
+    nodoEmpleado* seg=lista;
+
+    if(seg)
+    {
+         while(seg)
+         {
+             mostrarDatosListaEmpleados(seg);
+             seg=seg->siguiente;
+         }
+    }
+}
+
+void mostrarDatosListaEmpleados(nodoEmpleado* lista)
+{
+     char estado[10];
+     if(lista->dato.estado==1)
+        strcpy(estado, "ACTIVO");
+     else
+        strcpy(estado, "INACTIVO");
+     printf("             |   %-10s%-25s%-15ld%-25s%-15s| \n\n", estado, lista->dato.nombreYapellido, lista->dato.dni, lista->dato.fechaDeNacimiento, lista->dato.NumeroTelefono);
+}
+
 nodoEmpleado* buscarEmpleadoXdni(celda trabajos[], int validos, long int dniBuscado,int*i) {///i siempre tiene que estar en 0.
     for ((*i)=0;(*i)<validos;(*i)++) {
         nodoEmpleado*actual=trabajos[(*i)].listaEmpleados;
@@ -482,47 +513,42 @@ void reemplazarDatoEmpleado(celda trabajos[], int posTrabajo, empleado dato)
     }
     }
 }
-void AltaYbajaEmpleado(celda trabajos[],int posTrabajo,nodoEmpleado*emplead)
+void AltaYbajaEmpleado(celda trabajos[],int posTrabajo,nodoEmpleado*emplead, int validos)
 {
-    int x;
-    char control='s';
+    int x=-1;
+
+    do
+    {
+        system("cls");
+        dibujoBancoCentral();
+        mostrarEmpleado(trabajos,posTrabajo,emplead->dato);
         puts("-----------------------------------|");
         printf("[1]DAR DE ALTA EMPLEADO\n");
         puts("-----------------------------------|");
         printf("[2]DAR DE BAJA EMPLEADO\n");
+        puts("-----------------------------------|");
+        printf("[0]SALIR\n");
         puts("-----------------------------------|");
         fflush(stdin);
         scanf("%d",&x);
         switch(x)
         {
         case 1:
-            printf("Seguro quiere dar de ALTA a este empleado?s/n\n");
-            fflush(stdin);
-            scanf("%c",&control);
-            if(control=='s'){
-                emplead->dato.estado=1;
-                reemplazarDatoEmpleado(trabajos,posTrabajo,emplead->dato);
-                printf("Empleado dado de alta con exito!\n");
-            }
-            else{
-                printf("chau");
-            }
+            emplead->dato.estado=1;
+            reemplazarDatoEmpleado(trabajos,posTrabajo,emplead->dato);
             break;
         case 2:
-            printf("Seguro quiere dar de BAJA a este empleado?s/n\n");
-            fflush(stdin);
-            scanf("%c",&control);
-            if(control=='s'){
-                emplead->dato.estado=0;
-                reemplazarDatoEmpleado(trabajos,posTrabajo,emplead->dato);
-                printf("Empleado dado de baja con exito!");
-            }
-            else{
-                printf("chau");
-            }
+            emplead->dato.estado=0;
+            reemplazarDatoEmpleado(trabajos,posTrabajo,emplead->dato);
             break;
-            default:
+        case 0:
+            menuOpcionesAdminEmpleado(trabajos, posTrabajo,emplead, validos);
+            break;
+        default:
             printf("Elija una opcion correcta.\n");
             break;
         }
+    x=0;
+    }
+while(x!=-1);
 }

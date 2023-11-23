@@ -43,7 +43,7 @@ int main()
             system("cls");
             break;
         case 0:
-            printf("Programa finalizado...\n");
+            exit(0);
             break;
         default:
             printf("Opcion no valida\n");
@@ -86,7 +86,9 @@ void menuPrincipal(int opcionElegida)
             {
                 if (cuenta->dato.estado == 0)
                 {
-                    printf("Usuario desactivado hablar con administracion\n");
+                    printf("\n\nUSUARIO DESCATIVADO, CONTACTA CON SOPORTE.\n");
+                    funcionConBarraDeCargaLento();
+                    main();
                 }
                 else
                 {
@@ -181,7 +183,6 @@ void menuInicioSesion(nodoArbol * cuenta)
             break;
         case 5:
             system("cls");
-            dibujoBancoCentral();
             cuenta->dato = newPass(cuenta->dato);
             reemplazarDato(cuenta->dato);
             printf("Contrasenia cambiada con exito...\n");
@@ -271,7 +272,6 @@ void verUsuariosMenu()
     nodoListaS* lista=inicLista();
     nodoArbol* nodoBuscado = NULL;
     arbol = fromArchiToArbolDNI(arbol);
-    lista=FromArchiAListaOrdenadaDesactivados(lista);
     do
     {
         system("cls");
@@ -293,8 +293,14 @@ void verUsuariosMenu()
         case 1:
             system("cls");
             dibujoBancoCentral();
-            printf("ORDENADO POR DNI:\n");
+            puts("-----------------");
+            printf("ORDENADO POR DNI |\n");
+            puts("-----------------\n\n");
+            puts("       ----------------------------------------------------------------------------------------------------------");
+            printf("      | %-15s%-23s%-13s%-15s%-30s%-9s|", "ESTADO", "NOMBRE Y APELLIDO", "GENERO", "DNI", "MAIL", "CBU");
+            puts("             ----------------------------------------------------------------------------------------------------------");
             mostrarArbolInorden(arbol);
+            puts("       ----------------------------------------------------------------------------------------------------------");
             system("pause");
             break;
         case 2:
@@ -318,8 +324,16 @@ void verUsuariosMenu()
             break;
         case 3:
             system("cls");
+            lista=FromArchiAListaOrdenadaDesactivados(lista);
+            dibujoBancoCentral();
+            puts("--------------------");
+            printf(" USUARIOS INACTIVOS |\n");
+            puts("--------------------\n\n");
+            puts("       ----------------------------------------------------------------------------------------------------------");
+            printf("      | %-15s%-23s%-13s%-15s%-30s%-9s|", "ESTADO", "NOMBRE Y APELLIDO", "GENERO", "DNI", "MAIL", "CBU");
+            puts("             ----------------------------------------------------------------------------------------------------------");
             mostrarLista(lista);
-            borrarLista(lista);
+            puts("       ----------------------------------------------------------------------------------------------------------");
             system("pause");
             break;
         case 0:
@@ -346,7 +360,11 @@ void menuOpcionesAdminUsuario(nodoArbol* usuarioBuscado)
     {
         system("cls");
         dibujoBancoCentral();
+        puts("----------------");
+        printf("USUARIO BUSCADO |\n");
+        puts("----------------\n");
         muestra1Usuario(usuarioBuscado->dato);
+        printf("\n\n");
 
         puts("-----------------------------------|");
         printf("[1]MODIFICAR USUARIO\n");
@@ -371,7 +389,7 @@ void menuOpcionesAdminUsuario(nodoArbol* usuarioBuscado)
         case 2:
             system("cls");
             dibujoBancoCentral();
-            usuarioBuscado->dato = altaBaja(usuarioBuscado->dato);
+            usuarioBuscado->dato = altaBaja(usuarioBuscado->dato, usuarioBuscado);
             reemplazarDato(usuarioBuscado->dato);
             system("pause");
             break;
@@ -401,6 +419,8 @@ void menuOpcionesAdminEmpleado(celda trabajo[],int posTrabajo,nodoEmpleado*emple
 {
     int x;
     int nuevaPosTrabajo=0;
+    system("cls");
+    dibujoBancoCentral();
     mostrarEmpleado(trabajo,posTrabajo,empleadoBuscado->dato);
         puts("-----------------------------------|");
         printf("[1]MODIFICAR EMPLEADO\n");
@@ -416,24 +436,20 @@ void menuOpcionesAdminEmpleado(celda trabajo[],int posTrabajo,nodoEmpleado*emple
         {
         case 1:
             system("cls");
-            nuevaPosTrabajo=modificarEmpleado(trabajo,posTrabajo,&empleadoBuscado,&validos);
-                if(nuevaPosTrabajo!=-1){
-                    reemplazarDatoEmpleado(trabajo,nuevaPosTrabajo,empleadoBuscado->dato);
-                }
-                else{
-                    reemplazarDatoEmpleado(trabajo,posTrabajo,empleadoBuscado->dato);
-                }
+
+            posTrabajo=modificarEmpleado(trabajo,posTrabajo,&empleadoBuscado,&validos);
+            reemplazarDatoEmpleado(trabajo,posTrabajo,empleadoBuscado->dato);
+
             printf("Empleado modificado!\n");
-            system("pause");
             break;
         case 2:
             system("cls");
             dibujoBancoCentral();
-            AltaYbajaEmpleado(trabajo,posTrabajo,empleadoBuscado);
+            AltaYbajaEmpleado(trabajo,posTrabajo,empleadoBuscado, validos);
             system("pause");
             break;
         case 0:
-            menuAdmin();
+            verEmpleadosMenu();
             break;
         default:
             system("cls");
@@ -456,7 +472,7 @@ void verEmpleadosMenu()
         system("cls");
         dibujoBancoCentral();
         puts("-----------------------------------|");
-        printf("[1]VER EMPLEADOS ORDENADOS POR DNI\n");
+        printf("[1]VER EMPLEADOS ORDENADOS POR TRABAJO Y DNI\n");
         puts("-----------------------------------|");
         printf("[2]BUSCAR EMPLEADO POR DNI\n");
         puts("-----------------------------------|");
@@ -478,7 +494,7 @@ void verEmpleadosMenu()
         case 2:
             system("cls");
             dibujoBancoCentral();
-            printf("Ingrese DNI:");
+            printf("Ingrese DNI: ");
             fflush(stdin);
             scanf("%ld", &dni);
             system("cls");
