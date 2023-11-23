@@ -514,7 +514,7 @@ usuario newPass(usuario usu)
 }
 
 ///Da de baja o alta el usuario(cambia su estado a 1 o 0) y devuelve el usuario modificado
-usuario altaBaja (usuario usu, nodoArbol* arbol)
+usuario altaBaja (usuario usu)
 {
     muestraUsuarioAdmin(usu);
 
@@ -661,7 +661,7 @@ int chequeoDNI(int dni)
 }
 
 //Modifica un usuario dependiendo de la opcion que elija
-nodoArbol* modificarUsuario(nodoArbol * arbol)
+usuario modificarUsuario(usuario dato)
 {
     int eleccion = -1;
     int tieneArroba;
@@ -672,7 +672,7 @@ nodoArbol* modificarUsuario(nodoArbol * arbol)
 
         system("cls");
         dibujoBancoCentral();
-        muestra1Usuario(arbol->dato);
+        muestra1Usuario(dato);
 
         printf("[MODIFICAR]\n");
         puts("-----------------------------------|");
@@ -694,17 +694,17 @@ nodoArbol* modificarUsuario(nodoArbol * arbol)
         case 1:
             printf("Nuevo nombre y apellido:\n");
             fflush(stdin);
-            gets(arbol->dato.nombreApellido);
+            gets(dato.nombreApellido);
             break;
         case 2:
             printf("Nuevo genero (m-f): \n");
             fflush(stdin);
-            scanf("%c", &arbol->dato.genero);
-            while(arbol->dato.genero!='m' && arbol->dato.genero!='f')
+            scanf("%c", &dato.genero);
+            while(dato.genero!='m' && dato.genero!='f')
             {
                 printf("Ese genero no existe. Porfavor ingrese m (masculino) f (femenino).\n");
                 fflush(stdin);
-                scanf("%c", &arbol->dato.genero);
+                scanf("%c", &dato.genero);
             }
             break;
         case 3:
@@ -712,25 +712,25 @@ nodoArbol* modificarUsuario(nodoArbol * arbol)
             {
                 printf("Ingrese el nuevo Mail: \n");
                 fflush(stdin);
-                gets(arbol->dato.mail);
-                arbol->dato.mail[strcspn(arbol->dato.mail, "\n")] = '\0';
+                gets(dato.mail);
+                dato.mail[strcspn(dato.mail, "\n")] = '\0';
 
-                tieneArroba = strchr(arbol->dato.mail, '@') != NULL;
+                tieneArroba = strchr(dato.mail, '@') != NULL;
 
                 if (!tieneArroba)
                 {
                     printf("El email debe contener '@'. Por favor, int�ntelo de nuevo.\n");
                 }
 
-                flag=chequeomail(arbol->dato.mail);
+                flag=chequeomail(dato.mail);
                 do
                 {
                     if (flag==1)
                     {
                         printf("Este mail ya existe, ingrese otro por favor: ");
                         fflush(stdin);
-                        gets(arbol->dato.mail);
-                        flag=chequeomail(arbol->dato.mail);
+                        gets(dato.mail);
+                        flag=chequeomail(dato.mail);
                     }
                 }
                 while(flag==1);
@@ -740,7 +740,7 @@ nodoArbol* modificarUsuario(nodoArbol * arbol)
         case 4:
             printf("Nueva contrasenia:\n");
             fflush(stdin);
-            gets(arbol->dato.contrasenia);
+            gets(dato.contrasenia);
             break;
         case 0:
 
@@ -751,7 +751,7 @@ nodoArbol* modificarUsuario(nodoArbol * arbol)
 
         }
     }
-    return arbol;
+    return dato;
 }
 
 ///funcion para grafico de barra de carga

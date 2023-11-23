@@ -394,26 +394,26 @@ void menuOpcionesAdminUsuario(nodoArbol* usuarioBuscado)
         {
         case 1:
             system("cls");
-            usuarioBuscado = modificarUsuario(usuarioBuscado);
+            usuarioBuscado->dato = modificarUsuario(usuarioBuscado->dato);
             reemplazarDato(usuarioBuscado->dato);
             system("pause");
             break;
         case 2:
             system("cls");
             dibujoBancoCentral();
-            usuarioBuscado->dato = altaBaja(usuarioBuscado->dato, usuarioBuscado);
+            usuarioBuscado->dato = altaBaja(usuarioBuscado->dato);
             reemplazarDato(usuarioBuscado->dato);
             system("pause");
             break;
         case 3:
             system("cls");
             dibujoBancoCentral();
+            fromFileToFila(usuarioBuscado,&movimientos);
+            recorrerMostrarExtraerFila(&movimientos);
             puts("------------");
             printf("SALDO: %li |\n", usuarioBuscado->dato.saldo);
             puts("------------\n");
-            fromFileToFila(usuarioBuscado,&movimientos);
-            recorrerMostrarExtraerFila(&movimientos);
-            system("pause");
+                        system("pause");
             break;
         case 0:
             verUsuariosMenu();

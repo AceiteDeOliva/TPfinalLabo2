@@ -121,7 +121,9 @@ void verUsuariosMenu();
 void muestraUsuarioAdmin(usuario usu);
 void menuOpcionesAdminEmpleado(celda trabajo[],int posTrabajo,nodoEmpleado*empleadoBuscado,int validos);
 int seguroDeseaEliminar();
-usuario altaBaja (usuario usu, nodoArbol* arbol);
+usuario desactivar(usuario usu);
+usuario activar(usuario usu);
+usuario altaBaja (usuario usu);
 int chequeoDNI(int dni);
 
 
@@ -144,7 +146,7 @@ nodoArbol* crearNodoArbol(usuario dato);
 nodoArbol* cargarArbolOrdenDNI(nodoArbol* arbol, nodoArbol* nuevo);
 nodoArbol* fromArchiToArbolDNI(nodoArbol* arbol);
 nodoArbol* buscarDNIenArbol(nodoArbol* arbol,int dni);
-nodoArbol* modificarUsuario(nodoArbol * arbol);
+usuario modificarUsuario(usuario dato);
 void mostrarArbolInorden(nodoArbol* arbol);
 nodoArbol* buscarCBUenArbol(nodoArbol* arbol,int cbu);
 nodoArbol* fromArchiToArbolCBU(nodoArbol* arbol);
