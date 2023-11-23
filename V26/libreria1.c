@@ -143,7 +143,7 @@ usuario crea1Usuario (usuario nuevoUsuario)
         printf("\nMAIL: ");
         fflush(stdin);
         gets(nuevoUsuario.mail);
-        nuevoUsuario.mail[strcspn(nuevoUsuario.mail, "\n")] = '\0'; // Eliminar el salto de l�nea al final
+        nuevoUsuario.mail[strcspn(nuevoUsuario.mail, "\n")] = '\0'; // Eliminar el salto de linea al final
 
         // Verificar si el email contiene '@'
         tieneArroba = strchr(nuevoUsuario.mail, '@') != NULL;
@@ -151,7 +151,7 @@ usuario crea1Usuario (usuario nuevoUsuario)
         // Si no contiene '@', mostrar un mensaje de error
         if (!tieneArroba)
         {
-            printf("El email debe contener '@'. Por favor, int�ntelo de nuevo.\n");
+            printf("El email debe contener '@'. Por favor, intentelo de nuevo.\n");
         }
 
 
@@ -181,26 +181,26 @@ usuario crea1Usuario (usuario nuevoUsuario)
 
         if (ch == 13)
         {
-            break;  // Si el car�cter es 'Enter', rompe el bucle
+            break;  // Si el caracter es 'Enter', rompe el bucle
         }
         else if (ch == 8 && i > 0)
         {
-            // Si el car�cter es Backspace y hay caracteres para borrar
-            printf("\b \b");  // Borra el �ltimo car�cter en la pantalla
+            // Si el caracter es Backspace y hay caracteres para borrar
+            printf("\b \b");  // Borra el ultimo caracter en la pantalla
             i--;
         }
         else if (i < sizeof(contrasenia) - 1)
         {
-            // Si hay espacio para m�s caracteres
+            // Si hay espacio para mas caracteres
             contrasenia[i++] = ch;
-            printf("*");  // Muestra un asterisco en lugar del car�cter
+            printf("*");  // Muestra un asterisco en lugar del caracter
         }
     }
 
     contrasenia[i] = '\0';
 
     strcpy(nuevoUsuario.contrasenia,contrasenia);
-    //printf("la contrse�a es %s ",nuevoUsuario.contrasenia);
+    //printf("la contrsenia es %s ",nuevoUsuario.contrasenia);
 
     srand((unsigned int)time(NULL));
     nuevoUsuario.cbu = generarCBU(8);
@@ -268,19 +268,19 @@ usuario inicioSesion()
 
         if (ch == 13)
         {
-            break;  // Si el car�cter es 'Enter', rompe el bucle
+            break;  // Si el caracter es 'Enter', rompe el bucle
         }
         else if (ch == 8 && i > 0)
         {
-            // Si el car�cter es Backspace y hay caracteres para borrar
-            printf("\b \b");  // Borra el �ltimo car�cter en la pantalla
+            // Si el caracter es Backspace y hay caracteres para borrar
+            printf("\b \b");  // Borra el ultimo caracter en la pantalla
             i--;
         }
         else if (i < sizeof(contrasenia) - 1)
         {
-            // Si hay espacio para m�s caracteres
+            // Si hay espacio para mas caracteres
             contrasenia[i++] = ch;
-            printf("*");  // Muestra un asterisco en lugar del car�cter
+            printf("*");  // Muestra un asterisco en lugar del caracter
         }
     }
 
@@ -935,7 +935,7 @@ void guiaDeUsuario()
     printf("- Modificar Empleado\n");
     printf("- Dar de Alta o Dar de Baja Empleado\n");
 
-    printf("\n¡Disfruta utilizando el Sistema de Cuentas Bancarias! Si necesitas asistencia, contacta al soporte ;3\n\n\n");
+    printf("\nDisfruta utilizando el Sistema de Cuentas Bancarias! Si necesitas asistencia, contacta al soporte;\n\n\n");
 }
 
 
