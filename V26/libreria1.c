@@ -718,11 +718,11 @@ usuario modificarUsuario(usuario dato)
         tieneArroba = strchr(dato.mail, '@') != NULL;
 
         if (!tieneArroba) {
-            printf("El email debe contener '@'. Por favor, inténtelo de nuevo.\n");
+            printf("El email debe contener '@'. Por favor, intentelo de nuevo.\n");
         } else {
             flag = chequeomail(dato.mail);
             if (flag == 1) {
-                printf("Este mail ya existe, ingrese otro por favor: ");
+                printf("Este mail ya existe, ingrese otro por favor: \n");
             }
         }
     } while (!tieneArroba || flag == 1);
