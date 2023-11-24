@@ -328,7 +328,6 @@ void depositarExtraer(nodoArbol * cuenta)
             cuenta->dato.saldo -= efectivo.monto;
             reemplazarDato(cuenta->dato);
             movimientoAArchivo(efectivo);
-
         }
         else
         {
