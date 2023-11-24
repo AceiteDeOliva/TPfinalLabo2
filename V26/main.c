@@ -62,7 +62,6 @@ int main()
     return 0;
 }
 
-
 /// MENU PRINCIPAL
 void menuPrincipal(int opcionElegida)
 {
@@ -128,7 +127,6 @@ void menuPrincipal(int opcionElegida)
     }
 
 }
-
 
 ///MENU UNA VEZ INICIADA LA SESION
 void menuInicioSesion(nodoArbol * cuenta)

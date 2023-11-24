@@ -1019,7 +1019,7 @@
 	"time.h"
 	"librerias1.h"
 
-1700771228 c:\users\valentin\documents\github\tpfinallabo2\v26\librerias1.h
+1700780374 c:\users\valentin\documents\github\tpfinallabo2\v26\librerias1.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -1038,7 +1038,7 @@
 	"time.h"
 	"librerias1.h"
 
-1700772424 source:c:\users\valentin\documents\github\tpfinallabo2\v26\libreria1.c
+1700772555 source:c:\users\valentin\documents\github\tpfinallabo2\v26\libreria1.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -1054,7 +1054,7 @@
 	<unistd.h>
 	"librerias1.h"
 
-1700771228 source:c:\users\valentin\documents\github\tpfinallabo2\v26\main.c
+1700780330 source:c:\users\valentin\documents\github\tpfinallabo2\v26\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
