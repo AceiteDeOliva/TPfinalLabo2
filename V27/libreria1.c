@@ -768,7 +768,7 @@ void funcionConBarraDeCarga()
         printf("] %3d%%", progreso * 100 / totalIteraciones);
 
         // Simula un retardo para ajustar la velocidad de la barra de carga
-        usleep(100);  // Retardo de 50,000 microsegundos (0.05 segundos)
+        usleep(3000);  // Retardo de 50,000 microsegundos (0.05 segundos)
     }
 
     printf("\n");
